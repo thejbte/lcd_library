@@ -1,0 +1,2964 @@
+
+
+Microchip MPLAB XC8 Assembler V2.35 build 20211206165544 
+                                                                                               Wed Mar 16 15:14:22 2022
+
+Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1 
+     1                           	processor	16F887
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	strings,global,class=STRING,delta=2,noexec
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	bssBANK1,global,class=BANK1,space=1,delta=1,noexec
+     9                           	psect	clrtext,global,class=CODE,delta=2
+    10                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+    11                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+    12                           	psect	maintext,global,class=CODE,split=1,delta=2
+    13                           	psect	text1,local,class=CODE,merge=1,delta=2
+    14                           	psect	text2,local,class=CODE,merge=1,delta=2,group=2
+    15                           	psect	text3,local,class=CODE,merge=1,delta=2,group=2
+    16                           	psect	text4,local,class=CODE,merge=1,delta=2
+    17                           	psect	text5,local,class=CODE,merge=1,delta=2
+    18                           	psect	text6,local,class=CODE,merge=1,delta=2
+    19                           	psect	text7,local,class=CODE,merge=1,delta=2
+    20                           	psect	text8,local,class=CODE,merge=1,delta=2
+    21                           	psect	text9,local,class=CODE,merge=1,delta=2
+    22                           	psect	text10,local,class=CODE,merge=1,delta=2
+    23                           	psect	text11,local,class=CODE,merge=1,delta=2
+    24                           	psect	text12,local,class=CODE,merge=1,delta=2
+    25                           	psect	text13,local,class=CODE,merge=1,delta=2
+    26                           	psect	text14,local,class=CODE,merge=1,delta=2
+    27                           	psect	text15,local,class=CODE,merge=1,delta=2
+    28                           	psect	intentry,global,class=CODE,delta=2
+    29                           	psect	functab,global,class=ENTRY,delta=2
+    30                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=2,noexec
+    31                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    32                           	dabs	1,0x7E,2
+    33  0000                     
+    34                           ; Version 2.40
+    35                           ; Generated 17/11/2021 GMT
+    36                           ; 
+    37                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    38                           ; All rights reserved.
+    39                           ; 
+    40                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    41                           ; 
+    42                           ; Redistribution and use in source and binary forms, with or without modification, are
+    43                           ; permitted provided that the following conditions are met:
+    44                           ; 
+    45                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    46                           ;        conditions and the following disclaimer.
+    47                           ; 
+    48                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    49                           ;        of conditions and the following disclaimer in the documentation and/or other
+    50                           ;        materials provided with the distribution. Publication is not required when
+    51                           ;        this file is used in an embedded application.
+    52                           ; 
+    53                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    54                           ;        software without specific prior written permission.
+    55                           ; 
+    56                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    57                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    58                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    59                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    60                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    61                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    62                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    63                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    64                           ; 
+    65                           ; 
+    66                           ; Code-generator required, PIC16F887 Definitions
+    67                           ; 
+    68                           ; SFR Addresses
+    69  0000                     	;# 
+    70  0001                     	;# 
+    71  0002                     	;# 
+    72  0003                     	;# 
+    73  0004                     	;# 
+    74  0005                     	;# 
+    75  0006                     	;# 
+    76  0007                     	;# 
+    77  0008                     	;# 
+    78  0009                     	;# 
+    79  000A                     	;# 
+    80  000B                     	;# 
+    81  000C                     	;# 
+    82  000D                     	;# 
+    83  000E                     	;# 
+    84  000E                     	;# 
+    85  000F                     	;# 
+    86  0010                     	;# 
+    87  0011                     	;# 
+    88  0012                     	;# 
+    89  0013                     	;# 
+    90  0014                     	;# 
+    91  0015                     	;# 
+    92  0015                     	;# 
+    93  0016                     	;# 
+    94  0017                     	;# 
+    95  0018                     	;# 
+    96  0019                     	;# 
+    97  001A                     	;# 
+    98  001B                     	;# 
+    99  001B                     	;# 
+   100  001C                     	;# 
+   101  001D                     	;# 
+   102  001E                     	;# 
+   103  001F                     	;# 
+   104  0081                     	;# 
+   105  0085                     	;# 
+   106  0086                     	;# 
+   107  0087                     	;# 
+   108  0088                     	;# 
+   109  0089                     	;# 
+   110  008C                     	;# 
+   111  008D                     	;# 
+   112  008E                     	;# 
+   113  008F                     	;# 
+   114  0090                     	;# 
+   115  0091                     	;# 
+   116  0092                     	;# 
+   117  0093                     	;# 
+   118  0093                     	;# 
+   119  0093                     	;# 
+   120  0094                     	;# 
+   121  0095                     	;# 
+   122  0096                     	;# 
+   123  0097                     	;# 
+   124  0098                     	;# 
+   125  0099                     	;# 
+   126  009A                     	;# 
+   127  009B                     	;# 
+   128  009C                     	;# 
+   129  009D                     	;# 
+   130  009E                     	;# 
+   131  009F                     	;# 
+   132  0105                     	;# 
+   133  0107                     	;# 
+   134  0108                     	;# 
+   135  0109                     	;# 
+   136  010C                     	;# 
+   137  010C                     	;# 
+   138  010D                     	;# 
+   139  010E                     	;# 
+   140  010F                     	;# 
+   141  0185                     	;# 
+   142  0187                     	;# 
+   143  0188                     	;# 
+   144  0189                     	;# 
+   145  018C                     	;# 
+   146  018D                     	;# 
+   147  0000                     	;# 
+   148  0001                     	;# 
+   149  0002                     	;# 
+   150  0003                     	;# 
+   151  0004                     	;# 
+   152  0005                     	;# 
+   153  0006                     	;# 
+   154  0007                     	;# 
+   155  0008                     	;# 
+   156  0009                     	;# 
+   157  000A                     	;# 
+   158  000B                     	;# 
+   159  000C                     	;# 
+   160  000D                     	;# 
+   161  000E                     	;# 
+   162  000E                     	;# 
+   163  000F                     	;# 
+   164  0010                     	;# 
+   165  0011                     	;# 
+   166  0012                     	;# 
+   167  0013                     	;# 
+   168  0014                     	;# 
+   169  0015                     	;# 
+   170  0015                     	;# 
+   171  0016                     	;# 
+   172  0017                     	;# 
+   173  0018                     	;# 
+   174  0019                     	;# 
+   175  001A                     	;# 
+   176  001B                     	;# 
+   177  001B                     	;# 
+   178  001C                     	;# 
+   179  001D                     	;# 
+   180  001E                     	;# 
+   181  001F                     	;# 
+   182  0081                     	;# 
+   183  0085                     	;# 
+   184  0086                     	;# 
+   185  0087                     	;# 
+   186  0088                     	;# 
+   187  0089                     	;# 
+   188  008C                     	;# 
+   189  008D                     	;# 
+   190  008E                     	;# 
+   191  008F                     	;# 
+   192  0090                     	;# 
+   193  0091                     	;# 
+   194  0092                     	;# 
+   195  0093                     	;# 
+   196  0093                     	;# 
+   197  0093                     	;# 
+   198  0094                     	;# 
+   199  0095                     	;# 
+   200  0096                     	;# 
+   201  0097                     	;# 
+   202  0098                     	;# 
+   203  0099                     	;# 
+   204  009A                     	;# 
+   205  009B                     	;# 
+   206  009C                     	;# 
+   207  009D                     	;# 
+   208  009E                     	;# 
+   209  009F                     	;# 
+   210  0105                     	;# 
+   211  0107                     	;# 
+   212  0108                     	;# 
+   213  0109                     	;# 
+   214  010C                     	;# 
+   215  010C                     	;# 
+   216  010D                     	;# 
+   217  010E                     	;# 
+   218  010F                     	;# 
+   219  0185                     	;# 
+   220  0187                     	;# 
+   221  0188                     	;# 
+   222  0189                     	;# 
+   223  018C                     	;# 
+   224  018D                     	;# 
+   225  0019                     _TXREG	set	25
+   226  001A                     _RCREG	set	26
+   227  0008                     _PORTDbits	set	8
+   228  0007                     _PORTC	set	7
+   229  0008                     _PORTD	set	8
+   230  0006                     _PORTB	set	6
+   231  0047                     _RD7	set	71
+   232  0046                     _RD6	set	70
+   233  0065                     _RCIF	set	101
+   234  0087                     _TRISC	set	135
+   235  0086                     _TRISB	set	134
+   236  0088                     _TRISD	set	136
+   237  04C1                     _TRMT	set	1217
+   238                           
+   239                           	psect	strings
+   240  0200                     __pstrings:
+   241  0200                     stringtab:
+   242  0200                     __stringtab:
+   243                           
+   244                           ;	String table - string pointers are 1 byte each
+   245  0200  1BFF               	btfsc	btemp+1,7
+   246  0201  2A0A               	ljmp	stringcode
+   247  0202  1383               	bcf	3,7
+   248  0203  187F               	btfsc	btemp+1,0
+   249  0204  1783               	bsf	3,7
+   250  0205  0800               	movf	0,w
+   251  0206  0A84               	incf	4,f
+   252  0207  1903               	skipnz
+   253  0208  0AFF               	incf	btemp+1,f
+   254  0209  0008               	return
+   255  020A                     stringcode:
+   256  020A                     stringdir:
+   257  020A  3002               	movlw	high stringdir
+   258  020B  008A               	movwf	10
+   259  020C  0804               	movf	4,w
+   260  020D  0A84               	incf	4,f
+   261  020E  0782               	addwf	2,f
+   262  020F                     __stringbase:
+   263  020F  3400               	retlw	0
+   264  0210                     __end_of__stringtab:
+   265  0210                     STR_1:
+   266  0210  3431               	retlw	49	;'1'
+   267  0211  3432               	retlw	50	;'2'
+   268  0212  3433               	retlw	51	;'3'
+   269  0213  3434               	retlw	52	;'4'
+   270  0214  3435               	retlw	53	;'5'
+   271  0215  3436               	retlw	54	;'6'
+   272  0216  3437               	retlw	55	;'7'
+   273  0217  3438               	retlw	56	;'8'
+   274  0218  3439               	retlw	57	;'9'
+   275  0219  3430               	retlw	48	;'0'
+   276  021A  3431               	retlw	49	;'1'
+   277  021B  3432               	retlw	50	;'2'
+   278  021C  3433               	retlw	51	;'3'
+   279  021D  3434               	retlw	52	;'4'
+   280  021E  3435               	retlw	53	;'5'
+   281  021F  3461               	retlw	97	;'a'
+   282  0220  3462               	retlw	98	;'b'
+   283  0221  3463               	retlw	99	;'c'
+   284  0222  3464               	retlw	100	;'d'
+   285  0223  3465               	retlw	101	;'e'
+   286  0224  3466               	retlw	102	;'f'
+   287  0225  3467               	retlw	103	;'g'
+   288  0226  3468               	retlw	104	;'h'
+   289  0227  3469               	retlw	105	;'i'
+   290  0228  346A               	retlw	106	;'j'
+   291  0229  346B               	retlw	107	;'k'
+   292  022A  346C               	retlw	108	;'l'
+   293  022B  346D               	retlw	109	;'m'
+   294  022C  346E               	retlw	110	;'n'
+   295  022D  346F               	retlw	111	;'o'
+   296  022E  3400               	retlw	0
+   297  022F                     STR_4:
+   298  022F  3469               	retlw	105	;'i'
+   299  0230  3467               	retlw	103	;'g'
+   300  0231  3475               	retlw	117	;'u'
+   301  0232  3461               	retlw	97	;'a'
+   302  0233  346C               	retlw	108	;'l'
+   303  0234  3420               	retlw	32	;' '
+   304  0235  3461               	retlw	97	;'a'
+   305  0236  343A               	retlw	58	;':'
+   306  0237  3420               	retlw	32	;' '
+   307  0238  3409               	retlw	9
+   308  0239  3425               	retlw	37	;'%'
+   309  023A  3420               	retlw	32	;' '
+   310  023B  3420               	retlw	32	;' '
+   311  023C  3420               	retlw	32	;' '
+   312  023D  3409               	retlw	9
+   313  023E  3400               	retlw	0
+   314  023F                     STR_3:
+   315  023F  3470               	retlw	112	;'p'
+   316  0240  346F               	retlw	111	;'o'
+   317  0241  3472               	retlw	114	;'r'
+   318  0242  3463               	retlw	99	;'c'
+   319  0243  3465               	retlw	101	;'e'
+   320  0244  346E               	retlw	110	;'n'
+   321  0245  3474               	retlw	116	;'t'
+   322  0246  3461               	retlw	97	;'a'
+   323  0247  346A               	retlw	106	;'j'
+   324  0248  3465               	retlw	101	;'e'
+   325  0249  3420               	retlw	32	;' '
+   326  024A  3400               	retlw	0
+   327  024B                     STR_2:
+   328  024B  344A               	retlw	74	;'J'
+   329  024C  344A               	retlw	74	;'J'
+   330  024D  3475               	retlw	117	;'u'
+   331  024E  346C               	retlw	108	;'l'
+   332  024F  3469               	retlw	105	;'i'
+   333  0250  3461               	retlw	97	;'a'
+   334  0251  346E               	retlw	110	;'n'
+   335  0252  3400               	retlw	0
+   336                           
+   337                           	psect	cinit
+   338  000F                     start_initialization:	
+   339                           ; #config settings
+   340                           
+   341  000F                     __initialization:
+   342                           
+   343                           ; Clear objects allocated to COMMON
+   344  000F  01F6               	clrf	__pbssCOMMON& (0+127)
+   345  0010  01F7               	clrf	(__pbssCOMMON+1)& (0+127)
+   346  0011  01F8               	clrf	(__pbssCOMMON+2)& (0+127)
+   347  0012  01F9               	clrf	(__pbssCOMMON+3)& (0+127)
+   348                           
+   349                           ; Clear objects allocated to BANK0
+   350  0013  1383               	bcf	3,7	;select IRP bank0
+   351  0014  3062               	movlw	low __pbssBANK0
+   352  0015  0084               	movwf	4
+   353  0016  3070               	movlw	low (__pbssBANK0+14)
+   354  0017  120A  118A  23F5  120A  118A  	fcall	clear_ram0
+   355                           
+   356                           ; Clear objects allocated to BANK1
+   357  001C  30A0               	movlw	low __pbssBANK1
+   358  001D  0084               	movwf	4
+   359  001E  30C0               	movlw	low (__pbssBANK1+32)
+   360  001F  120A  118A  23F5  120A  118A  	fcall	clear_ram0
+   361  0024                     end_of_initialization:	
+   362                           ;End of C runtime variable initialization code
+   363                           
+   364  0024                     __end_of__initialization:
+   365  0024  0183               	clrf	3
+   366  0025  120A  118A  299A   	ljmp	_main	;jump to C main() function
+   367                           
+   368                           	psect	bssCOMMON
+   369  0076                     __pbssCOMMON:
+   370  0076                     _temp:
+   371  0076                     	ds	2
+   372  0078                     _centenas:
+   373  0078                     	ds	2
+   374                           
+   375                           	psect	bssBANK0
+   376  0062                     __pbssBANK0:
+   377  0062                     _x:
+   378  0062                     	ds	4
+   379  0066                     _unidades:
+   380  0066                     	ds	2
+   381  0068                     _decenas:
+   382  0068                     	ds	2
+   383  006A                     _cont:
+   384  006A                     	ds	2
+   385  006C                     _n:
+   386  006C                     	ds	2
+   387  006E                     _porcentaje:
+   388  006E                     	ds	2
+   389                           
+   390                           	psect	bssBANK1
+   391  00A0                     __pbssBANK1:
+   392  00A0                     lcdPuts@F228:
+   393  00A0                     	ds	16
+   394  00B0                     lcdPuts@F226:
+   395  00B0                     	ds	16
+   396                           
+   397                           	psect	clrtext
+   398  03F5                     clear_ram0:	
+   399                           ;	Called with FSR containing the base address, and
+   400                           ;	W with the last address+1
+   401                           
+   402  03F5  0064               	clrwdt	;clear the watchdog before getting into this loop
+   403  03F6                     clrloop0:
+   404  03F6  0180               	clrf	0	;clear RAM location pointed to by FSR
+   405  03F7  0A84               	incf	4,f	;increment pointer
+   406  03F8  0604               	xorwf	4,w	;XOR with final address
+   407  03F9  1903               	btfsc	3,2	;have we reached the end yet?
+   408  03FA  3400               	retlw	0	;all done for this memory range, return
+   409  03FB  0604               	xorwf	4,w	;XOR again to restore value
+   410  03FC  2BF6               	goto	clrloop0	;do the next byte
+   411                           
+   412                           	psect	cstackCOMMON
+   413  0070                     __pcstackCOMMON:
+   414  0070                     ?_lcdConfig:
+   415  0070                     ?_main:	
+   416                           ; 1 bytes @ 0x0
+   417                           
+   418  0070                     ?_isr:	
+   419                           ; 1 bytes @ 0x0
+   420                           
+   421  0070                     ??_isr:	
+   422                           ; 1 bytes @ 0x0
+   423                           
+   424  0070                     ?_lcdSet:	
+   425                           ; 1 bytes @ 0x0
+   426                           
+   427                           
+   428                           ; 1 bytes @ 0x0
+   429  0070                     	ds	4
+   430  0074                     ?_ctrlEn:
+   431  0074                     ?_ctrlRs:	
+   432                           ; 1 bytes @ 0x4
+   433                           
+   434  0074                     ?_ctrlData:	
+   435                           ; 1 bytes @ 0x4
+   436                           
+   437  0074                     ?_strlen:	
+   438                           ; 1 bytes @ 0x4
+   439                           
+   440  0074                     ctrlEn@status:	
+   441                           ; 2 bytes @ 0x4
+   442                           
+   443  0074                     ctrlRs@status:	
+   444                           ; 1 bytes @ 0x4
+   445                           
+   446  0074                     ctrlData@Data:	
+   447                           ; 1 bytes @ 0x4
+   448                           
+   449                           
+   450                           ; 1 bytes @ 0x4
+   451  0074                     	ds	1
+   452  0075                     ??_ctrlEn:
+   453  0075                     ??_ctrlRs:	
+   454                           ; 1 bytes @ 0x5
+   455                           
+   456  0075                     ??_ctrlData:	
+   457                           ; 1 bytes @ 0x5
+   458                           
+   459  0075                     ?_lcdWriteData:	
+   460                           ; 1 bytes @ 0x5
+   461                           
+   462  0075                     ??_lcdSet:	
+   463                           ; 1 bytes @ 0x5
+   464                           
+   465  0075                     lcdSet@obj:	
+   466                           ; 1 bytes @ 0x5
+   467                           
+   468  0075                     lcdWriteData@c:	
+   469                           ; 1 bytes @ 0x5
+   470                           
+   471                           
+   472                           ; 1 bytes @ 0x5
+   473  0075                     	ds	1
+   474                           
+   475                           	psect	cstackBANK0
+   476  0020                     __pcstackBANK0:
+   477  0020                     ?_delay_ms:
+   478  0020                     ??_strlen:	
+   479                           ; 1 bytes @ 0x0
+   480                           
+   481  0020                     delay_ms@milliseconds:	
+   482                           ; 1 bytes @ 0x0
+   483                           
+   484                           
+   485                           ; 4 bytes @ 0x0
+   486  0020                     	ds	1
+   487  0021                     strlen@cp:
+   488                           
+   489                           ; 1 bytes @ 0x1
+   490  0021                     	ds	1
+   491  0022                     strlen@s:
+   492                           
+   493                           ; 1 bytes @ 0x2
+   494  0022                     	ds	1
+   495  0023                     ?_memcpy:
+   496  0023                     memcpy@s1:	
+   497                           ; 1 bytes @ 0x3
+   498                           
+   499                           
+   500                           ; 1 bytes @ 0x3
+   501  0023                     	ds	1
+   502  0024                     ??_delay_ms:
+   503  0024                     memcpy@n:	
+   504                           ; 1 bytes @ 0x4
+   505                           
+   506                           
+   507                           ; 2 bytes @ 0x4
+   508  0024                     	ds	2
+   509  0026                     ??_memcpy:
+   510                           
+   511                           ; 1 bytes @ 0x6
+   512  0026                     	ds	1
+   513  0027                     memcpy@tmp:
+   514                           
+   515                           ; 1 bytes @ 0x7
+   516  0027                     	ds	1
+   517  0028                     ??_lcdConfig:
+   518  0028                     ??_lcdWriteData:	
+   519                           ; 1 bytes @ 0x8
+   520                           
+   521  0028                     memcpy@d:	
+   522                           ; 1 bytes @ 0x8
+   523                           
+   524                           
+   525                           ; 1 bytes @ 0x8
+   526  0028                     	ds	1
+   527  0029                     lcdConfig@obj:
+   528  0029                     lcdWriteData@obj:	
+   529                           ; 1 bytes @ 0x9
+   530                           
+   531  0029                     memcpy@s:	
+   532                           ; 1 bytes @ 0x9
+   533                           
+   534                           
+   535                           ; 1 bytes @ 0x9
+   536  0029                     	ds	1
+   537  002A                     ?_lcdSetPosition:
+   538  002A                     lcdSetPosition@position:	
+   539                           ; 1 bytes @ 0xA
+   540                           
+   541  002A                     memcpy@d1:	
+   542                           ; 1 bytes @ 0xA
+   543                           
+   544                           
+   545                           ; 1 bytes @ 0xA
+   546  002A                     	ds	1
+   547  002B                     ??_lcdSetPosition:
+   548                           
+   549                           ; 1 bytes @ 0xB
+   550  002B                     	ds	1
+   551  002C                     lcdSetPosition@obj:
+   552                           
+   553                           ; 1 bytes @ 0xC
+   554  002C                     	ds	1
+   555  002D                     ?_lcdInit:
+   556  002D                     ?_lcdPutsInLine1:	
+   557                           ; 1 bytes @ 0xD
+   558                           
+   559  002D                     ?_lcdPutsInLine2:	
+   560                           ; 1 bytes @ 0xD
+   561                           
+   562  002D                     lcdInit@E:	
+   563                           ; 1 bytes @ 0xD
+   564                           
+   565  002D                     lcdPutsInLine2@s:	
+   566                           ; 1 bytes @ 0xD
+   567                           
+   568  002D                     lcdPutsInLine1@s:	
+   569                           ; 1 bytes @ 0xD
+   570                           
+   571                           
+   572                           ; 2 bytes @ 0xD
+   573  002D                     	ds	1
+   574  002E                     lcdInit@RS:
+   575  002E                     lcdPutsInLine2@initPos:	
+   576                           ; 1 bytes @ 0xE
+   577                           
+   578                           
+   579                           ; 1 bytes @ 0xE
+   580  002E                     	ds	1
+   581  002F                     ??_lcdPutsInLine2:
+   582  002F                     lcdInit@data:	
+   583                           ; 1 bytes @ 0xF
+   584                           
+   585  002F                     lcdPutsInLine1@initPos:	
+   586                           ; 1 bytes @ 0xF
+   587                           
+   588                           
+   589                           ; 1 bytes @ 0xF
+   590  002F                     	ds	1
+   591  0030                     ??_lcdPutsInLine1:
+   592  0030                     lcdInit@wait:	
+   593                           ; 1 bytes @ 0x10
+   594                           
+   595                           
+   596                           ; 1 bytes @ 0x10
+   597  0030                     	ds	1
+   598  0031                     ??_lcdInit:
+   599  0031                     lcdPutsInLine2@i:	
+   600                           ; 1 bytes @ 0x11
+   601                           
+   602                           
+   603                           ; 2 bytes @ 0x11
+   604  0031                     	ds	1
+   605  0032                     lcdInit@obj:
+   606                           
+   607                           ; 1 bytes @ 0x12
+   608  0032                     	ds	1
+   609  0033                     lcdPutsInLine2@obj:
+   610                           
+   611                           ; 1 bytes @ 0x13
+   612  0033                     	ds	1
+   613  0034                     lcdPutsInLine1@i:
+   614                           
+   615                           ; 2 bytes @ 0x14
+   616  0034                     	ds	2
+   617  0036                     lcdPutsInLine1@obj:
+   618                           
+   619                           ; 1 bytes @ 0x16
+   620  0036                     	ds	1
+   621  0037                     ?_lcdPuts:
+   622  0037                     lcdPuts@s:	
+   623                           ; 1 bytes @ 0x17
+   624                           
+   625                           
+   626                           ; 1 bytes @ 0x17
+   627  0037                     	ds	1
+   628  0038                     ??_lcdPuts:
+   629                           
+   630                           ; 1 bytes @ 0x18
+   631  0038                     	ds	1
+   632  0039                     lcdPuts@line2:
+   633                           
+   634                           ; 16 bytes @ 0x19
+   635  0039                     	ds	16
+   636  0049                     lcdPuts@line1:
+   637                           
+   638                           ; 16 bytes @ 0x29
+   639  0049                     	ds	16
+   640  0059                     lcdPuts@obj:
+   641                           
+   642                           ; 1 bytes @ 0x39
+   643  0059                     	ds	1
+   644  005A                     ??_main:
+   645                           
+   646                           ; 1 bytes @ 0x3A
+   647  005A                     	ds	4
+   648  005E                     main@objLcd:
+   649                           
+   650                           ; 4 bytes @ 0x3E
+   651  005E                     	ds	4
+   652                           
+   653                           	psect	maintext
+   654  019A                     __pmaintext:	
+   655 ;;
+   656 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   657 ;;
+   658 ;; *************** function _main *****************
+   659 ;; Defined at:
+   660 ;;		line 56 in file "newmain.c"
+   661 ;; Parameters:    Size  Location     Type
+   662 ;;		None
+   663 ;; Auto vars:     Size  Location     Type
+   664 ;;  objLcd          4   62[BANK0 ] struct .
+   665 ;; Return value:  Size  Location     Type
+   666 ;;                  1    wreg      void 
+   667 ;; Registers used:
+   668 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   669 ;; Tracked objects:
+   670 ;;		On entry : B00/0
+   671 ;;		On exit  : 0/0
+   672 ;;		Unchanged: 0/0
+   673 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   674 ;;      Params:         0       0       0       0       0
+   675 ;;      Locals:         0       4       0       0       0
+   676 ;;      Temps:          0       4       0       0       0
+   677 ;;      Totals:         0       8       0       0       0
+   678 ;;Total ram usage:        8 bytes
+   679 ;; Hardware stack levels required when called: 6
+   680 ;; This function calls:
+   681 ;;		_lcdInit
+   682 ;;		_lcdPuts
+   683 ;;		_lcdPutsInLine1
+   684 ;;		_lcdSetPosition
+   685 ;; This function is called by:
+   686 ;;		Startup code after reset
+   687 ;; This function uses a non-reentrant model
+   688 ;;
+   689                           
+   690  019A                     _main:	
+   691                           ;psect for function _main
+   692                           
+   693  019A                     l1938:	
+   694                           ;incstack = 0
+   695                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   696                           
+   697                           
+   698                           ;newmain.c: 73: TRISD=0;
+   699  019A  1683               	bsf	3,5	;RP0=1, select bank1
+   700  019B  1303               	bcf	3,6	;RP1=0, select bank1
+   701  019C  0188               	clrf	8	;volatile
+   702                           
+   703                           ;newmain.c: 74: TRISB=0;
+   704  019D  0186               	clrf	6	;volatile
+   705                           
+   706                           ;newmain.c: 75: TRISC=0;
+   707  019E  0187               	clrf	7	;volatile
+   708                           
+   709                           ;newmain.c: 76: PORTB=0;
+   710  019F  1283               	bcf	3,5	;RP0=0, select bank0
+   711  01A0  1303               	bcf	3,6	;RP1=0, select bank0
+   712  01A1  0186               	clrf	6	;volatile
+   713                           
+   714                           ;newmain.c: 77: PORTD=0;
+   715  01A2  0188               	clrf	8	;volatile
+   716                           
+   717                           ;newmain.c: 78: PORTC=0;
+   718  01A3  0187               	clrf	7	;volatile
+   719  01A4                     l1940:
+   720                           
+   721                           ;newmain.c: 81: lcdData_t objLcd;;newmain.c: 82: lcdInit(&objLcd,ctrlEn, ctrlRs , ctrlDa
+      +                          ta, delay_ms );
+   722  01A4  3004               	movlw	(low (fp__ctrlEn-fpbase))& (0+255)
+   723  01A5  00DA               	movwf	??_main
+   724  01A6  085A               	movf	??_main,w
+   725  01A7  00AD               	movwf	lcdInit@E
+   726  01A8  3007               	movlw	(low (fp__ctrlRs-fpbase))& (0+255)
+   727  01A9  00DB               	movwf	??_main+1
+   728  01AA  085B               	movf	??_main+1,w
+   729  01AB  00AE               	movwf	lcdInit@RS
+   730  01AC  3001               	movlw	(low (fp__ctrlData-fpbase))& (0+255)
+   731  01AD  00DC               	movwf	??_main+2
+   732  01AE  085C               	movf	??_main+2,w
+   733  01AF  00AF               	movwf	lcdInit@data
+   734  01B0  300A               	movlw	(low (fp__delay_ms-fpbase))& (0+255)
+   735  01B1  00DD               	movwf	??_main+3
+   736  01B2  085D               	movf	??_main+3,w
+   737  01B3  00B0               	movwf	lcdInit@wait
+   738  01B4  305E               	movlw	(low (main@objLcd| 0))& (0+255)
+   739  01B5  120A  118A  2370  120A  118A  	fcall	_lcdInit
+   740  01BA                     l1942:
+   741                           
+   742                           ;newmain.c: 86: n=0;
+   743  01BA  1283               	bcf	3,5	;RP0=0, select bank0
+   744  01BB  1303               	bcf	3,6	;RP1=0, select bank0
+   745  01BC  01EC               	clrf	_n
+   746  01BD  01ED               	clrf	_n+1
+   747  01BE                     l1944:
+   748                           
+   749                           ;newmain.c: 88: porcentaje=(x *100)/255;
+   750  01BE  01EE               	clrf	_porcentaje
+   751  01BF  01EF               	clrf	_porcentaje+1
+   752  01C0                     l1946:
+   753                           
+   754                           ;newmain.c: 90: lcdSetPosition(&objLcd, 0);
+   755  01C0  01AA               	clrf	lcdSetPosition@position
+   756  01C1  305E               	movlw	(low (main@objLcd| 0))& (0+255)
+   757  01C2  120A  118A  23DA  120A  118A  	fcall	_lcdSetPosition
+   758  01C7                     l1948:
+   759                           
+   760                           ;newmain.c: 91: lcdPuts(&objLcd, "123456789012345abcdefghijklmno");
+   761  01C7  3001               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
+   762  01C8  1283               	bcf	3,5	;RP0=0, select bank0
+   763  01C9  1303               	bcf	3,6	;RP1=0, select bank0
+   764  01CA  00DA               	movwf	??_main
+   765  01CB  085A               	movf	??_main,w
+   766  01CC  00B7               	movwf	lcdPuts@s
+   767  01CD  305E               	movlw	(low (main@objLcd| 0))& (0+255)
+   768  01CE  120A  118A  203A  120A  118A  	fcall	_lcdPuts
+   769  01D3                     l1950:
+   770                           
+   771                           ;newmain.c: 92: lcdPutsInLine1(&objLcd, "JJulian", 0);
+   772  01D3  303C               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
+   773  01D4  1283               	bcf	3,5	;RP0=0, select bank0
+   774  01D5  1303               	bcf	3,6	;RP1=0, select bank0
+   775  01D6  00AD               	movwf	lcdPutsInLine1@s
+   776  01D7  3080               	movlw	128
+   777  01D8  00AE               	movwf	lcdPutsInLine1@s+1
+   778  01D9  01AF               	clrf	lcdPutsInLine1@initPos
+   779  01DA  305E               	movlw	(low (main@objLcd| 0))& (0+255)
+   780  01DB  120A  118A  2136  120A  118A  	fcall	_lcdPutsInLine1
+   781  01E0                     l1952:
+   782                           
+   783                           ;newmain.c: 95: _delay((unsigned long)((500)*(4000000/4000.0)));
+   784  01E0  3003               	movlw	3
+   785  01E1  1283               	bcf	3,5	;RP0=0, select bank0
+   786  01E2  1303               	bcf	3,6	;RP1=0, select bank0
+   787  01E3  00DC               	movwf	??_main+2
+   788  01E4  308A               	movlw	138
+   789  01E5  00DB               	movwf	??_main+1
+   790  01E6  3055               	movlw	85
+   791  01E7  00DA               	movwf	??_main
+   792  01E8                     u2057:
+   793  01E8  0BDA               	decfsz	??_main,f
+   794  01E9  29E8               	goto	u2057
+   795  01EA  0BDB               	decfsz	??_main+1,f
+   796  01EB  29E8               	goto	u2057
+   797  01EC  0BDC               	decfsz	??_main+2,f
+   798  01ED  29E8               	goto	u2057
+   799  01EE  29BA               	goto	l1942
+   800  01EF  120A  118A  280C   	ljmp	start
+   801  01F2                     __end_of_main:
+   802                           
+   803                           	psect	text1
+   804  003A                     __ptext1:	
+   805 ;; *************** function _lcdPuts *****************
+   806 ;; Defined at:
+   807 ;;		line 78 in file "lcd.c"
+   808 ;; Parameters:    Size  Location     Type
+   809 ;;  obj             1    wreg     const PTR const struct .
+   810 ;;		 -> main@objLcd(4), 
+   811 ;;  s               1   23[BANK0 ] PTR const unsigned char 
+   812 ;;		 -> STR_1(31), 
+   813 ;; Auto vars:     Size  Location     Type
+   814 ;;  obj             1   57[BANK0 ] const PTR const struct .
+   815 ;;		 -> main@objLcd(4), 
+   816 ;;  line1          16   41[BANK0 ] unsigned char [16]
+   817 ;;  line2          16   25[BANK0 ] unsigned char [16]
+   818 ;;  i               1    0        unsigned char 
+   819 ;; Return value:  Size  Location     Type
+   820 ;;                  1    wreg      void 
+   821 ;; Registers used:
+   822 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   823 ;; Tracked objects:
+   824 ;;		On entry : 0/0
+   825 ;;		On exit  : 0/0
+   826 ;;		Unchanged: 0/0
+   827 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   828 ;;      Params:         0       1       0       0       0
+   829 ;;      Locals:         0      33       0       0       0
+   830 ;;      Temps:          0       1       0       0       0
+   831 ;;      Totals:         0      35       0       0       0
+   832 ;;Total ram usage:       35 bytes
+   833 ;; Hardware stack levels used: 1
+   834 ;; Hardware stack levels required when called: 5
+   835 ;; This function calls:
+   836 ;;		_lcdPutsInLine1
+   837 ;;		_lcdPutsInLine2
+   838 ;;		_memcpy
+   839 ;;		_strlen
+   840 ;; This function is called by:
+   841 ;;		_main
+   842 ;; This function uses a non-reentrant model
+   843 ;;
+   844                           
+   845  003A                     _lcdPuts:	
+   846                           ;psect for function _lcdPuts
+   847                           
+   848                           
+   849                           ;incstack = 0
+   850                           ; Regs used in _lcdPuts: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   851                           ;lcdPuts@obj stored from wreg
+   852  003A  1283               	bcf	3,5	;RP0=0, select bank0
+   853  003B  1303               	bcf	3,6	;RP1=0, select bank0
+   854  003C  00D9               	movwf	lcdPuts@obj
+   855  003D                     l1922:
+   856  003D                     l1924:
+   857                           
+   858                           ;lcd.c: 82: char line1[(16)] = {0};
+   859  003D  3049               	movlw	lcdPuts@line1& (0+255)
+   860  003E  0084               	movwf	4
+   861  003F  3010               	movlw	16
+   862  0040  00FF               	movwf	btemp+1
+   863  0041                     u2020:
+   864  0041  1383               	bcf	3,7	;select IRP bank0
+   865  0042  0180               	clrf	0
+   866  0043  0A84               	incf	4,f
+   867  0044  0BFF               	decfsz	btemp+1,f
+   868  0045  2841               	goto	u2020
+   869  0046                     l1926:
+   870                           
+   871                           ;lcd.c: 83: char line2[(16)] = {0};
+   872  0046  3039               	movlw	lcdPuts@line2& (0+255)
+   873  0047  0084               	movwf	4
+   874  0048  3010               	movlw	16
+   875  0049  00FF               	movwf	btemp+1
+   876  004A                     u2030:
+   877  004A  0180               	clrf	0
+   878  004B  0A84               	incf	4,f
+   879  004C  0BFF               	decfsz	btemp+1,f
+   880  004D  284A               	goto	u2030
+   881  004E                     l1928:
+   882                           
+   883                           ;lcd.c: 84: if(strlen(s) >= (16)){
+   884  004E  0837               	movf	lcdPuts@s,w
+   885  004F  120A  118A  239E  120A  118A  	fcall	_strlen
+   886  0054  3000               	movlw	0
+   887  0055  0275               	subwf	?_strlen+1,w
+   888  0056  3010               	movlw	16
+   889  0057  1903               	skipnz
+   890  0058  0274               	subwf	?_strlen,w
+   891  0059  1C03               	skipc
+   892  005A  285C               	goto	u2041
+   893  005B  285D               	goto	u2040
+   894  005C                     u2041:
+   895  005C  288B               	goto	l1932
+   896  005D                     u2040:
+   897  005D                     l1930:
+   898                           
+   899                           ;lcd.c: 85: memcpy(line1,s,(16));
+   900  005D  1283               	bcf	3,5	;RP0=0, select bank0
+   901  005E  1303               	bcf	3,6	;RP1=0, select bank0
+   902  005F  0837               	movf	lcdPuts@s,w
+   903  0060  00B8               	movwf	??_lcdPuts
+   904  0061  0838               	movf	??_lcdPuts,w
+   905  0062  00A3               	movwf	memcpy@s1
+   906  0063  3010               	movlw	16
+   907  0064  00A4               	movwf	memcpy@n
+   908  0065  3000               	movlw	0
+   909  0066  00A5               	movwf	memcpy@n+1
+   910  0067  3049               	movlw	(low (lcdPuts@line1| 0))& (0+255)
+   911  0068  120A  118A  230A  120A  118A  	fcall	_memcpy
+   912                           
+   913                           ;lcd.c: 86: memcpy(line2,s+(16),strlen(s) -(16) );
+   914  006D  1283               	bcf	3,5	;RP0=0, select bank0
+   915  006E  1303               	bcf	3,6	;RP1=0, select bank0
+   916  006F  0837               	movf	lcdPuts@s,w
+   917  0070  3E10               	addlw	16
+   918  0071  00B8               	movwf	??_lcdPuts
+   919  0072  0838               	movf	??_lcdPuts,w
+   920  0073  00A3               	movwf	memcpy@s1
+   921  0074  0837               	movf	lcdPuts@s,w
+   922  0075  120A  118A  239E  120A  118A  	fcall	_strlen
+   923  007A  0874               	movf	?_strlen,w
+   924  007B  3EF0               	addlw	240
+   925  007C  1283               	bcf	3,5	;RP0=0, select bank0
+   926  007D  1303               	bcf	3,6	;RP1=0, select bank0
+   927  007E  00A4               	movwf	memcpy@n
+   928  007F  0875               	movf	?_strlen+1,w
+   929  0080  1803               	skipnc
+   930  0081  3E01               	addlw	1
+   931  0082  3EFF               	addlw	255
+   932  0083  00A5               	movwf	memcpy@n+1
+   933  0084  3039               	movlw	(low (lcdPuts@line2| 0))& (0+255)
+   934  0085  120A  118A  230A  120A  118A  	fcall	_memcpy
+   935                           
+   936                           ;lcd.c: 88: }else{
+   937  008A  28A3               	goto	l1934
+   938  008B                     l1932:
+   939                           
+   940                           ;lcd.c: 89: memcpy(line1,s,strlen(s));
+   941  008B  1283               	bcf	3,5	;RP0=0, select bank0
+   942  008C  1303               	bcf	3,6	;RP1=0, select bank0
+   943  008D  0837               	movf	lcdPuts@s,w
+   944  008E  00B8               	movwf	??_lcdPuts
+   945  008F  0838               	movf	??_lcdPuts,w
+   946  0090  00A3               	movwf	memcpy@s1
+   947  0091  0837               	movf	lcdPuts@s,w
+   948  0092  120A  118A  239E  120A  118A  	fcall	_strlen
+   949  0097  0875               	movf	?_strlen+1,w
+   950  0098  1283               	bcf	3,5	;RP0=0, select bank0
+   951  0099  1303               	bcf	3,6	;RP1=0, select bank0
+   952  009A  00A5               	movwf	memcpy@n+1
+   953  009B  0874               	movf	?_strlen,w
+   954  009C  00A4               	movwf	memcpy@n
+   955  009D  3049               	movlw	(low (lcdPuts@line1| 0))& (0+255)
+   956  009E  120A  118A  230A  120A  118A  	fcall	_memcpy
+   957  00A3                     l1934:
+   958                           
+   959                           ;lcd.c: 90: };lcd.c: 91: lcdPutsInLine1(obj, line1, 0);
+   960  00A3  3049               	movlw	(low (lcdPuts@line1| 0))& (0+255)
+   961  00A4  1283               	bcf	3,5	;RP0=0, select bank0
+   962  00A5  1303               	bcf	3,6	;RP1=0, select bank0
+   963  00A6  00AD               	movwf	lcdPutsInLine1@s
+   964  00A7  3000               	movlw	0
+   965  00A8  00AE               	movwf	lcdPutsInLine1@s+1
+   966  00A9  01AF               	clrf	lcdPutsInLine1@initPos
+   967  00AA  0859               	movf	lcdPuts@obj,w
+   968  00AB  120A  118A  2136  120A  118A  	fcall	_lcdPutsInLine1
+   969  00B0                     l1936:
+   970                           
+   971                           ;lcd.c: 92: lcdPutsInLine2(obj, line2, 0);
+   972  00B0  3039               	movlw	(low (lcdPuts@line2| 0))& (0+255)
+   973  00B1  1283               	bcf	3,5	;RP0=0, select bank0
+   974  00B2  1303               	bcf	3,6	;RP1=0, select bank0
+   975  00B3  00B8               	movwf	??_lcdPuts
+   976  00B4  0838               	movf	??_lcdPuts,w
+   977  00B5  00AD               	movwf	lcdPutsInLine2@s
+   978  00B6  01AE               	clrf	lcdPutsInLine2@initPos
+   979  00B7  0859               	movf	lcdPuts@obj,w
+   980  00B8  120A  118A  2253  120A  118A  	fcall	_lcdPutsInLine2
+   981  00BD                     l197:
+   982  00BD  0008               	return
+   983  00BE                     __end_of_lcdPuts:
+   984                           
+   985                           	psect	text2
+   986  039E                     __ptext2:	
+   987 ;; *************** function _strlen *****************
+   988 ;; Defined at:
+   989 ;;		line 4 in file "C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\strlen.c"
+   990 ;; Parameters:    Size  Location     Type
+   991 ;;  s               1    wreg     PTR const unsigned char 
+   992 ;;		 -> STR_1(31), 
+   993 ;; Auto vars:     Size  Location     Type
+   994 ;;  s               1    2[BANK0 ] PTR const unsigned char 
+   995 ;;		 -> STR_1(31), 
+   996 ;;  cp              1    1[BANK0 ] PTR const unsigned char 
+   997 ;;		 -> STR_1(31), 
+   998 ;; Return value:  Size  Location     Type
+   999 ;;                  2    4[COMMON] unsigned int 
+  1000 ;; Registers used:
+  1001 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  1002 ;; Tracked objects:
+  1003 ;;		On entry : 0/0
+  1004 ;;		On exit  : 0/0
+  1005 ;;		Unchanged: 0/0
+  1006 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1007 ;;      Params:         2       0       0       0       0
+  1008 ;;      Locals:         0       2       0       0       0
+  1009 ;;      Temps:          0       1       0       0       0
+  1010 ;;      Totals:         2       3       0       0       0
+  1011 ;;Total ram usage:        5 bytes
+  1012 ;; Hardware stack levels used: 2
+  1013 ;; Hardware stack levels required when called: 1
+  1014 ;; This function calls:
+  1015 ;;		Nothing
+  1016 ;; This function is called by:
+  1017 ;;		_lcdPuts
+  1018 ;; This function uses a non-reentrant model
+  1019 ;;
+  1020                           
+  1021  039E                     _strlen:	
+  1022                           ;psect for function _strlen
+  1023                           
+  1024                           
+  1025                           ;incstack = 0
+  1026                           ; Regs used in _strlen: [wreg-fsr0h+status,2+status,0+pclath]
+  1027                           ;strlen@s stored from wreg
+  1028  039E  1283               	bcf	3,5	;RP0=0, select bank0
+  1029  039F  1303               	bcf	3,6	;RP1=0, select bank0
+  1030  03A0  00A2               	movwf	strlen@s
+  1031  03A1                     l1890:
+  1032  03A1  0822               	movf	strlen@s,w
+  1033  03A2  00A0               	movwf	??_strlen
+  1034  03A3  0820               	movf	??_strlen,w
+  1035  03A4  00A1               	movwf	strlen@cp
+  1036  03A5  2BAA               	goto	l1894
+  1037  03A6                     l1892:
+  1038  03A6  3001               	movlw	1
+  1039  03A7  00A0               	movwf	??_strlen
+  1040  03A8  0820               	movf	??_strlen,w
+  1041  03A9  07A1               	addwf	strlen@cp,f
+  1042  03AA                     l1894:
+  1043  03AA  0821               	movf	strlen@cp,w
+  1044  03AB  0084               	movwf	4
+  1045  03AC  120A  118A  220A  120A  118A  	fcall	stringdir
+  1046  03B1  3A00               	xorlw	0
+  1047  03B2  1D03               	skipz
+  1048  03B3  2BB5               	goto	u2001
+  1049  03B4  2BB6               	goto	u2000
+  1050  03B5                     u2001:
+  1051  03B5  2BA6               	goto	l1892
+  1052  03B6                     u2000:
+  1053  03B6                     l1896:
+  1054  03B6  0822               	movf	strlen@s,w
+  1055  03B7  0221               	subwf	strlen@cp,w
+  1056  03B8  00F4               	movwf	?_strlen
+  1057  03B9  01F5               	clrf	?_strlen+1
+  1058  03BA  1BF4               	btfsc	?_strlen,7
+  1059  03BB  03F5               	decf	?_strlen+1,f
+  1060  03BC                     l746:
+  1061  03BC  0008               	return
+  1062  03BD                     __end_of_strlen:
+  1063                           
+  1064                           	psect	text3
+  1065  030A                     __ptext3:	
+  1066 ;; *************** function _memcpy *****************
+  1067 ;; Defined at:
+  1068 ;;		line 27 in file "C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\memcpy.c"
+  1069 ;; Parameters:    Size  Location     Type
+  1070 ;;  d1              1    wreg     PTR void 
+  1071 ;;		 -> lcdPuts@line2(16), lcdPuts@line1(16), 
+  1072 ;;  s1              1    3[BANK0 ] PTR const void 
+  1073 ;;		 -> STR_1(31), 
+  1074 ;;  n               2    4[BANK0 ] unsigned int 
+  1075 ;; Auto vars:     Size  Location     Type
+  1076 ;;  d1              1   10[BANK0 ] PTR void 
+  1077 ;;		 -> lcdPuts@line2(16), lcdPuts@line1(16), 
+  1078 ;;  s               1    9[BANK0 ] PTR const unsigned char 
+  1079 ;;		 -> STR_1(31), 
+  1080 ;;  d               1    8[BANK0 ] PTR unsigned char 
+  1081 ;;		 -> lcdPuts@line2(16), lcdPuts@line1(16), 
+  1082 ;;  tmp             1    7[BANK0 ] unsigned char 
+  1083 ;; Return value:  Size  Location     Type
+  1084 ;;                  1    wreg      PTR void 
+  1085 ;; Registers used:
+  1086 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  1087 ;; Tracked objects:
+  1088 ;;		On entry : 0/0
+  1089 ;;		On exit  : 0/0
+  1090 ;;		Unchanged: 0/0
+  1091 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1092 ;;      Params:         0       3       0       0       0
+  1093 ;;      Locals:         0       4       0       0       0
+  1094 ;;      Temps:          0       1       0       0       0
+  1095 ;;      Totals:         0       8       0       0       0
+  1096 ;;Total ram usage:        8 bytes
+  1097 ;; Hardware stack levels used: 2
+  1098 ;; Hardware stack levels required when called: 1
+  1099 ;; This function calls:
+  1100 ;;		Nothing
+  1101 ;; This function is called by:
+  1102 ;;		_lcdPuts
+  1103 ;; This function uses a non-reentrant model
+  1104 ;;
+  1105                           
+  1106  030A                     _memcpy:	
+  1107                           ;psect for function _memcpy
+  1108                           
+  1109                           
+  1110                           ;incstack = 0
+  1111                           ; Regs used in _memcpy: [wreg-fsr0h+status,2+status,0+pclath]
+  1112                           ;memcpy@d1 stored from wreg
+  1113  030A  1283               	bcf	3,5	;RP0=0, select bank0
+  1114  030B  1303               	bcf	3,6	;RP1=0, select bank0
+  1115  030C  00AA               	movwf	memcpy@d1
+  1116  030D                     l1900:
+  1117  030D  0823               	movf	memcpy@s1,w
+  1118  030E  00A6               	movwf	??_memcpy
+  1119  030F  0826               	movf	??_memcpy,w
+  1120  0310  00A9               	movwf	memcpy@s
+  1121  0311  082A               	movf	memcpy@d1,w
+  1122  0312  00A6               	movwf	??_memcpy
+  1123  0313  0826               	movf	??_memcpy,w
+  1124  0314  00A8               	movwf	memcpy@d
+  1125  0315  2B2F               	goto	l1910
+  1126  0316                     l1902:
+  1127  0316  0829               	movf	memcpy@s,w
+  1128  0317  0084               	movwf	4
+  1129  0318  120A  118A  220A  120A  118A  	fcall	stringdir
+  1130  031D  00A6               	movwf	??_memcpy
+  1131  031E  0826               	movf	??_memcpy,w
+  1132  031F  00A7               	movwf	memcpy@tmp
+  1133  0320                     l1904:
+  1134  0320  3001               	movlw	1
+  1135  0321  00A6               	movwf	??_memcpy
+  1136  0322  0826               	movf	??_memcpy,w
+  1137  0323  07A9               	addwf	memcpy@s,f
+  1138  0324                     l1906:
+  1139  0324  0827               	movf	memcpy@tmp,w
+  1140  0325  00A6               	movwf	??_memcpy
+  1141  0326  0828               	movf	memcpy@d,w
+  1142  0327  0084               	movwf	4
+  1143  0328  0826               	movf	??_memcpy,w
+  1144  0329  1383               	bcf	3,7	;select IRP bank0
+  1145  032A  0080               	movwf	0
+  1146  032B                     l1908:
+  1147  032B  3001               	movlw	1
+  1148  032C  00A6               	movwf	??_memcpy
+  1149  032D  0826               	movf	??_memcpy,w
+  1150  032E  07A8               	addwf	memcpy@d,f
+  1151  032F                     l1910:
+  1152  032F  3001               	movlw	1
+  1153  0330  02A4               	subwf	memcpy@n,f
+  1154  0331  3000               	movlw	0
+  1155  0332  1C03               	skipc
+  1156  0333  03A5               	decf	memcpy@n+1,f
+  1157  0334  02A5               	subwf	memcpy@n+1,f
+  1158  0335  0A24               	incf	memcpy@n,w
+  1159  0336  1D03               	skipz
+  1160  0337  2B3C               	goto	u2011
+  1161  0338  0A25               	incf	memcpy@n+1,w
+  1162  0339  1D03               	btfss	3,2
+  1163  033A  2B3C               	goto	u2011
+  1164  033B  2B3D               	goto	u2010
+  1165  033C                     u2011:
+  1166  033C  2B16               	goto	l1902
+  1167  033D                     u2010:
+  1168  033D                     l740:
+  1169  033D  0008               	return
+  1170  033E                     __end_of_memcpy:
+  1171                           
+  1172                           	psect	text4
+  1173  0253                     __ptext4:	
+  1174 ;; *************** function _lcdPutsInLine2 *****************
+  1175 ;; Defined at:
+  1176 ;;		line 68 in file "lcd.c"
+  1177 ;; Parameters:    Size  Location     Type
+  1178 ;;  obj             1    wreg     const PTR const struct .
+  1179 ;;		 -> main@objLcd(4), 
+  1180 ;;  s               1   13[BANK0 ] PTR const unsigned char 
+  1181 ;;		 -> lcdPuts@line2(16), 
+  1182 ;;  initPos         1   14[BANK0 ] unsigned char 
+  1183 ;; Auto vars:     Size  Location     Type
+  1184 ;;  obj             1   19[BANK0 ] const PTR const struct .
+  1185 ;;		 -> main@objLcd(4), 
+  1186 ;;  i               2   17[BANK0 ] int 
+  1187 ;; Return value:  Size  Location     Type
+  1188 ;;                  1    wreg      void 
+  1189 ;; Registers used:
+  1190 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1191 ;; Tracked objects:
+  1192 ;;		On entry : 0/0
+  1193 ;;		On exit  : 0/0
+  1194 ;;		Unchanged: 0/0
+  1195 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1196 ;;      Params:         0       2       0       0       0
+  1197 ;;      Locals:         0       3       0       0       0
+  1198 ;;      Temps:          0       2       0       0       0
+  1199 ;;      Totals:         0       7       0       0       0
+  1200 ;;Total ram usage:        7 bytes
+  1201 ;; Hardware stack levels used: 1
+  1202 ;; Hardware stack levels required when called: 4
+  1203 ;; This function calls:
+  1204 ;;		_ctrlRs
+  1205 ;;		_lcdSetPosition
+  1206 ;;		_lcdWriteData
+  1207 ;; This function is called by:
+  1208 ;;		_lcdPuts
+  1209 ;; This function uses a non-reentrant model
+  1210 ;;
+  1211                           
+  1212  0253                     _lcdPutsInLine2:	
+  1213                           ;psect for function _lcdPutsInLine2
+  1214                           
+  1215                           
+  1216                           ;incstack = 0
+  1217                           ; Regs used in _lcdPutsInLine2: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1218                           ;lcdPutsInLine2@obj stored from wreg
+  1219  0253  1283               	bcf	3,5	;RP0=0, select bank0
+  1220  0254  1303               	bcf	3,6	;RP1=0, select bank0
+  1221  0255  00B3               	movwf	lcdPutsInLine2@obj
+  1222  0256                     l1880:
+  1223                           
+  1224                           ;lcd.c: 69: lcdSetPosition(obj, (0x40U) + initPos);
+  1225  0256  082E               	movf	lcdPutsInLine2@initPos,w
+  1226  0257  3E40               	addlw	64
+  1227  0258  00AF               	movwf	??_lcdPutsInLine2
+  1228  0259  082F               	movf	??_lcdPutsInLine2,w
+  1229  025A  00AA               	movwf	lcdSetPosition@position
+  1230  025B  0833               	movf	lcdPutsInLine2@obj,w
+  1231  025C  120A  118A  23DA  120A  118A  	fcall	_lcdSetPosition
+  1232  0261                     l1882:
+  1233                           
+  1234                           ;lcd.c: 70: int i = 0;
+  1235  0261  1283               	bcf	3,5	;RP0=0, select bank0
+  1236  0262  1303               	bcf	3,6	;RP1=0, select bank0
+  1237  0263  01B1               	clrf	lcdPutsInLine2@i
+  1238  0264  01B2               	clrf	lcdPutsInLine2@i+1
+  1239                           
+  1240                           ;lcd.c: 71: while(s[i]){
+  1241  0265  2A8A               	goto	l1888
+  1242  0266                     l1884:
+  1243                           
+  1244                           ;lcd.c: 72: obj->ctrlRS(1);
+  1245  0266  01F4               	clrf	ctrlRs@status
+  1246  0267  0AF4               	incf	ctrlRs@status,f
+  1247  0268  0A33               	incf	lcdPutsInLine2@obj,w
+  1248  0269  0084               	movwf	4
+  1249  026A  0800               	movf	0,w
+  1250  026B  120A  118A  2028  120A  118A  	fcall	fptable
+  1251                           
+  1252                           ;lcd.c: 73: lcdWriteData(obj, s[i++]);
+  1253  0270  1283               	bcf	3,5	;RP0=0, select bank0
+  1254  0271  1303               	bcf	3,6	;RP1=0, select bank0
+  1255  0272  0831               	movf	lcdPutsInLine2@i,w
+  1256  0273  072D               	addwf	lcdPutsInLine2@s,w
+  1257  0274  00AF               	movwf	??_lcdPutsInLine2
+  1258  0275  082F               	movf	??_lcdPutsInLine2,w
+  1259  0276  0084               	movwf	4
+  1260  0277  1383               	bcf	3,7	;select IRP bank0
+  1261  0278  0800               	movf	0,w
+  1262  0279  00B0               	movwf	??_lcdPutsInLine2+1
+  1263  027A  0830               	movf	??_lcdPutsInLine2+1,w
+  1264  027B  00F5               	movwf	lcdWriteData@c
+  1265  027C  0833               	movf	lcdPutsInLine2@obj,w
+  1266  027D  120A  118A  2296  120A  118A  	fcall	_lcdWriteData
+  1267  0282                     l1886:
+  1268  0282  3001               	movlw	1
+  1269  0283  1283               	bcf	3,5	;RP0=0, select bank0
+  1270  0284  1303               	bcf	3,6	;RP1=0, select bank0
+  1271  0285  07B1               	addwf	lcdPutsInLine2@i,f
+  1272  0286  1803               	skipnc
+  1273  0287  0AB2               	incf	lcdPutsInLine2@i+1,f
+  1274  0288  3000               	movlw	0
+  1275  0289  07B2               	addwf	lcdPutsInLine2@i+1,f
+  1276  028A                     l1888:
+  1277  028A  0831               	movf	lcdPutsInLine2@i,w
+  1278  028B  072D               	addwf	lcdPutsInLine2@s,w
+  1279  028C  00AF               	movwf	??_lcdPutsInLine2
+  1280  028D  082F               	movf	??_lcdPutsInLine2,w
+  1281  028E  0084               	movwf	4
+  1282  028F  1383               	bcf	3,7	;select IRP bank0
+  1283  0290  0800               	movf	0,w
+  1284  0291  1D03               	btfss	3,2
+  1285  0292  2A94               	goto	u1991
+  1286  0293  2A95               	goto	u1990
+  1287  0294                     u1991:
+  1288  0294  2A66               	goto	l1884
+  1289  0295                     u1990:
+  1290  0295                     l188:
+  1291  0295  0008               	return
+  1292  0296                     __end_of_lcdPutsInLine2:
+  1293                           
+  1294                           	psect	text5
+  1295  0136                     __ptext5:	
+  1296 ;; *************** function _lcdPutsInLine1 *****************
+  1297 ;; Defined at:
+  1298 ;;		line 59 in file "lcd.c"
+  1299 ;; Parameters:    Size  Location     Type
+  1300 ;;  obj             1    wreg     const PTR const struct .
+  1301 ;;		 -> main@objLcd(4), 
+  1302 ;;  s               2   13[BANK0 ] PTR const unsigned char 
+  1303 ;;		 -> lcdPuts@line1(16), STR_2(8), 
+  1304 ;;  initPos         1   15[BANK0 ] unsigned char 
+  1305 ;; Auto vars:     Size  Location     Type
+  1306 ;;  obj             1   22[BANK0 ] const PTR const struct .
+  1307 ;;		 -> main@objLcd(4), 
+  1308 ;;  i               2   20[BANK0 ] int 
+  1309 ;; Return value:  Size  Location     Type
+  1310 ;;                  1    wreg      void 
+  1311 ;; Registers used:
+  1312 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  1313 ;; Tracked objects:
+  1314 ;;		On entry : 0/0
+  1315 ;;		On exit  : 0/0
+  1316 ;;		Unchanged: 0/0
+  1317 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1318 ;;      Params:         0       3       0       0       0
+  1319 ;;      Locals:         0       3       0       0       0
+  1320 ;;      Temps:          0       4       0       0       0
+  1321 ;;      Totals:         0      10       0       0       0
+  1322 ;;Total ram usage:       10 bytes
+  1323 ;; Hardware stack levels used: 1
+  1324 ;; Hardware stack levels required when called: 4
+  1325 ;; This function calls:
+  1326 ;;		_ctrlRs
+  1327 ;;		_lcdSetPosition
+  1328 ;;		_lcdWriteData
+  1329 ;; This function is called by:
+  1330 ;;		_main
+  1331 ;;		_lcdPuts
+  1332 ;; This function uses a non-reentrant model
+  1333 ;;
+  1334                           
+  1335  0136                     _lcdPutsInLine1:	
+  1336                           ;psect for function _lcdPutsInLine1
+  1337                           
+  1338                           
+  1339                           ;incstack = 0
+  1340                           ; Regs used in _lcdPutsInLine1: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  1341                           ;lcdPutsInLine1@obj stored from wreg
+  1342  0136  1283               	bcf	3,5	;RP0=0, select bank0
+  1343  0137  1303               	bcf	3,6	;RP1=0, select bank0
+  1344  0138  00B6               	movwf	lcdPutsInLine1@obj
+  1345  0139                     l1866:
+  1346                           
+  1347                           ;lcd.c: 60: lcdSetPosition(obj, 0 + initPos);
+  1348  0139  082F               	movf	lcdPutsInLine1@initPos,w
+  1349  013A  00B0               	movwf	??_lcdPutsInLine1
+  1350  013B  0830               	movf	??_lcdPutsInLine1,w
+  1351  013C  00AA               	movwf	lcdSetPosition@position
+  1352  013D  0836               	movf	lcdPutsInLine1@obj,w
+  1353  013E  120A  118A  23DA  120A  118A  	fcall	_lcdSetPosition
+  1354  0143                     l1868:
+  1355                           
+  1356                           ;lcd.c: 61: int i = 0;
+  1357  0143  1283               	bcf	3,5	;RP0=0, select bank0
+  1358  0144  1303               	bcf	3,6	;RP1=0, select bank0
+  1359  0145  01B4               	clrf	lcdPutsInLine1@i
+  1360  0146  01B5               	clrf	lcdPutsInLine1@i+1
+  1361                           
+  1362                           ;lcd.c: 62: while(s[i]){
+  1363  0147  297D               	goto	l1876
+  1364  0148                     l1870:
+  1365                           
+  1366                           ;lcd.c: 63: obj->ctrlRS(1);
+  1367  0148  01F4               	clrf	ctrlRs@status
+  1368  0149  0AF4               	incf	ctrlRs@status,f
+  1369  014A  0A36               	incf	lcdPutsInLine1@obj,w
+  1370  014B  0084               	movwf	4
+  1371  014C  1383               	bcf	3,7	;select IRP bank0
+  1372  014D  0800               	movf	0,w
+  1373  014E  120A  118A  2028  120A  118A  	fcall	fptable
+  1374  0153                     l1872:
+  1375                           
+  1376                           ;lcd.c: 64: lcdWriteData(obj, s[i++]);
+  1377  0153  1283               	bcf	3,5	;RP0=0, select bank0
+  1378  0154  1303               	bcf	3,6	;RP1=0, select bank0
+  1379  0155  0834               	movf	lcdPutsInLine1@i,w
+  1380  0156  072D               	addwf	lcdPutsInLine1@s,w
+  1381  0157  00B1               	movwf	??_lcdPutsInLine1+1
+  1382  0158  082E               	movf	lcdPutsInLine1@s+1,w
+  1383  0159  00B0               	movwf	??_lcdPutsInLine1
+  1384  015A  1803               	skipnc
+  1385  015B  0AB0               	incf	??_lcdPutsInLine1,f
+  1386  015C  1FB4               	btfss	lcdPutsInLine1@i,7
+  1387  015D  295F               	goto	u1960
+  1388  015E  03B0               	decf	??_lcdPutsInLine1,f
+  1389  015F                     u1960:
+  1390  015F  1283               	bcf	3,5	;RP0=0, select bank0
+  1391  0160  1303               	bcf	3,6	;RP1=0, select bank0
+  1392  0161  0830               	movf	??_lcdPutsInLine1,w
+  1393  0162  00B2               	movwf	??_lcdPutsInLine1+2
+  1394  0163  0832               	movf	??_lcdPutsInLine1+2,w
+  1395  0164  00FF               	movwf	btemp+1
+  1396  0165  0831               	movf	??_lcdPutsInLine1+1,w
+  1397  0166  0084               	movwf	4
+  1398  0167  120A  118A  2200  120A  118A  	fcall	stringtab
+  1399  016C  00B3               	movwf	??_lcdPutsInLine1+3
+  1400  016D  0833               	movf	??_lcdPutsInLine1+3,w
+  1401  016E  00F5               	movwf	lcdWriteData@c
+  1402  016F  0836               	movf	lcdPutsInLine1@obj,w
+  1403  0170  120A  118A  2296  120A  118A  	fcall	_lcdWriteData
+  1404  0175                     l1874:
+  1405  0175  3001               	movlw	1
+  1406  0176  1283               	bcf	3,5	;RP0=0, select bank0
+  1407  0177  1303               	bcf	3,6	;RP1=0, select bank0
+  1408  0178  07B4               	addwf	lcdPutsInLine1@i,f
+  1409  0179  1803               	skipnc
+  1410  017A  0AB5               	incf	lcdPutsInLine1@i+1,f
+  1411  017B  3000               	movlw	0
+  1412  017C  07B5               	addwf	lcdPutsInLine1@i+1,f
+  1413  017D                     l1876:
+  1414  017D  0834               	movf	lcdPutsInLine1@i,w
+  1415  017E  072D               	addwf	lcdPutsInLine1@s,w
+  1416  017F  00B1               	movwf	??_lcdPutsInLine1+1
+  1417  0180  082E               	movf	lcdPutsInLine1@s+1,w
+  1418  0181  00B0               	movwf	??_lcdPutsInLine1
+  1419  0182  1803               	skipnc
+  1420  0183  0AB0               	incf	??_lcdPutsInLine1,f
+  1421  0184  1FB4               	btfss	lcdPutsInLine1@i,7
+  1422  0185  2987               	goto	u1970
+  1423  0186  03B0               	decf	??_lcdPutsInLine1,f
+  1424  0187                     u1970:
+  1425  0187  1283               	bcf	3,5	;RP0=0, select bank0
+  1426  0188  1303               	bcf	3,6	;RP1=0, select bank0
+  1427  0189  0830               	movf	??_lcdPutsInLine1,w
+  1428  018A  00B2               	movwf	??_lcdPutsInLine1+2
+  1429  018B  0832               	movf	??_lcdPutsInLine1+2,w
+  1430  018C  00FF               	movwf	btemp+1
+  1431  018D  0831               	movf	??_lcdPutsInLine1+1,w
+  1432  018E  0084               	movwf	4
+  1433  018F  120A  118A  2200  120A  118A  	fcall	stringtab
+  1434  0194  3A00               	xorlw	0
+  1435  0195  1D03               	skipz
+  1436  0196  2998               	goto	u1981
+  1437  0197  2999               	goto	u1980
+  1438  0198                     u1981:
+  1439  0198  2948               	goto	l1870
+  1440  0199                     u1980:
+  1441  0199                     l182:
+  1442  0199  0008               	return
+  1443  019A                     __end_of_lcdPutsInLine1:
+  1444                           
+  1445                           	psect	text6
+  1446  0370                     __ptext6:	
+  1447 ;; *************** function _lcdInit *****************
+  1448 ;; Defined at:
+  1449 ;;		line 11 in file "lcd.c"
+  1450 ;; Parameters:    Size  Location     Type
+  1451 ;;  obj             1    wreg     const PTR struct .
+  1452 ;;		 -> main@objLcd(4), 
+  1453 ;;  E               1   13[BANK0 ] PTR FTN(unsigned char ,)
+  1454 ;;		 -> ctrlEn(1), 
+  1455 ;;  RS              1   14[BANK0 ] PTR FTN(unsigned char ,)
+  1456 ;;		 -> ctrlRs(1), 
+  1457 ;;  data            1   15[BANK0 ] PTR FTN(unsigned char ,)
+  1458 ;;		 -> ctrlData(1), 
+  1459 ;;  wait            1   16[BANK0 ] PTR FTN(unsigned long ,)
+  1460 ;;		 -> delay_ms(1), 
+  1461 ;; Auto vars:     Size  Location     Type
+  1462 ;;  obj             1   18[BANK0 ] const PTR struct .
+  1463 ;;		 -> main@objLcd(4), 
+  1464 ;; Return value:  Size  Location     Type
+  1465 ;;                  1    wreg      void 
+  1466 ;; Registers used:
+  1467 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1468 ;; Tracked objects:
+  1469 ;;		On entry : 0/0
+  1470 ;;		On exit  : 0/0
+  1471 ;;		Unchanged: 0/0
+  1472 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1473 ;;      Params:         0       4       0       0       0
+  1474 ;;      Locals:         0       1       0       0       0
+  1475 ;;      Temps:          0       1       0       0       0
+  1476 ;;      Totals:         0       6       0       0       0
+  1477 ;;Total ram usage:        6 bytes
+  1478 ;; Hardware stack levels used: 1
+  1479 ;; Hardware stack levels required when called: 4
+  1480 ;; This function calls:
+  1481 ;;		_lcdConfig
+  1482 ;;		_lcdSetPosition
+  1483 ;; This function is called by:
+  1484 ;;		_main
+  1485 ;; This function uses a non-reentrant model
+  1486 ;;
+  1487                           
+  1488  0370                     _lcdInit:	
+  1489                           ;psect for function _lcdInit
+  1490                           
+  1491                           
+  1492                           ;incstack = 0
+  1493                           ; Regs used in _lcdInit: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1494                           ;lcdInit@obj stored from wreg
+  1495  0370  1283               	bcf	3,5	;RP0=0, select bank0
+  1496  0371  1303               	bcf	3,6	;RP1=0, select bank0
+  1497  0372  00B2               	movwf	lcdInit@obj
+  1498  0373                     l1912:
+  1499                           
+  1500                           ;lcd.c: 13: obj->ctrlEnable = E;
+  1501  0373  082D               	movf	lcdInit@E,w
+  1502  0374  00B1               	movwf	??_lcdInit
+  1503  0375  0832               	movf	lcdInit@obj,w
+  1504  0376  0084               	movwf	4
+  1505  0377  0831               	movf	??_lcdInit,w
+  1506  0378  1383               	bcf	3,7	;select IRP bank0
+  1507  0379  0080               	movwf	0
+  1508                           
+  1509                           ;lcd.c: 14: obj->ctrlRS = RS;
+  1510  037A  082E               	movf	lcdInit@RS,w
+  1511  037B  00B1               	movwf	??_lcdInit
+  1512  037C  0A32               	incf	lcdInit@obj,w
+  1513  037D  0084               	movwf	4
+  1514  037E  0831               	movf	??_lcdInit,w
+  1515  037F  0080               	movwf	0
+  1516  0380                     l1914:
+  1517                           
+  1518                           ;lcd.c: 15: obj->ctrlData = data;
+  1519  0380  082F               	movf	lcdInit@data,w
+  1520  0381  00B1               	movwf	??_lcdInit
+  1521  0382  0832               	movf	lcdInit@obj,w
+  1522  0383  3E02               	addlw	2
+  1523  0384  0084               	movwf	4
+  1524  0385  0831               	movf	??_lcdInit,w
+  1525  0386  0080               	movwf	0
+  1526  0387                     l1916:
+  1527                           
+  1528                           ;lcd.c: 16: obj->ctrlWait = wait;
+  1529  0387  0830               	movf	lcdInit@wait,w
+  1530  0388  00B1               	movwf	??_lcdInit
+  1531  0389  0832               	movf	lcdInit@obj,w
+  1532  038A  3E03               	addlw	3
+  1533  038B  0084               	movwf	4
+  1534  038C  0831               	movf	??_lcdInit,w
+  1535  038D  0080               	movwf	0
+  1536  038E                     l1918:
+  1537                           
+  1538                           ;lcd.c: 18: lcdConfig(obj);
+  1539  038E  0832               	movf	lcdInit@obj,w
+  1540  038F  120A  118A  20BE  120A  118A  	fcall	_lcdConfig
+  1541  0394                     l1920:
+  1542                           
+  1543                           ;lcd.c: 19: lcdSetPosition(obj, 0);
+  1544  0394  1283               	bcf	3,5	;RP0=0, select bank0
+  1545  0395  1303               	bcf	3,6	;RP1=0, select bank0
+  1546  0396  01AA               	clrf	lcdSetPosition@position
+  1547  0397  0832               	movf	lcdInit@obj,w
+  1548  0398  120A  118A  23DA  120A  118A  	fcall	_lcdSetPosition
+  1549  039D                     l161:
+  1550  039D  0008               	return
+  1551  039E                     __end_of_lcdInit:
+  1552                           
+  1553                           	psect	text7
+  1554  03DA                     __ptext7:	
+  1555 ;; *************** function _lcdSetPosition *****************
+  1556 ;; Defined at:
+  1557 ;;		line 48 in file "lcd.c"
+  1558 ;; Parameters:    Size  Location     Type
+  1559 ;;  obj             1    wreg     const PTR const struct .
+  1560 ;;		 -> main@objLcd(4), 
+  1561 ;;  position        1   10[BANK0 ] unsigned char 
+  1562 ;; Auto vars:     Size  Location     Type
+  1563 ;;  obj             1   12[BANK0 ] const PTR const struct .
+  1564 ;;		 -> main@objLcd(4), 
+  1565 ;; Return value:  Size  Location     Type
+  1566 ;;                  1    wreg      void 
+  1567 ;; Registers used:
+  1568 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1569 ;; Tracked objects:
+  1570 ;;		On entry : 0/0
+  1571 ;;		On exit  : 0/0
+  1572 ;;		Unchanged: 0/0
+  1573 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1574 ;;      Params:         0       1       0       0       0
+  1575 ;;      Locals:         0       1       0       0       0
+  1576 ;;      Temps:          0       1       0       0       0
+  1577 ;;      Totals:         0       3       0       0       0
+  1578 ;;Total ram usage:        3 bytes
+  1579 ;; Hardware stack levels used: 1
+  1580 ;; Hardware stack levels required when called: 3
+  1581 ;; This function calls:
+  1582 ;;		_ctrlRs
+  1583 ;;		_lcdWriteData
+  1584 ;; This function is called by:
+  1585 ;;		_main
+  1586 ;;		_lcdInit
+  1587 ;;		_lcdPutsInLine1
+  1588 ;;		_lcdPutsInLine2
+  1589 ;; This function uses a non-reentrant model
+  1590 ;;
+  1591                           
+  1592  03DA                     _lcdSetPosition:	
+  1593                           ;psect for function _lcdSetPosition
+  1594                           
+  1595                           
+  1596                           ;incstack = 0
+  1597                           ; Regs used in _lcdSetPosition: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1598                           ;lcdSetPosition@obj stored from wreg
+  1599  03DA  1283               	bcf	3,5	;RP0=0, select bank0
+  1600  03DB  1303               	bcf	3,6	;RP1=0, select bank0
+  1601  03DC  00AC               	movwf	lcdSetPosition@obj
+  1602  03DD                     l1862:
+  1603                           
+  1604                           ;lcd.c: 49: obj->ctrlRS(0);
+  1605  03DD  01F4               	clrf	ctrlRs@status
+  1606  03DE  0A2C               	incf	lcdSetPosition@obj,w
+  1607  03DF  0084               	movwf	4
+  1608  03E0  1383               	bcf	3,7	;select IRP bank0
+  1609  03E1  0800               	movf	0,w
+  1610  03E2  120A  118A  2028  120A  118A  	fcall	fptable
+  1611                           
+  1612                           ;lcd.c: 50: lcdWriteData(obj, (0x80U) + position);
+  1613  03E7  1283               	bcf	3,5	;RP0=0, select bank0
+  1614  03E8  1303               	bcf	3,6	;RP1=0, select bank0
+  1615  03E9  082A               	movf	lcdSetPosition@position,w
+  1616  03EA  3E80               	addlw	128
+  1617  03EB  00AB               	movwf	??_lcdSetPosition
+  1618  03EC  082B               	movf	??_lcdSetPosition,w
+  1619  03ED  00F5               	movwf	lcdWriteData@c
+  1620  03EE  082C               	movf	lcdSetPosition@obj,w
+  1621  03EF  120A  118A  2296  120A  118A  	fcall	_lcdWriteData
+  1622  03F4                     l173:
+  1623  03F4  0008               	return
+  1624  03F5                     __end_of_lcdSetPosition:
+  1625                           
+  1626                           	psect	text8
+  1627  0296                     __ptext8:	
+  1628 ;; *************** function _lcdWriteData *****************
+  1629 ;; Defined at:
+  1630 ;;		line 52 in file "lcd.c"
+  1631 ;; Parameters:    Size  Location     Type
+  1632 ;;  obj             1    wreg     const PTR const struct .
+  1633 ;;		 -> main@objLcd(4), 
+  1634 ;;  c               1    5[COMMON] unsigned char 
+  1635 ;; Auto vars:     Size  Location     Type
+  1636 ;;  obj             1    9[BANK0 ] const PTR const struct .
+  1637 ;;		 -> main@objLcd(4), 
+  1638 ;; Return value:  Size  Location     Type
+  1639 ;;                  1    wreg      void 
+  1640 ;; Registers used:
+  1641 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1642 ;; Tracked objects:
+  1643 ;;		On entry : 0/0
+  1644 ;;		On exit  : 0/0
+  1645 ;;		Unchanged: 0/0
+  1646 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1647 ;;      Params:         1       0       0       0       0
+  1648 ;;      Locals:         0       1       0       0       0
+  1649 ;;      Temps:          0       1       0       0       0
+  1650 ;;      Totals:         1       2       0       0       0
+  1651 ;;Total ram usage:        3 bytes
+  1652 ;; Hardware stack levels used: 1
+  1653 ;; Hardware stack levels required when called: 2
+  1654 ;; This function calls:
+  1655 ;;		_ctrlData
+  1656 ;;		_ctrlEn
+  1657 ;;		_delay_ms
+  1658 ;; This function is called by:
+  1659 ;;		_lcdSetPosition
+  1660 ;;		_lcdPutsInLine1
+  1661 ;;		_lcdPutsInLine2
+  1662 ;;		_lcdPutch
+  1663 ;; This function uses a non-reentrant model
+  1664 ;;
+  1665                           
+  1666  0296                     _lcdWriteData:	
+  1667                           ;psect for function _lcdWriteData
+  1668                           
+  1669                           
+  1670                           ;incstack = 0
+  1671                           ; Regs used in _lcdWriteData: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1672                           ;lcdWriteData@obj stored from wreg
+  1673  0296  1283               	bcf	3,5	;RP0=0, select bank0
+  1674  0297  1303               	bcf	3,6	;RP1=0, select bank0
+  1675  0298  00A9               	movwf	lcdWriteData@obj
+  1676  0299                     l1860:
+  1677                           
+  1678                           ;lcd.c: 53: obj->ctrlEnable(1);
+  1679  0299  01F4               	clrf	ctrlEn@status
+  1680  029A  0AF4               	incf	ctrlEn@status,f
+  1681  029B  0829               	movf	lcdWriteData@obj,w
+  1682  029C  0084               	movwf	4
+  1683  029D  1383               	bcf	3,7	;select IRP bank0
+  1684  029E  0800               	movf	0,w
+  1685  029F  120A  118A  2028  120A  118A  	fcall	fptable
+  1686                           
+  1687                           ;lcd.c: 54: obj->ctrlData(c) ;
+  1688  02A4  0875               	movf	lcdWriteData@c,w
+  1689  02A5  1283               	bcf	3,5	;RP0=0, select bank0
+  1690  02A6  1303               	bcf	3,6	;RP1=0, select bank0
+  1691  02A7  00A8               	movwf	??_lcdWriteData
+  1692  02A8  0828               	movf	??_lcdWriteData,w
+  1693  02A9  00F4               	movwf	ctrlData@Data
+  1694  02AA  0829               	movf	lcdWriteData@obj,w
+  1695  02AB  3E02               	addlw	2
+  1696  02AC  0084               	movwf	4
+  1697  02AD  1383               	bcf	3,7	;select IRP bank0
+  1698  02AE  0800               	movf	0,w
+  1699  02AF  120A  118A  2028  120A  118A  	fcall	fptable
+  1700                           
+  1701                           ;lcd.c: 55: obj->ctrlWait((2));
+  1702  02B4  3000               	movlw	0
+  1703  02B5  1283               	bcf	3,5	;RP0=0, select bank0
+  1704  02B6  1303               	bcf	3,6	;RP1=0, select bank0
+  1705  02B7  00A3               	movwf	delay_ms@milliseconds+3
+  1706  02B8  3000               	movlw	0
+  1707  02B9  00A2               	movwf	delay_ms@milliseconds+2
+  1708  02BA  3000               	movlw	0
+  1709  02BB  00A1               	movwf	delay_ms@milliseconds+1
+  1710  02BC  3002               	movlw	2
+  1711  02BD  00A0               	movwf	delay_ms@milliseconds
+  1712  02BE  0829               	movf	lcdWriteData@obj,w
+  1713  02BF  3E03               	addlw	3
+  1714  02C0  0084               	movwf	4
+  1715  02C1  1383               	bcf	3,7	;select IRP bank0
+  1716  02C2  0800               	movf	0,w
+  1717  02C3  120A  118A  2028  120A  118A  	fcall	fptable
+  1718                           
+  1719                           ;lcd.c: 56: obj->ctrlEnable(0);
+  1720  02C8  01F4               	clrf	ctrlEn@status
+  1721  02C9  1283               	bcf	3,5	;RP0=0, select bank0
+  1722  02CA  1303               	bcf	3,6	;RP1=0, select bank0
+  1723  02CB  0829               	movf	lcdWriteData@obj,w
+  1724  02CC  0084               	movwf	4
+  1725  02CD  1383               	bcf	3,7	;select IRP bank0
+  1726  02CE  0800               	movf	0,w
+  1727  02CF  120A  118A  2028  120A  118A  	fcall	fptable
+  1728  02D4                     l176:
+  1729  02D4  0008               	return
+  1730  02D5                     __end_of_lcdWriteData:
+  1731                           
+  1732                           	psect	text9
+  1733  00BE                     __ptext9:	
+  1734 ;; *************** function _lcdConfig *****************
+  1735 ;; Defined at:
+  1736 ;;		line 30 in file "lcd.c"
+  1737 ;; Parameters:    Size  Location     Type
+  1738 ;;  obj             1    wreg     const PTR const struct .
+  1739 ;;		 -> main@objLcd(4), 
+  1740 ;; Auto vars:     Size  Location     Type
+  1741 ;;  obj             1    9[BANK0 ] const PTR const struct .
+  1742 ;;		 -> main@objLcd(4), 
+  1743 ;; Return value:  Size  Location     Type
+  1744 ;;                  1    wreg      void 
+  1745 ;; Registers used:
+  1746 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1747 ;; Tracked objects:
+  1748 ;;		On entry : 0/0
+  1749 ;;		On exit  : 0/0
+  1750 ;;		Unchanged: 0/0
+  1751 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1752 ;;      Params:         0       0       0       0       0
+  1753 ;;      Locals:         0       1       0       0       0
+  1754 ;;      Temps:          0       1       0       0       0
+  1755 ;;      Totals:         0       2       0       0       0
+  1756 ;;Total ram usage:        2 bytes
+  1757 ;; Hardware stack levels used: 1
+  1758 ;; Hardware stack levels required when called: 3
+  1759 ;; This function calls:
+  1760 ;;		_ctrlData
+  1761 ;;		_lcdSet
+  1762 ;; This function is called by:
+  1763 ;;		_lcdInit
+  1764 ;; This function uses a non-reentrant model
+  1765 ;;
+  1766                           
+  1767  00BE                     _lcdConfig:	
+  1768                           ;psect for function _lcdConfig
+  1769                           
+  1770                           
+  1771                           ;incstack = 0
+  1772                           ; Regs used in _lcdConfig: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1773                           ;lcdConfig@obj stored from wreg
+  1774  00BE  1283               	bcf	3,5	;RP0=0, select bank0
+  1775  00BF  1303               	bcf	3,6	;RP1=0, select bank0
+  1776  00C0  00A9               	movwf	lcdConfig@obj
+  1777  00C1                     l1878:
+  1778                           
+  1779                           ;lcd.c: 31: obj->ctrlData((1));
+  1780  00C1  01F4               	clrf	ctrlData@Data
+  1781  00C2  0AF4               	incf	ctrlData@Data,f
+  1782  00C3  0829               	movf	lcdConfig@obj,w
+  1783  00C4  3E02               	addlw	2
+  1784  00C5  0084               	movwf	4
+  1785  00C6  1383               	bcf	3,7	;select IRP bank0
+  1786  00C7  0800               	movf	0,w
+  1787  00C8  120A  118A  2028  120A  118A  	fcall	fptable
+  1788                           
+  1789                           ;lcd.c: 32: lcdSet(obj);
+  1790  00CD  1283               	bcf	3,5	;RP0=0, select bank0
+  1791  00CE  1303               	bcf	3,6	;RP1=0, select bank0
+  1792  00CF  0829               	movf	lcdConfig@obj,w
+  1793  00D0  120A  118A  22D5  120A  118A  	fcall	_lcdSet
+  1794                           
+  1795                           ;lcd.c: 33: obj->ctrlData((2));
+  1796  00D5  3002               	movlw	2
+  1797  00D6  1283               	bcf	3,5	;RP0=0, select bank0
+  1798  00D7  1303               	bcf	3,6	;RP1=0, select bank0
+  1799  00D8  00A8               	movwf	??_lcdConfig
+  1800  00D9  0828               	movf	??_lcdConfig,w
+  1801  00DA  00F4               	movwf	ctrlData@Data
+  1802  00DB  0829               	movf	lcdConfig@obj,w
+  1803  00DC  3E02               	addlw	2
+  1804  00DD  0084               	movwf	4
+  1805  00DE  1383               	bcf	3,7	;select IRP bank0
+  1806  00DF  0800               	movf	0,w
+  1807  00E0  120A  118A  2028  120A  118A  	fcall	fptable
+  1808                           
+  1809                           ;lcd.c: 34: lcdSet(obj);
+  1810  00E5  1283               	bcf	3,5	;RP0=0, select bank0
+  1811  00E6  1303               	bcf	3,6	;RP1=0, select bank0
+  1812  00E7  0829               	movf	lcdConfig@obj,w
+  1813  00E8  120A  118A  22D5  120A  118A  	fcall	_lcdSet
+  1814                           
+  1815                           ;lcd.c: 35: obj->ctrlData((56));
+  1816  00ED  3038               	movlw	56
+  1817  00EE  1283               	bcf	3,5	;RP0=0, select bank0
+  1818  00EF  1303               	bcf	3,6	;RP1=0, select bank0
+  1819  00F0  00A8               	movwf	??_lcdConfig
+  1820  00F1  0828               	movf	??_lcdConfig,w
+  1821  00F2  00F4               	movwf	ctrlData@Data
+  1822  00F3  0829               	movf	lcdConfig@obj,w
+  1823  00F4  3E02               	addlw	2
+  1824  00F5  0084               	movwf	4
+  1825  00F6  1383               	bcf	3,7	;select IRP bank0
+  1826  00F7  0800               	movf	0,w
+  1827  00F8  120A  118A  2028  120A  118A  	fcall	fptable
+  1828                           
+  1829                           ;lcd.c: 36: lcdSet(obj);
+  1830  00FD  1283               	bcf	3,5	;RP0=0, select bank0
+  1831  00FE  1303               	bcf	3,6	;RP1=0, select bank0
+  1832  00FF  0829               	movf	lcdConfig@obj,w
+  1833  0100  120A  118A  22D5  120A  118A  	fcall	_lcdSet
+  1834                           
+  1835                           ;lcd.c: 37: obj->ctrlData((12));
+  1836  0105  300C               	movlw	12
+  1837  0106  1283               	bcf	3,5	;RP0=0, select bank0
+  1838  0107  1303               	bcf	3,6	;RP1=0, select bank0
+  1839  0108  00A8               	movwf	??_lcdConfig
+  1840  0109  0828               	movf	??_lcdConfig,w
+  1841  010A  00F4               	movwf	ctrlData@Data
+  1842  010B  0829               	movf	lcdConfig@obj,w
+  1843  010C  3E02               	addlw	2
+  1844  010D  0084               	movwf	4
+  1845  010E  1383               	bcf	3,7	;select IRP bank0
+  1846  010F  0800               	movf	0,w
+  1847  0110  120A  118A  2028  120A  118A  	fcall	fptable
+  1848                           
+  1849                           ;lcd.c: 38: lcdSet(obj);
+  1850  0115  1283               	bcf	3,5	;RP0=0, select bank0
+  1851  0116  1303               	bcf	3,6	;RP1=0, select bank0
+  1852  0117  0829               	movf	lcdConfig@obj,w
+  1853  0118  120A  118A  22D5  120A  118A  	fcall	_lcdSet
+  1854                           
+  1855                           ;lcd.c: 39: obj->ctrlData((6));
+  1856  011D  3006               	movlw	6
+  1857  011E  1283               	bcf	3,5	;RP0=0, select bank0
+  1858  011F  1303               	bcf	3,6	;RP1=0, select bank0
+  1859  0120  00A8               	movwf	??_lcdConfig
+  1860  0121  0828               	movf	??_lcdConfig,w
+  1861  0122  00F4               	movwf	ctrlData@Data
+  1862  0123  0829               	movf	lcdConfig@obj,w
+  1863  0124  3E02               	addlw	2
+  1864  0125  0084               	movwf	4
+  1865  0126  1383               	bcf	3,7	;select IRP bank0
+  1866  0127  0800               	movf	0,w
+  1867  0128  120A  118A  2028  120A  118A  	fcall	fptable
+  1868                           
+  1869                           ;lcd.c: 40: lcdSet(obj);
+  1870  012D  1283               	bcf	3,5	;RP0=0, select bank0
+  1871  012E  1303               	bcf	3,6	;RP1=0, select bank0
+  1872  012F  0829               	movf	lcdConfig@obj,w
+  1873  0130  120A  118A  22D5  120A  118A  	fcall	_lcdSet
+  1874  0135                     l167:
+  1875  0135  0008               	return
+  1876  0136                     __end_of_lcdConfig:
+  1877                           
+  1878                           	psect	text10
+  1879  02D5                     __ptext10:	
+  1880 ;; *************** function _lcdSet *****************
+  1881 ;; Defined at:
+  1882 ;;		line 22 in file "lcd.c"
+  1883 ;; Parameters:    Size  Location     Type
+  1884 ;;  obj             1    wreg     const PTR const struct .
+  1885 ;;		 -> main@objLcd(4), 
+  1886 ;; Auto vars:     Size  Location     Type
+  1887 ;;  obj             1    5[COMMON] const PTR const struct .
+  1888 ;;		 -> main@objLcd(4), 
+  1889 ;; Return value:  Size  Location     Type
+  1890 ;;                  1    wreg      void 
+  1891 ;; Registers used:
+  1892 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1893 ;; Tracked objects:
+  1894 ;;		On entry : 0/0
+  1895 ;;		On exit  : 0/0
+  1896 ;;		Unchanged: 0/0
+  1897 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1898 ;;      Params:         0       0       0       0       0
+  1899 ;;      Locals:         1       0       0       0       0
+  1900 ;;      Temps:          0       0       0       0       0
+  1901 ;;      Totals:         1       0       0       0       0
+  1902 ;;Total ram usage:        1 bytes
+  1903 ;; Hardware stack levels used: 1
+  1904 ;; Hardware stack levels required when called: 2
+  1905 ;; This function calls:
+  1906 ;;		_ctrlEn
+  1907 ;;		_ctrlRs
+  1908 ;;		_delay_ms
+  1909 ;; This function is called by:
+  1910 ;;		_lcdConfig
+  1911 ;;		_lcdWriteRegister
+  1912 ;; This function uses a non-reentrant model
+  1913 ;;
+  1914                           
+  1915  02D5                     _lcdSet:	
+  1916                           ;psect for function _lcdSet
+  1917                           
+  1918                           
+  1919                           ;incstack = 0
+  1920                           ; Regs used in _lcdSet: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1921                           ;lcdSet@obj stored from wreg
+  1922  02D5  00F5               	movwf	lcdSet@obj
+  1923  02D6                     l1864:
+  1924                           
+  1925                           ;lcd.c: 23: obj->ctrlRS(0);
+  1926  02D6  01F4               	clrf	ctrlRs@status
+  1927  02D7  0A75               	incf	lcdSet@obj,w
+  1928  02D8  0084               	movwf	4
+  1929  02D9  1383               	bcf	3,7	;select IRP bank0
+  1930  02DA  0800               	movf	0,w
+  1931  02DB  120A  118A  2028  120A  118A  	fcall	fptable
+  1932                           
+  1933                           ;lcd.c: 24: obj->ctrlEnable(1);
+  1934  02E0  01F4               	clrf	ctrlEn@status
+  1935  02E1  0AF4               	incf	ctrlEn@status,f
+  1936  02E2  0875               	movf	lcdSet@obj,w
+  1937  02E3  0084               	movwf	4
+  1938  02E4  1383               	bcf	3,7	;select IRP bank0
+  1939  02E5  0800               	movf	0,w
+  1940  02E6  120A  118A  2028  120A  118A  	fcall	fptable
+  1941                           
+  1942                           ;lcd.c: 25: obj->ctrlWait((2));
+  1943  02EB  3000               	movlw	0
+  1944  02EC  1283               	bcf	3,5	;RP0=0, select bank0
+  1945  02ED  1303               	bcf	3,6	;RP1=0, select bank0
+  1946  02EE  00A3               	movwf	delay_ms@milliseconds+3
+  1947  02EF  3000               	movlw	0
+  1948  02F0  00A2               	movwf	delay_ms@milliseconds+2
+  1949  02F1  3000               	movlw	0
+  1950  02F2  00A1               	movwf	delay_ms@milliseconds+1
+  1951  02F3  3002               	movlw	2
+  1952  02F4  00A0               	movwf	delay_ms@milliseconds
+  1953  02F5  0875               	movf	lcdSet@obj,w
+  1954  02F6  3E03               	addlw	3
+  1955  02F7  0084               	movwf	4
+  1956  02F8  1383               	bcf	3,7	;select IRP bank0
+  1957  02F9  0800               	movf	0,w
+  1958  02FA  120A  118A  2028  120A  118A  	fcall	fptable
+  1959                           
+  1960                           ;lcd.c: 26: obj->ctrlEnable(0);
+  1961  02FF  01F4               	clrf	ctrlEn@status
+  1962  0300  0875               	movf	lcdSet@obj,w
+  1963  0301  0084               	movwf	4
+  1964  0302  1383               	bcf	3,7	;select IRP bank0
+  1965  0303  0800               	movf	0,w
+  1966  0304  120A  118A  2028  120A  118A  	fcall	fptable
+  1967  0309                     l164:
+  1968  0309  0008               	return
+  1969  030A                     __end_of_lcdSet:
+  1970                           
+  1971                           	psect	text11
+  1972  033E                     __ptext11:	
+  1973 ;; *************** function _delay_ms *****************
+  1974 ;; Defined at:
+  1975 ;;		line 111 in file "newmain.c"
+  1976 ;; Parameters:    Size  Location     Type
+  1977 ;;  milliseconds    4    0[BANK0 ] unsigned long 
+  1978 ;; Auto vars:     Size  Location     Type
+  1979 ;;		None
+  1980 ;; Return value:  Size  Location     Type
+  1981 ;;                  1    wreg      void 
+  1982 ;; Registers used:
+  1983 ;;		wreg
+  1984 ;; Tracked objects:
+  1985 ;;		On entry : 0/0
+  1986 ;;		On exit  : 0/0
+  1987 ;;		Unchanged: 0/0
+  1988 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1989 ;;      Params:         0       4       0       0       0
+  1990 ;;      Locals:         0       0       0       0       0
+  1991 ;;      Temps:          0       4       0       0       0
+  1992 ;;      Totals:         0       8       0       0       0
+  1993 ;;Total ram usage:        8 bytes
+  1994 ;; Hardware stack levels used: 1
+  1995 ;; Hardware stack levels required when called: 1
+  1996 ;; This function calls:
+  1997 ;;		Nothing
+  1998 ;; This function is called by:
+  1999 ;;		_main
+  2000 ;;		_lcdWriteData
+  2001 ;;		_lcdSet
+  2002 ;; This function uses a non-reentrant model
+  2003 ;;
+  2004                           
+  2005  033E                     _delay_ms:	
+  2006                           ;psect for function _delay_ms
+  2007                           
+  2008  033E                     l1856:	
+  2009                           ;incstack = 0
+  2010                           ; Regs used in _delay_ms: [wreg]
+  2011                           
+  2012                           
+  2013                           ;newmain.c: 112: while(milliseconds > 0)
+  2014  033E  2B65               	goto	l95
+  2015  033F                     l1858:
+  2016                           
+  2017                           ;newmain.c: 113: {;newmain.c: 114: _delay((unsigned long)((1)*(4000000/4000.0)));
+  2018  033F  30C7               	movlw	199
+  2019  0340  1283               	bcf	3,5	;RP0=0, select bank0
+  2020  0341  1303               	bcf	3,6	;RP1=0, select bank0
+  2021  0342  00A4               	movwf	??_delay_ms
+  2022  0343                     u2067:
+  2023  0343  2B44               	nop2
+  2024  0344  0BA4               	decfsz	??_delay_ms,f
+  2025  0345  2B43               	goto	u2067
+  2026  0346  2B47               	nop2
+  2027                           
+  2028                           ;newmain.c: 115: milliseconds--;
+  2029  0347  3001               	movlw	1
+  2030  0348  1283               	bcf	3,5	;RP0=0, select bank0
+  2031  0349  1303               	bcf	3,6	;RP1=0, select bank0
+  2032  034A  00A4               	movwf	??_delay_ms
+  2033  034B  3000               	movlw	0
+  2034  034C  00A5               	movwf	??_delay_ms+1
+  2035  034D  3000               	movlw	0
+  2036  034E  00A6               	movwf	??_delay_ms+2
+  2037  034F  3000               	movlw	0
+  2038  0350  00A7               	movwf	??_delay_ms+3
+  2039  0351  0824               	movf	??_delay_ms,w
+  2040  0352  02A0               	subwf	delay_ms@milliseconds,f
+  2041  0353  0825               	movf	??_delay_ms+1,w
+  2042  0354  1C03               	skipc
+  2043  0355  0F25               	incfsz	??_delay_ms+1,w
+  2044  0356  2B58               	goto	u1945
+  2045  0357  2B59               	goto	u1946
+  2046  0358                     u1945:
+  2047  0358  02A1               	subwf	delay_ms@milliseconds+1,f
+  2048  0359                     u1946:
+  2049  0359  0826               	movf	??_delay_ms+2,w
+  2050  035A  1C03               	skipc
+  2051  035B  0F26               	incfsz	??_delay_ms+2,w
+  2052  035C  2B5E               	goto	u1947
+  2053  035D  2B5F               	goto	u1948
+  2054  035E                     u1947:
+  2055  035E  02A2               	subwf	delay_ms@milliseconds+2,f
+  2056  035F                     u1948:
+  2057  035F  0827               	movf	??_delay_ms+3,w
+  2058  0360  1C03               	skipc
+  2059  0361  0F27               	incfsz	??_delay_ms+3,w
+  2060  0362  2B64               	goto	u1949
+  2061  0363  2B65               	goto	u1940
+  2062  0364                     u1949:
+  2063  0364  02A3               	subwf	delay_ms@milliseconds+3,f
+  2064  0365                     u1940:
+  2065  0365                     l95:
+  2066  0365  1283               	bcf	3,5	;RP0=0, select bank0
+  2067  0366  1303               	bcf	3,6	;RP1=0, select bank0
+  2068  0367  0823               	movf	delay_ms@milliseconds+3,w
+  2069  0368  0422               	iorwf	delay_ms@milliseconds+2,w
+  2070  0369  0421               	iorwf	delay_ms@milliseconds+1,w
+  2071  036A  0420               	iorwf	delay_ms@milliseconds,w
+  2072  036B  1D03               	skipz
+  2073  036C  2B6E               	goto	u1951
+  2074  036D  2B6F               	goto	u1950
+  2075  036E                     u1951:
+  2076  036E  2B3F               	goto	l1858
+  2077  036F                     u1950:
+  2078  036F                     l98:
+  2079  036F  0008               	return
+  2080  0370                     __end_of_delay_ms:
+  2081                           
+  2082                           	psect	text12
+  2083  03FD                     __ptext12:	
+  2084 ;; *************** function _ctrlRs *****************
+  2085 ;; Defined at:
+  2086 ;;		line 104 in file "newmain.c"
+  2087 ;; Parameters:    Size  Location     Type
+  2088 ;;  status          1    4[COMMON] unsigned char 
+  2089 ;; Auto vars:     Size  Location     Type
+  2090 ;;		None
+  2091 ;; Return value:  Size  Location     Type
+  2092 ;;                  1    wreg      void 
+  2093 ;; Registers used:
+  2094 ;;		wreg, status,0
+  2095 ;; Tracked objects:
+  2096 ;;		On entry : 0/0
+  2097 ;;		On exit  : 0/0
+  2098 ;;		Unchanged: 0/0
+  2099 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2100 ;;      Params:         1       0       0       0       0
+  2101 ;;      Locals:         0       0       0       0       0
+  2102 ;;      Temps:          0       0       0       0       0
+  2103 ;;      Totals:         1       0       0       0       0
+  2104 ;;Total ram usage:        1 bytes
+  2105 ;; Hardware stack levels used: 1
+  2106 ;; Hardware stack levels required when called: 1
+  2107 ;; This function calls:
+  2108 ;;		Nothing
+  2109 ;; This function is called by:
+  2110 ;;		_main
+  2111 ;;		_lcdSetPosition
+  2112 ;;		_lcdSet
+  2113 ;;		_lcdPutsInLine1
+  2114 ;;		_lcdPutsInLine2
+  2115 ;; This function uses a non-reentrant model
+  2116 ;;
+  2117                           
+  2118  03FD                     _ctrlRs:	
+  2119                           ;psect for function _ctrlRs
+  2120                           
+  2121  03FD                     l1342:	
+  2122                           ;incstack = 0
+  2123                           ; Regs used in _ctrlRs: [wreg+status,0]
+  2124                           
+  2125                           
+  2126                           ;newmain.c: 105: PORTDbits.RD6 = status;
+  2127  03FD  0C74               	rrf	ctrlRs@status,w
+  2128  03FE  1283               	bcf	3,5	;RP0=0, select bank0
+  2129  03FF  1303               	bcf	3,6	;RP1=0, select bank0
+  2130  0400  1C03               	skipc
+  2131  0401  1308               	bcf	8,6	;volatile
+  2132  0402  1803               	skipnc
+  2133  0403  1708               	bsf	8,6	;volatile
+  2134  0404                     l89:
+  2135  0404  0008               	return
+  2136  0405                     __end_of_ctrlRs:
+  2137                           
+  2138                           	psect	text13
+  2139  0405                     __ptext13:	
+  2140 ;; *************** function _ctrlEn *****************
+  2141 ;; Defined at:
+  2142 ;;		line 101 in file "newmain.c"
+  2143 ;; Parameters:    Size  Location     Type
+  2144 ;;  status          1    4[COMMON] unsigned char 
+  2145 ;; Auto vars:     Size  Location     Type
+  2146 ;;		None
+  2147 ;; Return value:  Size  Location     Type
+  2148 ;;                  1    wreg      void 
+  2149 ;; Registers used:
+  2150 ;;		wreg, status,0
+  2151 ;; Tracked objects:
+  2152 ;;		On entry : 0/0
+  2153 ;;		On exit  : 0/0
+  2154 ;;		Unchanged: 0/0
+  2155 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2156 ;;      Params:         1       0       0       0       0
+  2157 ;;      Locals:         0       0       0       0       0
+  2158 ;;      Temps:          0       0       0       0       0
+  2159 ;;      Totals:         1       0       0       0       0
+  2160 ;;Total ram usage:        1 bytes
+  2161 ;; Hardware stack levels used: 1
+  2162 ;; Hardware stack levels required when called: 1
+  2163 ;; This function calls:
+  2164 ;;		Nothing
+  2165 ;; This function is called by:
+  2166 ;;		_main
+  2167 ;;		_lcdWriteData
+  2168 ;;		_lcdSet
+  2169 ;; This function uses a non-reentrant model
+  2170 ;;
+  2171                           
+  2172  0405                     _ctrlEn:	
+  2173                           ;psect for function _ctrlEn
+  2174                           
+  2175  0405                     l1334:	
+  2176                           ;incstack = 0
+  2177                           ; Regs used in _ctrlEn: [wreg+status,0]
+  2178                           
+  2179                           
+  2180                           ;newmain.c: 102: PORTDbits.RD7 = status;
+  2181  0405  0C74               	rrf	ctrlEn@status,w
+  2182  0406  1283               	bcf	3,5	;RP0=0, select bank0
+  2183  0407  1303               	bcf	3,6	;RP1=0, select bank0
+  2184  0408  1C03               	skipc
+  2185  0409  1388               	bcf	8,7	;volatile
+  2186  040A  1803               	skipnc
+  2187  040B  1788               	bsf	8,7	;volatile
+  2188  040C                     l86:
+  2189  040C  0008               	return
+  2190  040D                     __end_of_ctrlEn:
+  2191                           
+  2192                           	psect	text14
+  2193  040D                     __ptext14:	
+  2194 ;; *************** function _ctrlData *****************
+  2195 ;; Defined at:
+  2196 ;;		line 107 in file "newmain.c"
+  2197 ;; Parameters:    Size  Location     Type
+  2198 ;;  Data            1    4[COMMON] unsigned char 
+  2199 ;; Auto vars:     Size  Location     Type
+  2200 ;;		None
+  2201 ;; Return value:  Size  Location     Type
+  2202 ;;                  1    wreg      void 
+  2203 ;; Registers used:
+  2204 ;;		wreg
+  2205 ;; Tracked objects:
+  2206 ;;		On entry : 0/0
+  2207 ;;		On exit  : 0/0
+  2208 ;;		Unchanged: 0/0
+  2209 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2210 ;;      Params:         1       0       0       0       0
+  2211 ;;      Locals:         0       0       0       0       0
+  2212 ;;      Temps:          0       0       0       0       0
+  2213 ;;      Totals:         1       0       0       0       0
+  2214 ;;Total ram usage:        1 bytes
+  2215 ;; Hardware stack levels used: 1
+  2216 ;; Hardware stack levels required when called: 1
+  2217 ;; This function calls:
+  2218 ;;		Nothing
+  2219 ;; This function is called by:
+  2220 ;;		_main
+  2221 ;;		_lcdWriteData
+  2222 ;;		_lcdConfig
+  2223 ;; This function uses a non-reentrant model
+  2224 ;;
+  2225                           
+  2226  040D                     _ctrlData:	
+  2227                           ;psect for function _ctrlData
+  2228                           
+  2229  040D                     l1336:	
+  2230                           ;incstack = 0
+  2231                           ; Regs used in _ctrlData: [wreg]
+  2232                           
+  2233                           
+  2234                           ;newmain.c: 108: PORTC = Data;
+  2235  040D  0874               	movf	ctrlData@Data,w
+  2236  040E  1283               	bcf	3,5	;RP0=0, select bank0
+  2237  040F  1303               	bcf	3,6	;RP1=0, select bank0
+  2238  0410  0087               	movwf	7	;volatile
+  2239  0411                     l92:
+  2240  0411  0008               	return
+  2241  0412                     __end_of_ctrlData:
+  2242                           
+  2243                           	psect	text15
+  2244  03BD                     __ptext15:	
+  2245 ;; *************** function _isr *****************
+  2246 ;; Defined at:
+  2247 ;;		line 122 in file "newmain.c"
+  2248 ;; Parameters:    Size  Location     Type
+  2249 ;;		None
+  2250 ;; Auto vars:     Size  Location     Type
+  2251 ;;		None
+  2252 ;; Return value:  Size  Location     Type
+  2253 ;;                  1    wreg      void 
+  2254 ;; Registers used:
+  2255 ;;		wreg
+  2256 ;; Tracked objects:
+  2257 ;;		On entry : 0/0
+  2258 ;;		On exit  : 0/0
+  2259 ;;		Unchanged: 0/0
+  2260 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2261 ;;      Params:         0       0       0       0       0
+  2262 ;;      Locals:         0       0       0       0       0
+  2263 ;;      Temps:          4       0       0       0       0
+  2264 ;;      Totals:         4       0       0       0       0
+  2265 ;;Total ram usage:        4 bytes
+  2266 ;; Hardware stack levels used: 1
+  2267 ;; This function calls:
+  2268 ;;		Nothing
+  2269 ;; This function is called by:
+  2270 ;;		Interrupt level 1
+  2271 ;; This function uses a non-reentrant model
+  2272 ;;
+  2273                           
+  2274  03BD                     _isr:	
+  2275                           ;psect for function _isr
+  2276                           
+  2277  03BD                     i1l1444:
+  2278                           
+  2279                           ;newmain.c: 124: if(RCIF==1)
+  2280  03BD  1283               	bcf	3,5	;RP0=0, select bank0
+  2281  03BE  1303               	bcf	3,6	;RP1=0, select bank0
+  2282  03BF  1E8C               	btfss	12,5	;volatile
+  2283  03C0  2BC2               	goto	u109_21
+  2284  03C1  2BC3               	goto	u109_20
+  2285  03C2                     u109_21:
+  2286  03C2  2BD3               	goto	i1l104
+  2287  03C3                     u109_20:
+  2288  03C3                     i1l1446:
+  2289                           
+  2290                           ;newmain.c: 125: {;newmain.c: 127: n=RCREG;
+  2291  03C3  081A               	movf	26,w	;volatile
+  2292  03C4  00F0               	movwf	??_isr
+  2293  03C5  01F1               	clrf	??_isr+1
+  2294  03C6  0870               	movf	??_isr,w
+  2295  03C7  00EC               	movwf	_n
+  2296  03C8  0871               	movf	??_isr+1,w
+  2297  03C9  00ED               	movwf	_n+1
+  2298                           
+  2299                           ;newmain.c: 130: _delay((unsigned long)((10)*(4000000/4000.0)));
+  2300  03CA  300D               	movlw	13
+  2301  03CB  00F1               	movwf	??_isr+1
+  2302  03CC  30FB               	movlw	251
+  2303  03CD  00F0               	movwf	??_isr
+  2304  03CE                     u207_27:
+  2305  03CE  0BF0               	decfsz	??_isr,f
+  2306  03CF  2BCE               	goto	u207_27
+  2307  03D0  0BF1               	decfsz	??_isr+1,f
+  2308  03D1  2BCE               	goto	u207_27
+  2309  03D2  2BD3               	nop2
+  2310  03D3                     i1l104:
+  2311  03D3  0873               	movf	??_isr+3,w
+  2312  03D4  008A               	movwf	10
+  2313  03D5  0E72               	swapf	??_isr+2,w
+  2314  03D6  0083               	movwf	3
+  2315  03D7  0EFE               	swapf	btemp,f
+  2316  03D8  0E7E               	swapf	btemp,w
+  2317  03D9  0009               	retfie
+  2318  03DA                     __end_of_isr:
+  2319  0008                     
+  2320                           	psect	intentry
+  2321  0004                     __pintentry:	
+  2322                           ;incstack = 0
+  2323                           ; Regs used in _isr: [wreg]
+  2324                           
+  2325  0004                     interrupt_function:
+  2326  007E                     saved_w	set	btemp
+  2327  0004  00FE               	movwf	btemp
+  2328  0005  0E03               	swapf	3,w
+  2329  0006  00F2               	movwf	??_isr+2
+  2330  0007  080A               	movf	10,w
+  2331  0008  00F3               	movwf	??_isr+3
+  2332  0009  120A  118A  2BBD   	ljmp	_isr
+  2333                           
+  2334                           	psect	functab
+  2335  0028                     __pfunctab:
+  2336  0028                     __fptable:
+  2337  0028                     fptable:
+  2338  0028  00FF               	movwf	(btemp+1)& (0+127)
+  2339  0029  3000               	movlw	high fptable
+  2340  002A  008A               	movwf	10
+  2341  002B  087F               	movf	(btemp+1)& (0+127),w
+  2342  002C  0782               	addwf	2,f
+  2343  002D                     fpbase:
+  2344  002D  282D               	goto	fpbase	; Call via a null pointer and you will get stuck here.
+  2345  002E                     fp__ctrlData:
+  2346  002E  120A  118A  2C0D   	ljmp	_ctrlData
+  2347  0031                     fp__ctrlEn:
+  2348  0031  120A  118A  2C05   	ljmp	_ctrlEn
+  2349  0034                     fp__ctrlRs:
+  2350  0034  120A  118A  2BFD   	ljmp	_ctrlRs
+  2351  0037                     fp__delay_ms:
+  2352  0037  120A  118A  2B3E   	ljmp	_delay_ms
+  2353  003A                     __end_of__fptable:
+  2354  007E                     btemp	set	126	;btemp
+  2355  007E                     wtemp0	set	126
+  2356                           
+  2357                           	psect	idloc
+  2358                           
+  2359                           ;Config register IDLOC0 @ 0x2000
+  2360                           ;	unspecified, using default values
+  2361  2000                     	org	8192
+  2362  2000  3FFF               	dw	16383
+  2363                           
+  2364                           ;Config register IDLOC1 @ 0x2001
+  2365                           ;	unspecified, using default values
+  2366  2001                     	org	8193
+  2367  2001  3FFF               	dw	16383
+  2368                           
+  2369                           ;Config register IDLOC2 @ 0x2002
+  2370                           ;	unspecified, using default values
+  2371  2002                     	org	8194
+  2372  2002  3FFF               	dw	16383
+  2373                           
+  2374                           ;Config register IDLOC3 @ 0x2003
+  2375                           ;	unspecified, using default values
+  2376  2003                     	org	8195
+  2377  2003  3FFF               	dw	16383
+  2378                           
+  2379                           	psect	config
+  2380                           
+  2381                           ;Config register CONFIG1 @ 0x2007
+  2382                           ;	Oscillator Selection bits
+  2383                           ;	FOSC = HS, HS oscillator: High-speed crystal/resonator on RA6/OSC2/CLKOUT and RA7/OSC1
+      +                          /CLKIN
+  2384                           ;	Watchdog Timer Enable bit
+  2385                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+  2386                           ;	Power-up Timer Enable bit
+  2387                           ;	PWRTE = 0x1, unprogrammed default
+  2388                           ;	RE3/MCLR pin function select bit
+  2389                           ;	MCLRE = 0x1, unprogrammed default
+  2390                           ;	Code Protection bit
+  2391                           ;	CP = 0x1, unprogrammed default
+  2392                           ;	Data Code Protection bit
+  2393                           ;	CPD = 0x1, unprogrammed default
+  2394                           ;	Brown Out Reset Selection bits
+  2395                           ;	BOREN = 0x3, unprogrammed default
+  2396                           ;	Internal External Switchover bit
+  2397                           ;	IESO = 0x1, unprogrammed default
+  2398                           ;	Fail-Safe Clock Monitor Enabled bit
+  2399                           ;	FCMEN = 0x1, unprogrammed default
+  2400                           ;	Low Voltage Programming Enable bit
+  2401                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+  2402                           ;	In-Circuit Debugger Mode bit
+  2403                           ;	DEBUG = 0x1, unprogrammed default
+  2404  2007                     	org	8199
+  2405  2007  2FF2               	dw	12274
+  2406                           
+  2407                           ;Config register CONFIG2 @ 0x2008
+  2408                           ;	unspecified, using default values
+  2409                           ;	Brown-out Reset Selection bit
+  2410                           ;	BOR4V = 0x1, unprogrammed default
+  2411                           ;	Flash Program Memory Self Write Enable bits
+  2412                           ;	WRT = 0x3, unprogrammed default
+  2413  2008                     	org	8200
+  2414  2008  3FFF               	dw	16383
+
+Data Sizes:
+    Strings     67
+    Constant    0
+    Data        0
+    BSS         50
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      6      10
+    BANK0            80     66      80
+    BANK1            80      0      32
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    lcdPuts@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 0
+		 -> delay_ms(), 
+
+    lcdPuts@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 0
+		 -> ctrlData(), 
+
+    lcdPuts@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 0
+		 -> ctrlRs(), 
+
+    lcdPuts@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 0
+		 -> ctrlEn(), 
+
+    strlen@s	PTR const unsigned char  size(1) Largest target is 31
+		 -> STR_1(CODE[31]), 
+
+    strlen@cp	PTR const unsigned char  size(1) Largest target is 31
+		 -> STR_1(CODE[31]), 
+
+    memcpy@d1	PTR void  size(1) Largest target is 16
+		 -> lcdPuts@line2(BANK0[16]), lcdPuts@line1(BANK0[16]), 
+
+    memcpy@d	PTR unsigned char  size(1) Largest target is 16
+		 -> lcdPuts@line2(BANK0[16]), lcdPuts@line1(BANK0[16]), 
+
+    memcpy@s1	PTR const void  size(1) Largest target is 31
+		 -> STR_1(CODE[31]), 
+
+    memcpy@s	PTR const unsigned char  size(1) Largest target is 31
+		 -> STR_1(CODE[31]), 
+
+    lcdPutch@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdPutch@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdPutch@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdPutch@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdPuts@obj	const PTR const struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    sp__memcpy	PTR void  size(1) Largest target is 16
+		 -> lcdPuts@line2(BANK0[16]), lcdPuts@line1(BANK0[16]), 
+
+    lcdPuts@s	PTR const unsigned char  size(1) Largest target is 31
+		 -> STR_1(CODE[31]), 
+
+    lcdPutsInLine2@s	PTR const unsigned char  size(1) Largest target is 16
+		 -> lcdPuts@line2(BANK0[16]), 
+
+    lcdPutsInLine2@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdPutsInLine2@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdPutsInLine2@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdPutsInLine2@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdPutsInLine2@obj	const PTR const struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    lcdPutsInLine1@s	PTR const unsigned char  size(2) Largest target is 16
+		 -> lcdPuts@line1(BANK0[16]), STR_2(CODE[8]), 
+
+    lcdPutsInLine1@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdPutsInLine1@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdPutsInLine1@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdPutsInLine1@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdPutsInLine1@obj	const PTR const struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    lcdWriteData@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdWriteData@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdWriteData@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdWriteData@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdWriteData@obj	const PTR const struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    lcdSetPosition@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdSetPosition@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdSetPosition@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdSetPosition@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdSetPosition@obj	const PTR const struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    lcdWriteRegister@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdWriteRegister@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdWriteRegister@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdWriteRegister@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdConfig@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdConfig@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdConfig@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdConfig@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdConfig@obj	const PTR const struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    lcdSet@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdSet@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdSet@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdSet@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdSet@obj	const PTR const struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    lcdInit@wait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdInit@data	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdInit@RS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdInit@obj.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    lcdInit@obj.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    lcdInit@obj.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    lcdInit@obj.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdInit@E	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    lcdInit@obj	const PTR struct . size(1) Largest target is 4
+		 -> main@objLcd(BANK0[4]), 
+
+    S30$ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    objLcd.ctrlWait	PTR FTN(unsigned long ,)void  size(1) Largest target is 1
+		 -> delay_ms(), 
+
+    S30$ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    objLcd.ctrlData	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlData(), 
+
+    S30$ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    objLcd.ctrlRS	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlRs(), 
+
+    S30$ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+    objLcd.ctrlEnable	PTR FTN(unsigned char ,)void  size(1) Largest target is 1
+		 -> ctrlEn(), 
+
+
+Critical Paths under _main in COMMON
+
+    _lcdPuts->_strlen
+    _memcpy->_strlen
+    _lcdPutsInLine2->_lcdWriteData
+    _lcdPutsInLine1->_lcdWriteData
+    _lcdSetPosition->_lcdWriteData
+    _lcdWriteData->_ctrlData
+    _lcdWriteData->_ctrlEn
+    _lcdConfig->_lcdSet
+    _lcdSet->_ctrlEn
+    _lcdSet->_ctrlRs
+
+Critical Paths under _isr in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _main->_lcdPuts
+    _lcdPuts->_lcdPutsInLine1
+    _memcpy->_strlen
+    _lcdPutsInLine2->_lcdSetPosition
+    _lcdPutsInLine1->_lcdSetPosition
+    _lcdInit->_lcdSetPosition
+    _lcdSetPosition->_lcdWriteData
+    _lcdWriteData->_delay_ms
+    _lcdSet->_delay_ms
+
+Critical Paths under _isr in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _isr in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _isr in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _isr in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 8     8      0   22577
+                                             58 BANK0      8     8      0
+                            _lcdInit
+                            _lcdPuts
+                     _lcdPutsInLine1
+                     _lcdSetPosition
+ ---------------------------------------------------------------------------------
+ (1) _lcdPuts                                             36    35      1   10746
+                                             23 BANK0     35    34      1
+                     _lcdPutsInLine1
+                     _lcdPutsInLine2
+                             _memcpy
+                             _strlen
+ ---------------------------------------------------------------------------------
+ (3) _strlen                                               5     3      2     238
+                                              4 COMMON     2     0      2
+                                              0 BANK0      3     3      0
+ ---------------------------------------------------------------------------------
+ (3) _memcpy                                               8     5      3     856
+                                              3 BANK0      8     5      3
+                             _strlen (ARG)
+ ---------------------------------------------------------------------------------
+ (2) _lcdPutsInLine2                                       7     5      2    4437
+                                             13 BANK0      7     5      2
+                             _ctrlRs *
+                     _lcdSetPosition
+                       _lcdWriteData
+ ---------------------------------------------------------------------------------
+ (1) _lcdPutsInLine1                                      10     7      3    4653
+                                             13 BANK0     10     7      3
+                             _ctrlRs *
+                     _lcdSetPosition
+                       _lcdWriteData
+ ---------------------------------------------------------------------------------
+ (1) _lcdInit                                              6     2      4    4700
+                                             13 BANK0      6     2      4
+                          _lcdConfig
+                     _lcdSetPosition
+ ---------------------------------------------------------------------------------
+ (1) _lcdSetPosition                                       3     2      1    2282
+                                             10 BANK0      3     2      1
+                             _ctrlRs *
+                       _lcdWriteData
+ ---------------------------------------------------------------------------------
+ (2) _lcdWriteData                                         3     2      1    1424
+                                              5 COMMON     1     0      1
+                                              8 BANK0      2     2      0
+                           _ctrlData *
+                             _ctrlEn *
+                           _delay_ms *
+ ---------------------------------------------------------------------------------
+ (2) _lcdConfig                                            2     2      0    1712
+                                              8 BANK0      2     2      0
+                           _ctrlData *
+                             _lcdSet
+ ---------------------------------------------------------------------------------
+ (3) _lcdSet                                               1     1      0     999
+                                              5 COMMON     1     1      0
+                             _ctrlEn *
+                             _ctrlRs *
+                           _delay_ms *
+ ---------------------------------------------------------------------------------
+ (3) _delay_ms                                             8     4      4     164
+                                              0 BANK0      8     4      4
+ ---------------------------------------------------------------------------------
+ (2) _ctrlRs                                               1     0      1     261
+                                              4 COMMON     1     0      1
+ ---------------------------------------------------------------------------------
+ (3) _ctrlEn                                               1     0      1     234
+                                              4 COMMON     1     0      1
+ ---------------------------------------------------------------------------------
+ (3) _ctrlData                                             1     0      1     367
+                                              4 COMMON     1     0      1
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (6) _isr                                                  4     4      0       0
+                                              0 COMMON     4     4      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 6
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _lcdInit
+     _lcdConfig
+       _ctrlData *
+       _lcdSet *
+         _ctrlEn *
+         _ctrlRs *
+         _delay_ms *
+     _lcdSetPosition
+       _ctrlRs *
+       _lcdWriteData *
+         _ctrlData *
+         _ctrlEn *
+         _delay_ms *
+   _lcdPuts
+     _lcdPutsInLine1
+       _ctrlRs *
+       _lcdSetPosition *
+       _lcdWriteData *
+     _lcdPutsInLine2
+       _ctrlRs *
+       _lcdSetPosition *
+       _lcdWriteData *
+     _memcpy
+       _strlen (ARG)
+     _strlen
+   _lcdPutsInLine1
+   _lcdSetPosition
+
+ _isr (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      6       A       1       71.4%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0      7A       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50     42      50       5      100.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0      20       7       40.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0      7A      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.35 build 20211206165544 
+Symbol Table                                                                                   Wed Mar 16 15:14:22 2022
+
+                      _n 006C                        _x 0062                        pc 0002  
+                     l92 0411                       l86 040C                       l95 0365  
+                     l89 0404                       l98 036F                       fsr 0004  
+                    l161 039D                      l164 0309                      l173 03F4  
+                    l182 0199                      l167 0135                      l176 02D4  
+                    l188 0295                      l197 00BD                      l740 033D  
+                    l746 03BC                      _RD6 0046                      _RD7 0047  
+                    _isr 03BD                      fsr0 0004                      indf 0000  
+         ??_lcdWriteData 0028            lcdWriteData@c 0075                     l1334 0405  
+                   l1342 03FD                     l1336 040D                     l1900 030D  
+                   l1902 0316                     l1910 032F                     l1920 0394  
+                   l1912 0373                     l1904 0320                     l1914 0380  
+                   l1906 0324                     l1930 005D                     l1922 003D  
+                   l1860 0299                     l1916 0387                     l1908 032B  
+                   l1932 008B                     l1924 003D                     l1940 01A4  
+                   l1862 03DD                     l1918 038E                     l1870 0148  
+                   l1934 00A3                     l1926 0046                     l1950 01D3  
+                   l1942 01BA                     l1856 033E                     l1864 02D6  
+                   l1872 0153                     l1880 0256                     l1936 00B0  
+                   l1928 004E                     l1952 01E0                     l1944 01BE  
+                   l1858 033F                     l1874 0175                     l1866 0139  
+                   l1882 0261                     l1890 03A1                     l1946 01C0  
+                   l1938 019A                     l1876 017D                     l1868 0143  
+                   l1884 0266                     l1892 03A6                     l1948 01C7  
+                   l1878 00C1                     l1886 0282                     l1894 03AA  
+                   l1888 028A                     l1896 03B6                     ?_isr 0070  
+                   STR_1 0210                     STR_2 024B                     STR_3 023F  
+                   STR_4 022F                     u2000 03B6                     u2001 03B5  
+                   u2010 033D                     u2011 033C                     u2020 0041  
+                   u2030 004A                     u2040 005D                     u2041 005C  
+                   u2057 01E8                     u2067 0343                     u1940 0365  
+                   u1950 036F                     u1951 036E                     u1960 015F  
+                   u1945 0358                     u1946 0359                     u1970 0187  
+                   u1947 035E                     u1948 035F                     u1980 0199  
+                   u1949 0364                     u1981 0198                     u1990 0295  
+                   u1991 0294                     _RCIF 0065                     _TRMT 04C1  
+                   _cont 006A                     _main 019A                     _temp 0076  
+                   btemp 007E                     start 000C                    ??_isr 0070  
+       ??_lcdPutsInLine1 0030         ??_lcdPutsInLine2 002F                    ?_main 0070  
+                  i1l104 03D3                    _RCREG 001A                    _PORTB 0006  
+                  _PORTC 0007                    _PORTD 0008                    _TRISB 0086  
+                  _TRISC 0087                    _TRISD 0088                    _TXREG 0019  
+        __end_of_lcdInit 039E          __end_of_lcdPuts 00BE                    fpbase 002D  
+                  pclath 000A                    status 0003                    wtemp0 007E  
+        __initialization 000F             __end_of_main 01F2          lcdWriteData@obj 0029  
+                 ??_main 005A                   i1l1444 03BD                   i1l1446 03C3  
+                 u109_20 03C3                   u109_21 03C2                   u207_27 03CE  
+           ctrlData@Data 0074             ctrlEn@status 0074         __end_of__fptable 003A  
+       __end_of_delay_ms 0370     delay_ms@milliseconds 0020   lcdSetPosition@position 002A  
+       __end_of_ctrlData 0412     __end_of_lcdWriteData 02D5                   _lcdSet 02D5  
+                 _ctrlEn 0405                   _ctrlRs 03FD                   _memcpy 030A  
+              ??_lcdInit 0031                ??_lcdPuts 0038                   _strlen 039E  
+                 fptable 0028                   fptotal 0008                   saved_w 007E  
+__end_of__initialization 0024             ctrlRs@status 0074           __pcstackCOMMON 0070  
+             __pbssBANK0 0062               __pbssBANK1 00A0               __pmaintext 019A  
+             __pintentry 0004                  ?_lcdSet 0070                  ?_ctrlEn 0074  
+                ?_ctrlRs 0074                  ?_memcpy 0023                  ?_strlen 0074  
+              ?_delay_ms 0020               __stringtab 0200                ?_ctrlData 0074  
+      __end_of_lcdConfig 0136                  _decenas 0068                  _lcdInit 0370  
+                __ptext1 003A                  __ptext2 039E                  __ptext3 030A  
+                __ptext4 0253                  __ptext5 0136                  __ptext6 0370  
+                __ptext7 03DA                  __ptext8 0296                  __ptext9 00BE  
+                _lcdPuts 003A               ??_delay_ms 0024                  clrloop0 03F6  
+           _lcdWriteData 0296     end_of_initialization 0024               ??_ctrlData 0075  
+                memcpy@d 0028                  memcpy@n 0024                  memcpy@s 0029  
+             lcdInit@obj 0032                  strlen@s 0022               _porcentaje 006E  
+              _PORTDbits 0008               lcdPuts@obj 0059               main@objLcd 005E  
+         __end_of_lcdSet 030A           __end_of_ctrlEn 040D           __end_of_ctrlRs 0405  
+         __end_of_memcpy 033E           __end_of_strlen 03BD      start_initialization 000F  
+            __end_of_isr 03DA           _lcdSetPosition 03DA        lcdPutsInLine1@obj 0036  
+      lcdPutsInLine2@obj 0033                 ??_lcdSet 0075                 ??_ctrlEn 0075  
+               ??_ctrlRs 0075                 ??_memcpy 0026                 ??_strlen 0020  
+            __pbssCOMMON 0076                ___latbits 0002            __pcstackBANK0 0020  
+      __size_of__fptable 0012    lcdPutsInLine1@initPos 002F    lcdPutsInLine2@initPos 002E  
+ __end_of_lcdSetPosition 03F5                __pfunctab 0028                _lcdConfig 00BE  
+              __pstrings 0200                 ?_lcdInit 002D                 ?_lcdPuts 0037  
+         _lcdPutsInLine1 0136           _lcdPutsInLine2 0253        interrupt_function 0004  
+              clear_ram0 03F5          ?_lcdSetPosition 002A                lcdInit@RS 002E  
+             ?_lcdConfig 0070                lcdSet@obj 0075                fp__ctrlEn 0031  
+              fp__ctrlRs 0034              __stringbase 020F   __end_of_lcdPutsInLine1 019A  
+ __end_of_lcdPutsInLine2 0296                memcpy@tmp 0027       __end_of__stringtab 0210  
+               __fptable 0028          ?_lcdPutsInLine1 002D          ?_lcdPutsInLine2 002D  
+               _delay_ms 033E                 _centenas 0078                 __ptext10 02D5  
+               __ptext11 033E                 __ptext12 03FD                 __ptext13 0405  
+               __ptext14 040D                 __ptext15 03BD             lcdConfig@obj 0029  
+               _ctrlData 040D                 lcdInit@E 002D              ??_lcdConfig 0028  
+               lcdPuts@s 0037                 _unidades 0066                 memcpy@d1 002A  
+               memcpy@s1 0023          lcdPutsInLine1@i 0034          lcdPutsInLine2@i 0031  
+        lcdPutsInLine1@s 002D          lcdPutsInLine2@s 002D        lcdSetPosition@obj 002C  
+               intlevel1 0028                stringcode 020A              lcdInit@data 002F  
+            lcdInit@wait 0030                 strlen@cp 0021                 stringdir 020A  
+               stringtab 0200            ?_lcdWriteData 0075         ??_lcdSetPosition 002B  
+            lcdPuts@F226 00B0              lcdPuts@F228 00A0             lcdPuts@line1 0049  
+            fp__delay_ms 0037             lcdPuts@line2 0039              fp__ctrlData 002E  
