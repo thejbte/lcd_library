@@ -2639,7 +2639,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 84 "lcd.h"
+# 83 "lcd.h"
 typedef void (*pFcnGpio)(uint8_t);
 typedef void (*pFcnWait)(uint32_t);
 
@@ -2654,13 +2654,14 @@ pFcnWait ctrlWait ;
 
 void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
 pFcnGpio data, pFcnWait wait);
-void lcdSetPosition(lcdData_t const * const obj, unsigned char position);
+void lcdSetPosition(lcdData_t const * const obj, uint8_t position);
 void lcdPuts (lcdData_t const * const obj, const char *s);
 void lcdPutch (lcdData_t const * const obj, unsigned char c);
 void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr);
 void lcdPutsPos(lcdData_t const * const obj, const char *s, uint8_t initPos);
 void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
 void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
+void lcdCreateCustomCharacter (lcdData_t const * const obj, unsigned char *Pattern, const char Location);
 
 # 21 "newmain.c"
 __config("__CONFIG", "pic", "FOSC_HS & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_ON & IESO_ON & FCMEN_ON & LVP_OFF");
@@ -2689,11 +2690,27 @@ PORTC=0;
 
 lcdData_t objLcd;
 lcdInit(&objLcd,ctrlEn, ctrlRs , ctrlData, delay_ms );
+char b[7]={0x10,0x10,0x16,0x19,0x11,0x11,0x1E};
+unsigned char Pattern1 [ ] = { 0x0e, 0x0e, 0x04, 0x04, 0x1f, 0x04, 0x0a, 0x0a } ;
+unsigned char Pattern3[]= {0x00,0x00,0x0a,0x15,0x11,0x0a,0x04,0x00};
+unsigned char Pattern4[]= {0x00,0x00,0x0a,0x1f,0x1f,0x0e,0x04,0x00};
 
+lcdCreateCustomCharacter (&objLcd, Pattern1, 1);
+lcdCreateCustomCharacter (&objLcd, Pattern3, 3);
 while(1){
 
 
-lcdPutsInLine1(&objLcd, "JJulian", 0);
+
+
+lcdSetPosition(&objLcd, 0);
+lcdPutch(&objLcd, 0x7e);
+lcdPutsInLine1(&objLcd, "Adriana TE AMO",1);
+
+
+
+
+lcdPutch(&objLcd, 3);
+
 _delay((unsigned long)((500)*(4000000/4000.0)));
 }
 }

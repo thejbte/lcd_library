@@ -12,27 +12,35 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production\16f887_lcd.X.production.o
-cinit CODE 0 7F3 7F3 D 2 1
+cinit CODE 0 7D1 7D1 2F 2 1
 idloc IDLOC 5 2000 2000 4 2 1
-text1 CODE 0 617 617 64 2 1
-text2 CODE 0 578 578 2E 2 1
-text3 CODE 0 530 530 1B 2 1
-text4 CODE 0 67B 67B B7 2 1
-text5 CODE 0 5A6 5A6 32 2 1
-text6 CODE 0 732 732 C1 2 1
-text7 CODE 0 54B 54B 2D 2 1
-text8 CODE 0 520 520 8 2 1
-text9 CODE 0 518 518 8 2 1
-text10 CODE 0 513 513 5 2 1
-maintext CODE 0 5D8 5D8 3F 2 1
+text1 CODE 0 524 524 64 2 1
+text2 CODE 0 481 481 2E 2 1
+text3 CODE 0 439 439 1B 2 1
+text4 CODE 0 4AF 4AF 32 2 1
+text5 CODE 0 4E1 4E1 43 2 1
+text6 CODE 0 63F 63F C1 2 1
+text7 CODE 0 41E 41E 1B 2 1
+text8 CODE 0 588 588 B7 2 1
+text9 CODE 0 454 454 2D 2 1
+text10 CODE 0 3DC 3DC 8 2 1
+text11 CODE 0 3CF 3CF 5 2 1
+text12 CODE 0 3D4 3D4 8 2 1
+maintext CODE 0 700 700 D1 2 1
 cstackCOMMON COMMON 1 70 70 E 1 1
-cstackBANK0 BANK0 1 4A 4A 13 1 1
-bssBANK0 BANK0 1 20 20 2A 1 1
-strings STRING 0 15 15 18 2 1
+cstackBANK0 BANK0 1 20 20 32 1 1
+inittext CODE 0 40B 40B 13 2 1
+bssBANK0 BANK0 1 61 61 A 1 1
+bssBANK1 BANK1 1 A0 A0 20 1 1
+idataBANK0 CODE 0 3EC 3EC F 2 1
+idataBANK1 CODE 0 3FB 3FB 10 2 1
+strings STRING 0 15 15 1F 2 1
+dataBANK0 BANK0 1 52 52 F 1 1
+dataBANK1 BANK1 1 C0 C0 10 1 1
 functab ENTRY 0 3 3 12 2 1
-clrtext CODE 0 528 528 8 2 1
+clrtext CODE 0 3E4 3E4 8 2 1
 config CONFIG 4 2007 2007 2 2 1
-$C:\Users\julia\AppData\Local\Temp\xcAs9g.o
+$C:\Users\julia\AppData\Local\Temp\xcAs108.o
 idloc IDLOC 5 2000 2000 4 2 1
 end_init CODE 0 0 0 3 2 1
 config CONFIG 4 2007 2007 2 2 1
@@ -42,28 +50,28 @@ config CONFIG 4 2007 2007 2 2 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 5D-6F 1
-RAM A0-EF 1
+RAM 6B-6F 1
+RAM D0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 5D-6F 1
-BANK1 A0-EF 1
+BANK0 6B-6F 1
+BANK1 D0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 2D-512 2
+CONST 34-3CE 2
 CONST 800-1FFF 2
-ENTRY 2D-512 2
+ENTRY 34-3CE 2
 ENTRY 800-1FFF 2
-CODE 2D-512 2
+CODE 34-3CE 2
 CODE 800-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
 EEDATA 2100-21FF 2
-STRCODE 2D-512 2
+STRCODE 34-3CE 2
 STRCODE 800-1FFF 2
-STRING 2D-512 2
+STRING 34-3CE 2
 STRING 800-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -79,144 +87,209 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\16f887_lcd.X.production.o
-7F3 cinit CODE >646:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7F3 cinit CODE >649:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7F3 cinit CODE >693:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7F4 cinit CODE >694:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7F5 cinit CODE >695:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7F6 cinit CODE >696:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7F7 cinit CODE >697:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7FC cinit CODE >703:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7FC cinit CODE >705:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7FD cinit CODE >706:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-3 functab ENTRY >2506:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-3 functab ENTRY >2508:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-3 functab ENTRY >2509:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-3 functab ENTRY >2510:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-4 functab ENTRY >2511:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-5 functab ENTRY >2512:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-6 functab ENTRY >2513:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-7 functab ENTRY >2514:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-8 functab ENTRY >2516:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-8 functab ENTRY >2517:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-9 functab ENTRY >2520:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-9 functab ENTRY >2521:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-C functab ENTRY >2524:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-C functab ENTRY >2525:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-F functab ENTRY >2528:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-F functab ENTRY >2529:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-12 functab ENTRY >2532:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-12 functab ENTRY >2533:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-513 text10 CODE >70:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-513 text10 CODE >71:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-517 text10 CODE >72:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-518 text9 CODE >64:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-518 text9 CODE >65:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-51B text9 CODE >65:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-51D text9 CODE >65:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-51F text9 CODE >66:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-520 text8 CODE >67:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-520 text8 CODE >68:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-523 text8 CODE >68:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-525 text8 CODE >68:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-527 text8 CODE >69:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-54B text7 CODE >74:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-54B text7 CODE >75:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-54C text7 CODE >77:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-553 text7 CODE >78:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-55E text7 CODE >78:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-564 text7 CODE >78:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-56A text7 CODE >78:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-56F text7 CODE >75:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-56F text7 CODE >79:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-573 text7 CODE >75:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-577 text7 CODE >80:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-732 text6 CODE >38:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-733 text6 CODE >46:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-73D text6 CODE >47:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-748 text6 CODE >48:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-756 text6 CODE >49:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-765 text6 CODE >53:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-777 text6 CODE >54:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-781 text6 CODE >55:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-793 text6 CODE >56:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-79E text6 CODE >57:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7AC text6 CODE >58:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7AF text6 CODE >58:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7B2 text6 CODE >58:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7B4 text6 CODE >58:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7C4 text6 CODE >61:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7D6 text6 CODE >62:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7E0 text6 CODE >63:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-7F2 text6 CODE >66:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5A6 text5 CODE >24:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5A7 text5 CODE >25:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5AF text5 CODE >26:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5B9 text5 CODE >30:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5C3 text5 CODE >32:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5CD text5 CODE >33:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5D7 text5 CODE >34:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-67B text4 CODE >72:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-67C text4 CODE >80:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-687 text4 CODE >81:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-695 text4 CODE >82:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6A4 text4 CODE >85:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6B6 text4 CODE >86:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6C0 text4 CODE >87:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6D2 text4 CODE >88:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6DD text4 CODE >89:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6EB text4 CODE >90:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6EE text4 CODE >90:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6F1 text4 CODE >90:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-6F3 text4 CODE >90:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-703 text4 CODE >93:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-715 text4 CODE >94:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-71F text4 CODE >95:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-731 text4 CODE >97:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-530 text3 CODE >68:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-533 text3 CODE >69:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-53D text3 CODE >70:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-54A text3 CODE >71:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-578 text2 CODE >12:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-57B text2 CODE >14:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-582 text2 CODE >15:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-588 text2 CODE >16:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-58F text2 CODE >17:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-596 text2 CODE >19:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-59C text2 CODE >20:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5A5 text2 CODE >21:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-617 text1 CODE >99:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-61A text1 CODE >100:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-624 text1 CODE >101:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-628 text1 CODE >102:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-629 text1 CODE >103:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-634 text1 CODE >104:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-63B text1 CODE >104:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-65A text1 CODE >104:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-65E text1 CODE >102:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-663 text1 CODE >102:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-676 text1 CODE >102:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-67A text1 CODE >106:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
-5D8 maintext CODE >43:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5D8 maintext CODE >44:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5DB maintext CODE >45:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5DC maintext CODE >46:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5DD maintext CODE >47:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5E0 maintext CODE >48:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5E1 maintext CODE >49:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5E2 maintext CODE >52:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-5F8 maintext CODE >57:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-605 maintext CODE >58:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
-528 clrtext CODE >680:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-528 clrtext CODE >681:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-529 clrtext CODE >682:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-529 clrtext CODE >683:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-52A clrtext CODE >684:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-52B clrtext CODE >685:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-52C clrtext CODE >686:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-52D clrtext CODE >687:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-52E clrtext CODE >688:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
-52F clrtext CODE >689:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
+7D1 cinit CODE >714:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D1 cinit CODE >717:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D1 cinit CODE >805:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D2 cinit CODE >806:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D3 cinit CODE >807:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D4 cinit CODE >808:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D5 cinit CODE >809:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D6 cinit CODE >810:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D7 cinit CODE >811:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D8 cinit CODE >812:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7D9 cinit CODE >813:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7DA cinit CODE >814:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7DF cinit CODE >818:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E0 cinit CODE >819:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E1 cinit CODE >820:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E2 cinit CODE >821:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E3 cinit CODE >822:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E4 cinit CODE >823:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E5 cinit CODE >824:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E6 cinit CODE >825:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7E7 cinit CODE >826:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7EC cinit CODE >845:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7ED cinit CODE >846:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7EE cinit CODE >847:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7EF cinit CODE >848:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7F4 cinit CODE >851:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7F5 cinit CODE >852:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7F6 cinit CODE >853:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7F7 cinit CODE >854:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7FC cinit CODE >860:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7FC cinit CODE >862:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7FD cinit CODE >863:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3 functab ENTRY >3149:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3 functab ENTRY >3151:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3 functab ENTRY >3152:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3 functab ENTRY >3153:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+4 functab ENTRY >3154:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+5 functab ENTRY >3155:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+6 functab ENTRY >3156:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+7 functab ENTRY >3157:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+8 functab ENTRY >3159:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+8 functab ENTRY >3160:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+9 functab ENTRY >3163:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+9 functab ENTRY >3164:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+C functab ENTRY >3167:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+C functab ENTRY >3168:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+F functab ENTRY >3171:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+F functab ENTRY >3172:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+12 functab ENTRY >3175:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+12 functab ENTRY >3176:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3D4 text12 CODE >83:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3D4 text12 CODE >84:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3D7 text12 CODE >84:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3D9 text12 CODE >84:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3DB text12 CODE >85:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3CF text11 CODE >86:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3CF text11 CODE >87:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3D3 text11 CODE >88:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3DC text10 CODE >80:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3DC text10 CODE >81:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3DF text10 CODE >81:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3E1 text10 CODE >81:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3E3 text10 CODE >82:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+454 text9 CODE >90:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+454 text9 CODE >91:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+455 text9 CODE >93:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+45C text9 CODE >94:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+467 text9 CODE >94:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+46D text9 CODE >94:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+473 text9 CODE >94:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+478 text9 CODE >91:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+478 text9 CODE >95:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+47C text9 CODE >91:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+480 text9 CODE >96:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+588 text8 CODE >69:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+589 text8 CODE >77:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+594 text8 CODE >78:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5A2 text8 CODE >79:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5B1 text8 CODE >80:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5C3 text8 CODE >81:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5CD text8 CODE >82:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5DF text8 CODE >83:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5EA text8 CODE >84:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5F8 text8 CODE >85:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5FB text8 CODE >85:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+5FE text8 CODE >85:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+600 text8 CODE >85:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+610 text8 CODE >86:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+622 text8 CODE >87:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+62C text8 CODE >88:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+63E text8 CODE >90:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+41E text7 CODE >129:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+421 text7 CODE >130:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+42C text7 CODE >131:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+438 text7 CODE >132:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+63F text6 CODE >40:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+640 text6 CODE >48:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+64A text6 CODE >49:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+655 text6 CODE >50:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+663 text6 CODE >51:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+672 text6 CODE >52:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+684 text6 CODE >53:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+68E text6 CODE >54:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6A0 text6 CODE >55:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6AB text6 CODE >56:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6B9 text6 CODE >57:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6BC text6 CODE >57:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6BF text6 CODE >57:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6C1 text6 CODE >57:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6D1 text6 CODE >58:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6E3 text6 CODE >59:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6ED text6 CODE >60:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+6FF text6 CODE >63:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4E1 text5 CODE >133:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4E4 text5 CODE >135:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4E4 text5 CODE >136:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4E7 text5 CODE >136:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4EA text5 CODE >136:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4EC text5 CODE >136:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4F8 text5 CODE >137:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4FC text5 CODE >138:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+50E text5 CODE >137:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+512 text5 CODE >137:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+51B text5 CODE >137:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+51F text5 CODE >137:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+523 text5 CODE >139:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4AF text4 CODE >26:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4B0 text4 CODE >27:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4B8 text4 CODE >28:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4C2 text4 CODE >32:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4CC text4 CODE >34:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4D6 text4 CODE >35:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4E0 text4 CODE >36:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+439 text3 CODE >65:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+43C text3 CODE >66:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+446 text3 CODE >67:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+453 text3 CODE >68:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+481 text2 CODE >14:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+484 text2 CODE >16:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+48B text2 CODE >17:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+491 text2 CODE >18:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+498 text2 CODE >19:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+49F text2 CODE >21:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4A5 text2 CODE >22:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+4AE text2 CODE >23:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+524 text1 CODE >92:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+527 text1 CODE >93:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+531 text1 CODE >94:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+535 text1 CODE >95:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+536 text1 CODE >96:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+541 text1 CODE >97:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+548 text1 CODE >97:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+567 text1 CODE >97:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+56B text1 CODE >95:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+570 text1 CODE >95:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+583 text1 CODE >95:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+587 text1 CODE >99:C:\Users\julia\MPLABXProjects\16f887_lcd.X\lcd.c
+700 maintext CODE >43:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+700 maintext CODE >44:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+703 maintext CODE >45:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+704 maintext CODE >46:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+705 maintext CODE >47:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+708 maintext CODE >48:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+709 maintext CODE >49:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+70A maintext CODE >52:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+720 maintext CODE >53:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+737 maintext CODE >54:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+74C maintext CODE >55:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+761 maintext CODE >56:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+776 maintext CODE >58:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+782 maintext CODE >59:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+792 maintext CODE >65:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+799 maintext CODE >66:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+7A5 maintext CODE >67:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+7B3 maintext CODE >72:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+7BF maintext CODE >74:C:\Users\julia\MPLABXProjects\16f887_lcd.X\newmain.c
+3E4 clrtext CODE >832:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3E4 clrtext CODE >833:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3E5 clrtext CODE >834:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3E5 clrtext CODE >835:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3E6 clrtext CODE >836:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3E7 clrtext CODE >837:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3E8 clrtext CODE >838:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3E9 clrtext CODE >839:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3EA clrtext CODE >840:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+3EB clrtext CODE >841:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+40B inittext CODE >779:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+40B inittext CODE >780:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+40C inittext CODE >781:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+40D inittext CODE >782:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+40E inittext CODE >783:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+40F inittext CODE >790:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+40F inittext CODE >791:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+414 inittext CODE >792:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+415 inittext CODE >793:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+416 inittext CODE >794:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+417 inittext CODE >795:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+418 inittext CODE >796:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+419 inittext CODE >797:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+41A inittext CODE >798:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+41B inittext CODE >799:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+41C inittext CODE >800:C:\Users\julia\AppData\Local\Temp\xcAs108.s
+41D inittext CODE >801:C:\Users\julia\AppData\Local\Temp\xcAs108.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -230,62 +303,75 @@ F functab ENTRY >2529:C:\Users\julia\AppData\Local\Temp\xcAs9g.s
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
+__LdataBANK0 2A 0 ABS 0 dataBANK0 -
+__LdataBANK1 2A 0 ABS 0 dataBANK1 -
 __Hspace_0 800 0 ABS 0 - -
-__Hspace_1 7E 0 ABS 0 - -
+__Hspace_1 D0 0 ABS 0 - -
 __Hspace_2 2A 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
-__end_of_lcdSetPosition A96 0 CODE 0 text3 dist/default/production\16f887_lcd.X.production.o
-lcdSetPosition@obj 4A 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+__HidataBANK0 2A 0 ABS 0 idataBANK0 -
+__HidataBANK1 2A 0 ABS 0 idataBANK1 -
+__end_of_lcdSetPosition 8A8 0 CODE 0 text3 dist/default/production\16f887_lcd.X.production.o
+lcdSetPosition@obj 20 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
+main@b 37 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
 __Hstrings 2A 0 ABS 0 strings -
-___sp 2A 0 STACK 2 stack C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-_main BB0 0 CODE 0 maintext dist/default/production\16f887_lcd.X.production.o
-_temp 40 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
+___sp 2A 0 STACK 2 stack C:\Users\julia\AppData\Local\Temp\xcAs108.o
+_main E00 0 CODE 0 maintext dist/default/production\16f887_lcd.X.production.o
+_temp 61 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
-start 0 0 CODE 0 init C:\Users\julia\AppData\Local\Temp\xcAs9g.o
+start 0 0 CODE 0 init C:\Users\julia\AppData\Local\Temp\xcAs108.o
 __pfunctab 6 0 ENTRY 0 functab dist/default/production\16f887_lcd.X.production.o
+__LidataBANK0 2A 0 ABS 0 idataBANK0 -
+__LidataBANK1 2A 0 ABS 0 idataBANK1 -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-intlevel1 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-intlevel2 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-intlevel3 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-intlevel4 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-intlevel5 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-_lcdWriteData CF6 0 CODE 0 text4 dist/default/production\16f887_lcd.X.production.o
+intlevel0 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs108.o
+intlevel1 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs108.o
+intlevel2 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs108.o
+intlevel3 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs108.o
+intlevel4 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs108.o
+intlevel5 6 0 ENTRY 0 functab C:\Users\julia\AppData\Local\Temp\xcAs108.o
+_lcdWriteData B10 0 CODE 0 text8 dist/default/production\16f887_lcd.X.production.o
 delay_ms@milliseconds 70 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
 __Hfunctab 2A 0 ENTRY 0 functab -
 ctrlRs@status 70 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 __Hclrtext 2A 0 ABS 0 clrtext -
-lcdPutsInLine1@i 52 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
-lcdPutsInLine1@s 4B 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
-_decenas 44 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
-__end_of_lcdInit B4C 0 CODE 0 text2 dist/default/production\16f887_lcd.X.production.o
-_unidades 42 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
-lcdInit@E 4B 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
-lcdInit@RS 4C 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdPutsInLine1@i 28 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdPutsInLine1@s 21 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+_decenas 65 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
+__end_of_lcdInit 95E 0 CODE 0 text2 dist/default/production\16f887_lcd.X.production.o
+_unidades 63 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdInit@E 21 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdInit@RS 22 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
 __Lmaintext 2A 0 ABS 0 maintext -
-__end_of_ctrlEn A40 0 CODE 0 text9 dist/default/production\16f887_lcd.X.production.o
-__end_of_ctrlRs A50 0 CODE 0 text8 dist/default/production\16f887_lcd.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-___stacklo 0 0 ABS 0 - C:\Users\julia\AppData\Local\Temp\xcAs9g.o
-__end_of_lcdWriteData E64 0 CODE 0 text4 dist/default/production\16f887_lcd.X.production.o
+__end_of_ctrlEn 7C8 0 CODE 0 text10 dist/default/production\16f887_lcd.X.production.o
+__end_of_ctrlRs 7B8 0 CODE 0 text12 dist/default/production\16f887_lcd.X.production.o
+___stackhi 0 0 ABS 0 - C:\Users\julia\AppData\Local\Temp\xcAs108.o
+___stacklo 0 0 ABS 0 - C:\Users\julia\AppData\Local\Temp\xcAs108.o
+__end_of_lcdWriteData C7E 0 CODE 0 text8 dist/default/production\16f887_lcd.X.production.o
 lcdWriteRegister@obj 7B 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
-start_initialization FE6 0 CODE 0 cinit dist/default/production\16f887_lcd.X.production.o
-clear_ram0 A50 0 CODE 0 clrtext dist/default/production\16f887_lcd.X.production.o
-__pcstackBANK0 4A 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
-___int_sp 2A 0 STACK 2 stack C:\Users\julia\AppData\Local\Temp\xcAs9g.o
+start_initialization FA2 0 CODE 0 cinit dist/default/production\16f887_lcd.X.production.o
+lcdPutch@obj 20 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdCreateCustomCharacter@obj 25 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+clear_ram0 7C8 0 CODE 0 clrtext dist/default/production\16f887_lcd.X.production.o
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+___int_sp 2A 0 STACK 2 stack C:\Users\julia\AppData\Local\Temp\xcAs108.o
+lcdPutch@c 7C 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 __Hbank0 2A 0 ABS 0 bank0 -
 __Hbank1 2A 0 ABS 0 bank1 -
 __Hbank2 2A 0 ABS 0 bank2 -
 __Hbank3 2A 0 ABS 0 bank3 -
 __Hcinit 1000 0 CODE 0 cinit -
-lcdPutsInLine1@initPos 4D 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdPutsInLine1@initPos 23 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
 __Hidloc 4008 0 IDLOC 5 idloc -
 __Hstack 2A 0 STACK 2 stack -
 __stringbase 48 0 STRING 0 strings dist/default/production\16f887_lcd.X.production.o
-_lcdPutsInLine1 C2E 0 CODE 0 text1 dist/default/production\16f887_lcd.X.production.o
+main@Pattern1 3E 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+main@Pattern3 46 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+main@Pattern4 2F 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+_lcdPutsInLine1 A48 0 CODE 0 text1 dist/default/production\16f887_lcd.X.production.o
 __Hmaintext 2A 0 ABS 0 maintext -
 __Hcommon 2A 0 ABS 0 common -
 __Hconfig 4012 0 CONFIG 4 config -
@@ -293,11 +379,12 @@ __Lbank0 2A 0 ABS 0 bank0 -
 __Lbank1 2A 0 ABS 0 bank1 -
 __Lbank2 2A 0 ABS 0 bank2 -
 __Lbank3 2A 0 ABS 0 bank3 -
-__Lcinit FE6 0 CODE 0 cinit -
+__Lcinit FA2 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 5 idloc -
 lcdWriteData@obj 7B 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 __Lstack 2A 0 STACK 2 stack -
 __size_of__fptable 0 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
+__Linittext 2A 0 ABS 0 inittext -
 _PORTDbits 8 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
 __Habs1 2A 0 ABS 0 abs1 -
 __Hcode 2A 0 ABS 0 code -
@@ -318,39 +405,55 @@ __Ltext 2A 0 ABS 0 text -
 __LcstackBANK0 2A 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 2A 0 ABS 0 cstackCOMMON -
 __S0 800 0 ABS 0 - -
-__S1 7E 0 ABS 0 - -
+__S1 D0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_ctrlData A26 0 CODE 0 text10 dist/default/production\16f887_lcd.X.production.o
-_ctrlEn A30 0 CODE 0 text9 dist/default/production\16f887_lcd.X.production.o
-_ctrlRs A40 0 CODE 0 text8 dist/default/production\16f887_lcd.X.production.o
-__end_of_ctrlData A30 0 CODE 0 text10 dist/default/production\16f887_lcd.X.production.o
-__end_of_lcdPutsInLine1 CF6 0 CODE 0 text1 dist/default/production\16f887_lcd.X.production.o
-lcdInit@data 4D 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
-lcdInit@wait 4E 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+_ctrlData 79E 0 CODE 0 text11 dist/default/production\16f887_lcd.X.production.o
+_lcdCreateCustomCharacter 9C2 0 CODE 0 text5 dist/default/production\16f887_lcd.X.production.o
+_ctrlEn 7B8 0 CODE 0 text10 dist/default/production\16f887_lcd.X.production.o
+_ctrlRs 7A8 0 CODE 0 text12 dist/default/production\16f887_lcd.X.production.o
+__end_of_ctrlData 7A8 0 CODE 0 text11 dist/default/production\16f887_lcd.X.production.o
+__end_of_lcdPutsInLine1 B10 0 CODE 0 text1 dist/default/production\16f887_lcd.X.production.o
+lcdInit@data 23 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdInit@wait 24 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdCreateCustomCharacter@Location 22 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+_lcdPutch 83C 0 CODE 0 text7 dist/default/production\16f887_lcd.X.production.o
 __Lintentry 0 0 CODE 0 intentry -
 __stringtab 2A 0 STRING 0 strings dist/default/production\16f887_lcd.X.production.o
-_lcdInit AF0 0 CODE 0 text2 dist/default/production\16f887_lcd.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\julia\AppData\Local\Temp\xcAs9g.o
+_lcdInit 902 0 CODE 0 text2 dist/default/production\16f887_lcd.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\julia\AppData\Local\Temp\xcAs108.o
 __fptable 6 0 ENTRY 0 functab dist/default/production\16f887_lcd.X.production.o
+__pdataBANK0 52 0 BANK0 1 dataBANK0 dist/default/production\16f887_lcd.X.production.o
+__pdataBANK1 C0 0 BANK1 1 dataBANK1 dist/default/production\16f887_lcd.X.production.o
+__end_of_lcdPutch 872 0 CODE 0 text7 dist/default/production\16f887_lcd.X.production.o
 __LbssBANK0 2A 0 ABS 0 bssBANK0 -
+__LbssBANK1 2A 0 ABS 0 bssBANK1 -
+lcdCreateCustomCharacter@Pattern 21 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
 lcdWriteRegister@regAddr 78 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 __end_of__fptable 2A 0 ENTRY 0 functab dist/default/production\16f887_lcd.X.production.o
-__ptext10 A26 0 CODE 0 text10 dist/default/production\16f887_lcd.X.production.o
-__pmaintext BB0 0 CODE 0 maintext dist/default/production\16f887_lcd.X.production.o
+__ptext10 7B8 0 CODE 0 text10 dist/default/production\16f887_lcd.X.production.o
+__ptext11 79E 0 CODE 0 text11 dist/default/production\16f887_lcd.X.production.o
+__ptext12 7A8 0 CODE 0 text12 dist/default/production\16f887_lcd.X.production.o
+__pmaintext E00 0 CODE 0 maintext dist/default/production\16f887_lcd.X.production.o
 ctrlEn@status 70 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 __Lcommon 2A 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 ctrlData@Data 70 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
+__Hinittext 2A 0 ABS 0 inittext -
+main@F1432 5A 0 BANK0 1 dataBANK0 dist/default/production\16f887_lcd.X.production.o
+main@F1434 52 0 BANK0 1 dataBANK0 dist/default/production\16f887_lcd.X.production.o
+main@F1436 C8 0 BANK1 1 dataBANK1 dist/default/production\16f887_lcd.X.production.o
+main@F1438 C0 0 BANK1 1 dataBANK1 dist/default/production\16f887_lcd.X.production.o
 lcdConfig@obj 7D 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
-_lcdWriteRegister E64 0 CODE 0 text6 dist/default/production\16f887_lcd.X.production.o
-lcdInit@obj 50 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
-lcdPutsInLine1@obj 54 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+_lcdWriteRegister C7E 0 CODE 0 text6 dist/default/production\16f887_lcd.X.production.o
+lcdInit@obj 26 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+lcdPutsInLine1@obj 2A 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
 __end_of__stringtab 4A 0 STRING 0 strings dist/default/production\16f887_lcd.X.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
+init_fetch0 816 0 CODE 0 inittext dist/default/production\16f887_lcd.X.production.o
 __HcstackBANK0 2A 0 ABS 0 cstackBANK0 -
 __Lend_init 0 0 CODE 0 end_init -
 __LcstackCOMMON 2A 0 ABS 0 cstackCOMMON -
@@ -362,31 +465,37 @@ __Lstrings 2A 0 ABS 0 strings -
 lcdWriteData@data 78 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 __Hreset_vec 0 0 CODE 0 reset_vec -
 __HbssBANK0 2A 0 ABS 0 bssBANK0 -
-__ptext1 C2E 0 CODE 0 text1 dist/default/production\16f887_lcd.X.production.o
-__ptext2 AF0 0 CODE 0 text2 dist/default/production\16f887_lcd.X.production.o
-__ptext3 A60 0 CODE 0 text3 dist/default/production\16f887_lcd.X.production.o
-__ptext4 CF6 0 CODE 0 text4 dist/default/production\16f887_lcd.X.production.o
-__ptext5 B4C 0 CODE 0 text5 dist/default/production\16f887_lcd.X.production.o
-__ptext6 E64 0 CODE 0 text6 dist/default/production\16f887_lcd.X.production.o
-__ptext7 A96 0 CODE 0 text7 dist/default/production\16f887_lcd.X.production.o
-__ptext8 A40 0 CODE 0 text8 dist/default/production\16f887_lcd.X.production.o
-__ptext9 A30 0 CODE 0 text9 dist/default/production\16f887_lcd.X.production.o
+__HbssBANK1 2A 0 ABS 0 bssBANK1 -
+__ptext1 A48 0 CODE 0 text1 dist/default/production\16f887_lcd.X.production.o
+__ptext2 902 0 CODE 0 text2 dist/default/production\16f887_lcd.X.production.o
+__ptext3 872 0 CODE 0 text3 dist/default/production\16f887_lcd.X.production.o
+__ptext4 95E 0 CODE 0 text4 dist/default/production\16f887_lcd.X.production.o
+__ptext5 9C2 0 CODE 0 text5 dist/default/production\16f887_lcd.X.production.o
+__ptext6 C7E 0 CODE 0 text6 dist/default/production\16f887_lcd.X.production.o
+__ptext7 83C 0 CODE 0 text7 dist/default/production\16f887_lcd.X.production.o
+__ptext8 B10 0 CODE 0 text8 dist/default/production\16f887_lcd.X.production.o
+__ptext9 8A8 0 CODE 0 text9 dist/default/production\16f887_lcd.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-main@objLcd 59 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+main@objLcd 4E 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __end_of__initialization FF8 0 CODE 0 cinit dist/default/production\16f887_lcd.X.production.o
-_delay_ms A96 0 CODE 0 text7 dist/default/production\16f887_lcd.X.production.o
+_delay_ms 8A8 0 CODE 0 text9 dist/default/production\16f887_lcd.X.production.o
 __Lfunctab 6 0 ENTRY 0 functab -
-__end_of_lcdWriteRegister FE6 0 CODE 0 text6 dist/default/production\16f887_lcd.X.production.o
+__end_of_lcdWriteRegister E00 0 CODE 0 text6 dist/default/production\16f887_lcd.X.production.o
+__pidataBANK0 7D8 0 CODE 0 idataBANK0 dist/default/production\16f887_lcd.X.production.o
+__pidataBANK1 7F6 0 CODE 0 idataBANK1 dist/default/production\16f887_lcd.X.production.o
 __Lclrtext 2A 0 ABS 0 clrtext -
-__end_of_delay_ms AF0 0 CODE 0 text7 dist/default/production\16f887_lcd.X.production.o
-__end_of_lcdConfig BB0 0 CODE 0 text5 dist/default/production\16f887_lcd.X.production.o
+__end_of_delay_ms 902 0 CODE 0 text9 dist/default/production\16f887_lcd.X.production.o
+__end_of_lcdConfig 9C2 0 CODE 0 text4 dist/default/production\16f887_lcd.X.production.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 lcdSetPosition@position 7C 0 COMMON 1 cstackCOMMON dist/default/production\16f887_lcd.X.production.o
 __Hend_init 6 0 CODE 0 end_init -
-_lcdSetPosition A60 0 CODE 0 text3 dist/default/production\16f887_lcd.X.production.o
-__end_of_main C2E 0 CODE 0 maintext dist/default/production\16f887_lcd.X.production.o
+init_ram0 81E 0 CODE 0 inittext dist/default/production\16f887_lcd.X.production.o
+lcdCreateCustomCharacter@i 26 0 BANK0 1 cstackBANK0 dist/default/production\16f887_lcd.X.production.o
+_lcdSetPosition 872 0 CODE 0 text3 dist/default/production\16f887_lcd.X.production.o
+__end_of_main FA2 0 CODE 0 maintext dist/default/production\16f887_lcd.X.production.o
+__end_of_lcdCreateCustomCharacter A48 0 CODE 0 text5 dist/default/production\16f887_lcd.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
 _PORTC 7 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
@@ -395,10 +504,13 @@ _TRISC 87 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\16f887_lcd.X.production.o
 __Hram 2A 0 ABS 0 ram -
 __Lram 2A 0 ABS 0 ram -
-_lcdConfig B4C 0 CODE 0 text5 dist/default/production\16f887_lcd.X.production.o
-_centenas 46 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
-__initialization FE6 0 CODE 0 cinit dist/default/production\16f887_lcd.X.production.o
-__pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
+_lcdConfig 95E 0 CODE 0 text4 dist/default/production\16f887_lcd.X.production.o
+__HdataBANK0 2A 0 ABS 0 dataBANK0 -
+__HdataBANK1 2A 0 ABS 0 dataBANK1 -
+_centenas 67 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
+__initialization FA2 0 CODE 0 cinit dist/default/production\16f887_lcd.X.production.o
+__pbssBANK0 61 0 BANK0 1 bssBANK0 dist/default/production\16f887_lcd.X.production.o
+__pbssBANK1 A0 0 BANK1 1 bssBANK1 dist/default/production\16f887_lcd.X.production.o
 __pstrings 2A 0 STRING 0 strings dist/default/production\16f887_lcd.X.production.o
 fpbase 10 0 ENTRY 0 functab dist/default/production\16f887_lcd.X.production.o
 # %SPLITSTAB Section
@@ -426,24 +538,30 @@ fpbase 10 0 ENTRY 0 functab dist/default/production\16f887_lcd.X.production.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7F3 FE6 D 2
-text1 0 617 C2E 64 2
-text2 0 578 AF0 2E 2
-text3 0 530 A60 1B 2
-text4 0 67B CF6 B7 2
-text5 0 5A6 B4C 32 2
-text6 0 732 E64 C1 2
-text7 0 54B A96 2D 2
-text8 0 520 A40 8 2
-text9 0 518 A30 8 2
-text10 0 513 A26 5 2
-maintext 0 5D8 BB0 3F 2
+cinit 0 7D1 FA2 2F 2
+text1 0 524 A48 64 2
+text2 0 481 902 2E 2
+text3 0 439 872 1B 2
+text4 0 4AF 95E 32 2
+text5 0 4E1 9C2 43 2
+text6 0 63F C7E C1 2
+text7 0 41E 83C 1B 2
+text8 0 588 B10 B7 2
+text9 0 454 8A8 2D 2
+text10 0 3DC 7B8 8 2
+text11 0 3CF 79E 5 2
+text12 0 3D4 7A8 8 2
+maintext 0 700 E00 D1 2
 cstackCOMMON 1 70 70 E 1
+cstackBANK0 1 20 20 4B 1
+inittext 0 40B 816 13 2
 reset_vec 0 0 0 3 2
-bssBANK0 1 20 20 3D 1
-strings 0 15 2A 18 2
+bssBANK1 1 A0 A0 30 1
+idataBANK0 0 3EC 7D8 F 2
+idataBANK1 0 3FB 7F6 10 2
+strings 0 15 2A 1F 2
 functab 0 3 6 12 2
-clrtext 0 528 A50 8 2
+clrtext 0 3E4 7C8 8 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

@@ -14,11 +14,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PORTC `Vuc ~T0 @X0 0 e@7 ]
 [v F1356 `(v ~T0 @X0 0 tf1`uc ]
 [v F1359 `(v ~T0 @X0 0 tf1`ul ]
-"87 lcd.h
+"86 lcd.h
 [s S139 `*F1356 1 `*F1356 1 `*F1356 1 `*F1359 1 ]
 [n S139 . ctrlEnable ctrlRS ctrlData ctrlWait ]
 [v F1369 `*S139 ~T0 @X0 1 t ]
-"96
+"95
 [v _lcdInit `(v ~T0 @X0 0 ef5`C*S139`*F1356`*F1356`*F1356`*F1359 ]
 "36 newmain.c
 [v _ctrlEn `(v ~T0 @X0 0 ef1`uc ]
@@ -28,8 +28,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ctrlData `(v ~T0 @X0 0 ef1`uc ]
 "41
 [v _delay_ms `(v ~T0 @X0 0 ef1`ul ]
+[v F1407 `*CS139 ~T0 @X0 1 t ]
+"104 lcd.h
+[v _lcdCreateCustomCharacter `(v ~T0 @X0 0 ef3`C*CS139`*uc`Cuc ]
+[v F1376 `*CS139 ~T0 @X0 1 t ]
+"97
+[v _lcdSetPosition `(v ~T0 @X0 0 ef2`C*CS139`uc ]
+[v F1384 `*CS139 ~T0 @X0 1 t ]
+"99
+[v _lcdPutch `(v ~T0 @X0 0 ef2`C*CS139`uc ]
 [v F1397 `*CS139 ~T0 @X0 1 t ]
-"103 lcd.h
+"102
 [v _lcdPutsInLine1 `(v ~T0 @X0 0 ef3`C*CS139`*Cuc`uc ]
 [v F38 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\builtins.h
@@ -1585,23 +1594,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
-[; ;lcd.h: 84: typedef void (*pFcnGpio)(uint8_t);
-[; ;lcd.h: 85: typedef void (*pFcnWait)(uint32_t);
-[; ;lcd.h: 87: typedef struct {
-[; ;lcd.h: 88: pFcnGpio ctrlEnable;
-[; ;lcd.h: 89: pFcnGpio ctrlRS ;
-[; ;lcd.h: 90: pFcnGpio ctrlData ;
-[; ;lcd.h: 91: pFcnWait ctrlWait ;
-[; ;lcd.h: 92: }lcdData_t;
-[; ;lcd.h: 96: void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
-[; ;lcd.h: 97: pFcnGpio data, pFcnWait wait);
-[; ;lcd.h: 98: void lcdSetPosition(lcdData_t const * const obj, unsigned char position);
-[; ;lcd.h: 99: void lcdPuts (lcdData_t const * const obj, const char *s);
-[; ;lcd.h: 100: void lcdPutch (lcdData_t const * const obj, unsigned char c);
-[; ;lcd.h: 101: void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr);
-[; ;lcd.h: 102: void lcdPutsPos(lcdData_t const * const obj, const char *s, uint8_t initPos);
-[; ;lcd.h: 103: void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
-[; ;lcd.h: 104: void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 83: typedef void (*pFcnGpio)(uint8_t);
+[; ;lcd.h: 84: typedef void (*pFcnWait)(uint32_t);
+[; ;lcd.h: 86: typedef struct {
+[; ;lcd.h: 87: pFcnGpio ctrlEnable;
+[; ;lcd.h: 88: pFcnGpio ctrlRS ;
+[; ;lcd.h: 89: pFcnGpio ctrlData ;
+[; ;lcd.h: 90: pFcnWait ctrlWait ;
+[; ;lcd.h: 91: }lcdData_t;
+[; ;lcd.h: 95: void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
+[; ;lcd.h: 96: pFcnGpio data, pFcnWait wait);
+[; ;lcd.h: 97: void lcdSetPosition(lcdData_t const * const obj, uint8_t position);
+[; ;lcd.h: 98: void lcdPuts (lcdData_t const * const obj, const char *s);
+[; ;lcd.h: 99: void lcdPutch (lcdData_t const * const obj, unsigned char c);
+[; ;lcd.h: 100: void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr);
+[; ;lcd.h: 101: void lcdPutsPos(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 102: void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 103: void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 104: void lcdCreateCustomCharacter (lcdData_t const * const obj, unsigned char *Pattern, const char Location);
 "21 newmain.c
 [p x FOSC=HS ]
 [p x WDTE=OFF ]
@@ -1651,177 +1661,259 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;newmain.c: 52: lcdInit(&objLcd,ctrlEn, ctrlRs , ctrlData, delay_ms );
 "52
 [e ( _lcdInit (4 , , , , -> &U _objLcd `C*S139 &U _ctrlEn &U _ctrlRs &U _ctrlData &U _delay_ms ]
-[; ;newmain.c: 54: while(1){
+[v F1432 `uc ~T0 @X0 -> 7 `i s ]
+[i F1432
+:U ..
+"53
+-> -> 16 `i `uc
+-> -> 16 `i `uc
+-> -> 22 `i `uc
+-> -> 25 `i `uc
+-> -> 17 `i `uc
+-> -> 17 `i `uc
+-> -> 30 `i `uc
+..
+]
+[v _b `uc ~T0 @X0 -> 7 `i a ]
+[; ;newmain.c: 53: char b[7]={0x10,0x10,0x16,0x19,0x11,0x11,0x1E};
+[e = _b F1432 ]
+[v F1434 `uc ~T0 @X0 -> 0 `x s ]
+[i F1434
+:U ..
 "54
+-> -> 14 `i `uc
+-> -> 14 `i `uc
+-> -> 4 `i `uc
+-> -> 4 `i `uc
+-> -> 31 `i `uc
+-> -> 4 `i `uc
+-> -> 10 `i `uc
+-> -> 10 `i `uc
+..
+]
+[v _Pattern1 `uc ~T0 @X0 8  a ]
+[; ;newmain.c: 54: unsigned char Pattern1 [ ] = { 0x0e, 0x0e, 0x04, 0x04, 0x1f, 0x04, 0x0a, 0x0a } ;
+[e = _Pattern1 F1434 ]
+[v F1436 `uc ~T0 @X0 -> 0 `x s ]
+[i F1436
+:U ..
+"55
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 10 `i `uc
+-> -> 21 `i `uc
+-> -> 17 `i `uc
+-> -> 10 `i `uc
+-> -> 4 `i `uc
+-> -> 0 `i `uc
+..
+]
+[v _Pattern3 `uc ~T0 @X0 8  a ]
+[; ;newmain.c: 55: unsigned char Pattern3[]= {0x00,0x00,0x0a,0x15,0x11,0x0a,0x04,0x00};
+[e = _Pattern3 F1436 ]
+[v F1438 `uc ~T0 @X0 -> 0 `x s ]
+[i F1438
+:U ..
+"56
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 10 `i `uc
+-> -> 31 `i `uc
+-> -> 31 `i `uc
+-> -> 14 `i `uc
+-> -> 4 `i `uc
+-> -> 0 `i `uc
+..
+]
+[v _Pattern4 `uc ~T0 @X0 8  a ]
+[; ;newmain.c: 56: unsigned char Pattern4[]= {0x00,0x00,0x0a,0x1f,0x1f,0x0e,0x04,0x00};
+[e = _Pattern4 F1438 ]
+[; ;newmain.c: 58: lcdCreateCustomCharacter (&objLcd, Pattern1, 1);
+"58
+[e ( _lcdCreateCustomCharacter (3 , , -> &U _objLcd `C*CS139 &U _Pattern1 -> -> 1 `i `uc ]
+[; ;newmain.c: 59: lcdCreateCustomCharacter (&objLcd, Pattern3, 3);
+"59
+[e ( _lcdCreateCustomCharacter (3 , , -> &U _objLcd `C*CS139 &U _Pattern3 -> -> 3 `i `uc ]
+[; ;newmain.c: 60: while(1){
+"60
 [e :U 142 ]
 {
-[; ;newmain.c: 57: lcdPutsInLine1(&objLcd, "JJulian", 0);
-"57
-[e ( _lcdPutsInLine1 (3 , , -> &U _objLcd `C*CS139 :s 1C -> -> 0 `i `uc ]
-[; ;newmain.c: 58: _delay((unsigned long)((500)*(4000000/4000.0)));
-"58
+[; ;newmain.c: 65: lcdSetPosition(&objLcd, 0);
+"65
+[e ( _lcdSetPosition (2 , -> &U _objLcd `C*CS139 -> -> 0 `i `uc ]
+[; ;newmain.c: 66: lcdPutch(&objLcd, 0x7e);
+"66
+[e ( _lcdPutch (2 , -> &U _objLcd `C*CS139 -> -> 126 `i `uc ]
+[; ;newmain.c: 67: lcdPutsInLine1(&objLcd, "Adriana TE AMO",1);
+"67
+[e ( _lcdPutsInLine1 (3 , , -> &U _objLcd `C*CS139 :s 1C -> -> 1 `i `uc ]
+[; ;newmain.c: 72: lcdPutch(&objLcd, 3);
+"72
+[e ( _lcdPutch (2 , -> &U _objLcd `C*CS139 -> -> 3 `i `uc ]
+[; ;newmain.c: 74: _delay((unsigned long)((500)*(4000000/4000.0)));
+"74
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"59
+"75
 }
 [e :U 141 ]
-"54
+"60
 [e $U 142  ]
 [e :U 143 ]
-[; ;newmain.c: 59: }
-[; ;newmain.c: 60: }
-"60
+[; ;newmain.c: 75: }
+[; ;newmain.c: 76: }
+"76
 [e :UE 140 ]
 }
-"64
+"80
 [v _ctrlEn `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;newmain.c: 64: void ctrlEn(uint8_t status){
+[; ;newmain.c: 80: void ctrlEn(uint8_t status){
 [e :U _ctrlEn ]
 [v _status `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;newmain.c: 65: PORTDbits.RD7 = status;
-"65
+[; ;newmain.c: 81: PORTDbits.RD7 = status;
+"81
 [e = . . _PORTDbits 0 7 _status ]
-[; ;newmain.c: 66: }
-"66
+[; ;newmain.c: 82: }
+"82
 [e :UE 144 ]
 }
-"67
+"83
 [v _ctrlRs `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;newmain.c: 67: void ctrlRs(uint8_t status){
+[; ;newmain.c: 83: void ctrlRs(uint8_t status){
 [e :U _ctrlRs ]
 [v _status `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;newmain.c: 68: PORTDbits.RD6 = status;
-"68
+[; ;newmain.c: 84: PORTDbits.RD6 = status;
+"84
 [e = . . _PORTDbits 0 6 _status ]
-[; ;newmain.c: 69: }
-"69
+[; ;newmain.c: 85: }
+"85
 [e :UE 145 ]
 }
-"70
+"86
 [v _ctrlData `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;newmain.c: 70: void ctrlData(uint8_t Data){
+[; ;newmain.c: 86: void ctrlData(uint8_t Data){
 [e :U _ctrlData ]
 [v _Data `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;newmain.c: 71: PORTC = Data;
-"71
+[; ;newmain.c: 87: PORTC = Data;
+"87
 [e = _PORTC _Data ]
-[; ;newmain.c: 72: }
-"72
+[; ;newmain.c: 88: }
+"88
 [e :UE 146 ]
 }
-"74
+"90
 [v _delay_ms `(v ~T0 @X0 1 ef1`ul ]
 {
-[; ;newmain.c: 74: void delay_ms(uint32_t milliseconds){
+[; ;newmain.c: 90: void delay_ms(uint32_t milliseconds){
 [e :U _delay_ms ]
 [v _milliseconds `ul ~T0 @X0 1 r1 ]
 [f ]
-[; ;newmain.c: 75: while(milliseconds > 0)
-"75
+[; ;newmain.c: 91: while(milliseconds > 0)
+"91
 [e $U 148  ]
 [e :U 149 ]
-[; ;newmain.c: 76: {
-"76
+[; ;newmain.c: 92: {
+"92
 {
-[; ;newmain.c: 77: _delay((unsigned long)((1)*(4000000/4000.0)));
-"77
+[; ;newmain.c: 93: _delay((unsigned long)((1)*(4000000/4000.0)));
+"93
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;newmain.c: 78: milliseconds--;
-"78
+[; ;newmain.c: 94: milliseconds--;
+"94
 [e -- _milliseconds -> -> -> 1 `i `l `ul ]
-"79
+"95
 }
 [e :U 148 ]
-"75
+"91
 [e $ > _milliseconds -> -> -> 0 `i `l `ul 149  ]
 [e :U 150 ]
-[; ;newmain.c: 79: }
-[; ;newmain.c: 80: }
-"80
+[; ;newmain.c: 95: }
+[; ;newmain.c: 96: }
+"96
 [e :UE 147 ]
 }
-"85
+"101
 [v _bin_bcd `(v ~T0 @X0 1 ef ]
-"86
+"102
 {
-[; ;newmain.c: 85: void bin_bcd(void)
-[; ;newmain.c: 86: {
+[; ;newmain.c: 101: void bin_bcd(void)
+[; ;newmain.c: 102: {
 [e :U _bin_bcd ]
 [f ]
-[; ;newmain.c: 87: temp=50;
-"87
+[; ;newmain.c: 103: temp=50;
+"103
 [e = _temp -> 50 `i ]
-[; ;newmain.c: 88: centenas=0;
-"88
+[; ;newmain.c: 104: centenas=0;
+"104
 [e = _centenas -> 0 `i ]
-[; ;newmain.c: 89: decenas=0;
-"89
+[; ;newmain.c: 105: decenas=0;
+"105
 [e = _decenas -> 0 `i ]
-[; ;newmain.c: 90: unidades=0;
-"90
+[; ;newmain.c: 106: unidades=0;
+"106
 [e = _unidades -> 0 `i ]
-[; ;newmain.c: 92: while(temp>=100)
-"92
+[; ;newmain.c: 108: while(temp>=100)
+"108
 [e $U 152  ]
 [e :U 153 ]
-[; ;newmain.c: 93: {
-"93
+[; ;newmain.c: 109: {
+"109
 {
-[; ;newmain.c: 94: temp=temp-100;
-"94
+[; ;newmain.c: 110: temp=temp-100;
+"110
 [e = _temp - _temp -> 100 `i ]
-[; ;newmain.c: 96: centenas++;}
-"96
+[; ;newmain.c: 112: centenas++;}
+"112
 [e ++ _centenas -> 1 `i ]
 }
 [e :U 152 ]
-"92
+"108
 [e $ >= _temp -> 100 `i 153  ]
 [e :U 154 ]
-[; ;newmain.c: 98: while(temp>=10)
-"98
+[; ;newmain.c: 114: while(temp>=10)
+"114
 [e $U 155  ]
 [e :U 156 ]
-[; ;newmain.c: 99: {temp=temp-10;
-"99
+[; ;newmain.c: 115: {temp=temp-10;
+"115
 {
 [e = _temp - _temp -> 10 `i ]
-[; ;newmain.c: 100: decenas++;
-"100
+[; ;newmain.c: 116: decenas++;
+"116
 [e ++ _decenas -> 1 `i ]
-"101
+"117
 }
 [e :U 155 ]
-"98
+"114
 [e $ >= _temp -> 10 `i 156  ]
 [e :U 157 ]
-[; ;newmain.c: 101: }
-[; ;newmain.c: 103: while(temp>=1)
-"103
+[; ;newmain.c: 117: }
+[; ;newmain.c: 119: while(temp>=1)
+"119
 [e $U 158  ]
 [e :U 159 ]
-[; ;newmain.c: 104: {
-"104
+[; ;newmain.c: 120: {
+"120
 {
-[; ;newmain.c: 105: temp=temp-1;
-"105
+[; ;newmain.c: 121: temp=temp-1;
+"121
 [e = _temp - _temp -> 1 `i ]
-[; ;newmain.c: 107: unidades;}
-"107
+[; ;newmain.c: 123: unidades;}
+"123
 [e _unidades ]
 }
 [e :U 158 ]
-"103
+"119
 [e $ >= _temp -> 1 `i 159  ]
 [e :U 160 ]
-[; ;newmain.c: 109: }
-"109
+[; ;newmain.c: 125: }
+"125
 [e :UE 151 ]
 }
-[a 1C 74 74 117 108 105 97 110 0 ]
+[a 1C 65 100 114 105 97 110 97 32 84 69 32 65 77 79 0 ]
 

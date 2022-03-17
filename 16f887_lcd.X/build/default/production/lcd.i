@@ -87,7 +87,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 84 "lcd.h"
+# 83 "lcd.h"
 typedef void (*pFcnGpio)(uint8_t);
 typedef void (*pFcnWait)(uint32_t);
 
@@ -102,13 +102,14 @@ pFcnWait ctrlWait ;
 
 void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
 pFcnGpio data, pFcnWait wait);
-void lcdSetPosition(lcdData_t const * const obj, unsigned char position);
+void lcdSetPosition(lcdData_t const * const obj, uint8_t position);
 void lcdPuts (lcdData_t const * const obj, const char *s);
 void lcdPutch (lcdData_t const * const obj, unsigned char c);
 void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr);
 void lcdPutsPos(lcdData_t const * const obj, const char *s, uint8_t initPos);
 void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
 void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
+void lcdCreateCustomCharacter (lcdData_t const * const obj, unsigned char *Pattern, const char Location);
 
 # 15 "C:\Program Files\Microchip\xc8\v2.35\pic\include\c90\stdbool.h"
 typedef unsigned char bool;
@@ -2637,7 +2638,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 8 "lcd.c"
+# 10 "lcd.c"
 static void lcdWriteData( lcdData_t const * const obj, unsigned char data);
 static void lcdConfig(lcdData_t const * const obj);
 
@@ -2666,25 +2667,20 @@ lcdWriteRegister(obj, ((0x1U << (3U)) & 0xff) | ((0x1U << (2U)) & 0xff));
 lcdWriteRegister(obj, ((0x1U << (2U)) & 0xff) | ((0x1U << (1U)) & 0xff));
 }
 
-# 38
+# 40
 void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr){
 
-# 46
+# 48
 obj->ctrlRS(0);
 obj->ctrlEnable(1);
 obj->ctrlData( 0x0F );
 obj->ctrlData( regAddr & 0xF0 );
-
-
-
 obj->ctrlWait((2));
 obj->ctrlEnable(0);
 obj->ctrlWait((2));
 obj->ctrlEnable(1);
 obj->ctrlData( 0x0F );
 obj->ctrlData( (regAddr<<4) & 0xF0 );
-
-
 obj->ctrlWait((2));
 obj->ctrlEnable(0);
 obj->ctrlWait((2));
@@ -2692,26 +2688,22 @@ obj->ctrlWait((2));
 
 }
 
-void lcdSetPosition(lcdData_t const * const obj, unsigned char position){
+void lcdSetPosition(lcdData_t const * const obj, uint8_t position){
 obj->ctrlRS(0);
 lcdWriteData(obj, (0x80U) + position);
 }
 static void lcdWriteData( lcdData_t const * const obj, unsigned char data){
 
-# 80
+# 77
 obj->ctrlEnable(1);
 obj->ctrlData( 0x0F );
 obj->ctrlData( data & 0xF0 );
-
-
 obj->ctrlWait((2));
 obj->ctrlEnable(0);
 obj->ctrlWait((2));
 obj->ctrlEnable(1);
 obj->ctrlData( 0x0F );
 obj->ctrlData( (data<<4) & 0xF0 );
-
-
 obj->ctrlWait((2));
 obj->ctrlEnable(0);
 obj->ctrlWait((2));
@@ -2719,7 +2711,7 @@ obj->ctrlWait((2));
 }
 
 void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos){
-lcdSetPosition(obj, 0 + initPos);
+lcdSetPosition(obj, 0U + initPos);
 int i = 0;
 while(s[i]){
 obj->ctrlRS(1);
@@ -2758,5 +2750,12 @@ lcdPutsInLine2(obj, line2, 0);
 void lcdPutch (lcdData_t const * const obj, unsigned char c){
 obj->ctrlRS(1);
 lcdWriteData(obj, c);
+}
+void lcdCreateCustomCharacter(lcdData_t const * const obj, unsigned char *Pattern, const char Location)
+{
+int i=0;
+lcdWriteRegister(obj, (0x40U) + (Location*(8U)) );
+for (i=0; i<8; i++)
+lcdPutch(obj, Pattern [ i ] );
 }
 

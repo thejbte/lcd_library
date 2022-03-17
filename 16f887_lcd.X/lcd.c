@@ -4,6 +4,8 @@
 #include <xc.h>//borrar, solo test
 
 #define LCD_MAX_NUM_CHARACTER       (32)
+#define LCD_ADDR_DDRAM_CUSTOM_CHAR            (0x40U)  /*0x40 0x48 de 8 en 8*/
+#define LCD_ADDR_OFFSET_DDRAM_CUSTOM_CHAR            (8U)  /*0x40 0x48 de 8 en 8*/
 
 static void lcdWriteData( lcdData_t const * const obj, unsigned char data);
 static void lcdConfig(lcdData_t const * const obj);
@@ -45,19 +47,14 @@ void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr){
 #else
     obj->ctrlRS(false);
 	obj->ctrlEnable(true); 
-    obj->ctrlData( 0x0F );  //LCD_DATA=LCD_DATA&0X0F;
-    obj->ctrlData( regAddr & 0xF0 ); //aux=dato&0XF0; LCD_DATA=aux|LCD_DATA;
-    //PORTC &=0x0F;  
-	//PORTC |=regAddr & 0xF0; 
- 
+    obj->ctrlData( 0x0F );  //clear nibble port
+    obj->ctrlData( regAddr & 0xF0 ); 
     obj->ctrlWait(LCD_DELAY_MS);
 	obj->ctrlEnable(false);
     obj->ctrlWait(LCD_DELAY_MS);
     obj->ctrlEnable(true);
-    obj->ctrlData( 0x0F );  //LCD_DATA=LCD_DATA&0X0F;
-    obj->ctrlData( (regAddr<<4) & 0xF0 ); //dato=dato<<4;aux=dato; aux=aux&0XF0; LCD_DATA=aux|LCD_DATA;
-    //PORTC &=0x0F;  
-	//PORTC |=(regAddr<<4) & 0xF0; 
+    obj->ctrlData( 0x0F ); 
+    obj->ctrlData( (regAddr<<4) & 0xF0 );
     obj->ctrlWait(LCD_DELAY_MS);
     obj->ctrlEnable(false);
     obj->ctrlWait(LCD_DELAY_MS);
@@ -65,7 +62,7 @@ void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr){
 
 }
 
-void lcdSetPosition(lcdData_t const * const obj, unsigned char position){
+void lcdSetPosition(lcdData_t const * const obj, uint8_t position){
 	obj->ctrlRS(false);
 	lcdWriteData(obj, LCD_ADDR_FISRT_LINE + position);
 }
@@ -78,18 +75,14 @@ static void lcdWriteData( lcdData_t const * const obj, unsigned char data){
 	obj->ctrlEnable(false);    
 #else
 	obj->ctrlEnable(true); 
-    obj->ctrlData( 0x0F );  //LCD_DATA=LCD_DATA&0X0F;
-    obj->ctrlData( data & 0xF0 ); //aux=dato&0XF0; LCD_DATA=aux|LCD_DATA;
-  	//PORTC &=0x0F;  
-	//PORTC |=data & 0xF0;
+    obj->ctrlData( 0x0F );
+    obj->ctrlData( data & 0xF0 );
     obj->ctrlWait(LCD_DELAY_MS);
 	obj->ctrlEnable(false);
     obj->ctrlWait(LCD_DELAY_MS);
     obj->ctrlEnable(true);
     obj->ctrlData( 0x0F );  //LCD_DATA=LCD_DATA&0X0F;
-    obj->ctrlData( (data<<4) & 0xF0 ); //dato=dato<<4;aux=dato; aux=aux&0XF0; LCD_DATA=aux|LCD_DATA;
-    //PORTC &=0x0F;  
-	//PORTC |=(data<<4) & 0xF0;
+    obj->ctrlData( (data<<4) & 0xF0 );
     obj->ctrlWait(LCD_DELAY_MS);
     obj->ctrlEnable(false);
     obj->ctrlWait(LCD_DELAY_MS);
@@ -97,7 +90,7 @@ static void lcdWriteData( lcdData_t const * const obj, unsigned char data){
 }
 
 void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos){
-    lcdSetPosition(obj, 0 + initPos);
+    lcdSetPosition(obj, 0U + initPos);
     int i = 0;
     while(s[i]){
         obj->ctrlRS(true);
@@ -137,19 +130,56 @@ void lcdPutch (lcdData_t const * const obj, unsigned char c){
     	obj->ctrlRS(true);
     	lcdWriteData(obj, c);
     }
+void lcdCreateCustomCharacter(lcdData_t const * const obj, unsigned char *Pattern, const char Location)
+{ 
+    int i=0; 
+    lcdWriteRegister(obj, LCD_ADDR_DDRAM_CUSTOM_CHAR + (Location*LCD_ADDR_OFFSET_DDRAM_CUSTOM_CHAR) );     //Send the Address of CGRAM
+    for (i=0; i<8; i++)
+    lcdPutch(obj, Pattern [ i ] );         //Pass the bytes of pattern on LCD 
+}
+
+
+
+//USE
+
+
+    /*
+     lcdData_t objLcd;
+     lcdInit(&objLcd,ctrlEn, ctrlRs , ctrlData, delay_ms );
+     */
+
+    /*
+      //lcdSetPosition(&objLcd, 0);
+      lcdPuts(&objLcd, "1%°*789012345abcdefghijklmno"); // run in pos 0
+     * 
+      lcdPutsInLine1(&objLcd, "alal", 0);
+     */
+
+    /* unsigned char Pattern1 [ ] = { 0x0e, 0x0e, 0x04, 0x04, 0x1f, 0x04, 0x0a, 0x0a } ;
+        lcdCreateCustomCharacter (&objLcd, Pattern1, 1); //save in index 1
+        lcdSetPosition(&objLcd, 6); // set cursor
+        lcdPutch(&objLcd, 1);  // show character saved in index 1
+     */
+
 
 	/*Wrapper */
-	/*
-	* void CtrlEn(uint8_t Status){
-	*		RB0 = Status;
-	*	}
-	* void CtrlRs(uint8_t Status){
-	*		RB1 = Status;
-	*	}
-	* void CtrlData(uint8_t Data){
-	*		PORTB = Data;
-	*	}
-	 */
 
-	/* lcd_Init(&lcd_Config,CtrlEn ,CtrlRs ,CtrlData , __delay_ms);
+/*
+    void ctrlEn(uint8_t status){
+        PORTDbits.RD7 = status;
+    }
+    void ctrlRs(uint8_t status){
+        PORTDbits.RD6 = status; 
+    }
+    void ctrlData(uint8_t Data){
+     PORTC = Data;
+    }
+
+     void delay_ms(uint32_t milliseconds){
+       while(milliseconds > 0)
+       {
+           __delay_ms(1);
+          milliseconds--;
+        }
+     }
  */

@@ -1,21 +1,21 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [v F30 `(v ~T0 @X0 0 tf1`uc ]
 [v F33 `(v ~T0 @X0 0 tf1`ul ]
-"87 lcd.h
+"86 lcd.h
 [s S1 `*F30 1 `*F30 1 `*F30 1 `*F33 1 ]
 [n S1 . ctrlEnable ctrlRS ctrlData ctrlWait ]
 [v F43 `*S1 ~T0 @X0 1 t ]
-[v F1435 `*CS1 ~T0 @X0 1 t ]
-"9 lcd.c
+[v F1440 `*CS1 ~T0 @X0 1 t ]
+"11 lcd.c
 [v _lcdConfig `(v ~T0 @X0 0 sf1`C*CS1 ]
 [v F50 `*CS1 ~T0 @X0 1 t ]
-"98 lcd.h
+"97 lcd.h
 [v _lcdSetPosition `(v ~T0 @X0 0 ef2`C*CS1`uc ]
 [v F62 `*CS1 ~T0 @X0 1 t ]
-"101
+"100
 [v _lcdWriteRegister `(v ~T0 @X0 0 ef2`C*CS1`uc ]
-[v F1431 `*CS1 ~T0 @X0 1 t ]
-"8 lcd.c
+[v F1436 `*CS1 ~T0 @X0 1 t ]
+"10 lcd.c
 [v _lcdWriteData `(v ~T0 @X0 0 sf2`C*CS1`uc ]
 [v F71 `*CS1 ~T0 @X0 1 t ]
 [v F76 `*CS1 ~T0 @X0 1 t ]
@@ -25,6 +25,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "14
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
 [v F58 `*CS1 ~T0 @X0 1 t ]
+[v F81 `*CS1 ~T0 @X0 1 t ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef __int24 int24_t;
@@ -53,23 +54,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 282: typedef uint32_t uintmax_t;
 [; ;stdint.h: 289: typedef int16_t intptr_t;
 [; ;stdint.h: 294: typedef uint16_t uintptr_t;
-[; ;lcd.h: 84: typedef void (*pFcnGpio)(uint8_t);
-[; ;lcd.h: 85: typedef void (*pFcnWait)(uint32_t);
-[; ;lcd.h: 87: typedef struct {
-[; ;lcd.h: 88: pFcnGpio ctrlEnable;
-[; ;lcd.h: 89: pFcnGpio ctrlRS ;
-[; ;lcd.h: 90: pFcnGpio ctrlData ;
-[; ;lcd.h: 91: pFcnWait ctrlWait ;
-[; ;lcd.h: 92: }lcdData_t;
-[; ;lcd.h: 96: void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
-[; ;lcd.h: 97: pFcnGpio data, pFcnWait wait);
-[; ;lcd.h: 98: void lcdSetPosition(lcdData_t const * const obj, unsigned char position);
-[; ;lcd.h: 99: void lcdPuts (lcdData_t const * const obj, const char *s);
-[; ;lcd.h: 100: void lcdPutch (lcdData_t const * const obj, unsigned char c);
-[; ;lcd.h: 101: void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr);
-[; ;lcd.h: 102: void lcdPutsPos(lcdData_t const * const obj, const char *s, uint8_t initPos);
-[; ;lcd.h: 103: void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
-[; ;lcd.h: 104: void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 83: typedef void (*pFcnGpio)(uint8_t);
+[; ;lcd.h: 84: typedef void (*pFcnWait)(uint32_t);
+[; ;lcd.h: 86: typedef struct {
+[; ;lcd.h: 87: pFcnGpio ctrlEnable;
+[; ;lcd.h: 88: pFcnGpio ctrlRS ;
+[; ;lcd.h: 89: pFcnGpio ctrlData ;
+[; ;lcd.h: 90: pFcnWait ctrlWait ;
+[; ;lcd.h: 91: }lcdData_t;
+[; ;lcd.h: 95: void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
+[; ;lcd.h: 96: pFcnGpio data, pFcnWait wait);
+[; ;lcd.h: 97: void lcdSetPosition(lcdData_t const * const obj, uint8_t position);
+[; ;lcd.h: 98: void lcdPuts (lcdData_t const * const obj, const char *s);
+[; ;lcd.h: 99: void lcdPutch (lcdData_t const * const obj, unsigned char c);
+[; ;lcd.h: 100: void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr);
+[; ;lcd.h: 101: void lcdPutsPos(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 102: void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 103: void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
+[; ;lcd.h: 104: void lcdCreateCustomCharacter (lcdData_t const * const obj, unsigned char *Pattern, const char Location);
 [; ;stdbool.h: 15: typedef unsigned char bool;
 [; ;xc8\pic\include\__size_t.h: 4: typedef unsigned size_t;
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
@@ -1582,353 +1584,394 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xc8\pic\include\pic.h: 118: extern __bank0 unsigned char __resetbits;
 [; ;xc8\pic\include\pic.h: 119: extern __bank0 __bit __powerdown;
 [; ;xc8\pic\include\pic.h: 120: extern __bank0 __bit __timeout;
-[; ;lcd.c: 8: static void lcdWriteData( lcdData_t const * const obj, unsigned char data);
-[; ;lcd.c: 9: static void lcdConfig(lcdData_t const * const obj);
-"12 lcd.c
+[; ;lcd.c: 10: static void lcdWriteData( lcdData_t const * const obj, unsigned char data);
+[; ;lcd.c: 11: static void lcdConfig(lcdData_t const * const obj);
+"14 lcd.c
 [v _lcdInit `(v ~T0 @X0 1 ef5`C*S1`*F30`*F30`*F30`*F33 ]
-"13
+"15
 {
-[; ;lcd.c: 12: void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
-[; ;lcd.c: 13: pFcnGpio data, pFcnWait wait){
+[; ;lcd.c: 14: void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
+[; ;lcd.c: 15: pFcnGpio data, pFcnWait wait){
 [e :U _lcdInit ]
-[v F1437 `*S1 ~T0 @X0 1 t ]
-"12
+[v F1442 `*S1 ~T0 @X0 1 t ]
+"14
 [v _obj `C*S1 ~T0 @X0 1 r1 ]
 [v _E `*F30 ~T0 @X0 1 r2 ]
 [v _RS `*F30 ~T0 @X0 1 r3 ]
-"13
+"15
 [v _data `*F30 ~T0 @X0 1 r4 ]
 [v _wait `*F33 ~T0 @X0 1 r5 ]
 [f ]
-[; ;lcd.c: 14: obj->ctrlEnable = E;
-"14
-[e = . *U _obj 0 _E ]
-[; ;lcd.c: 15: obj->ctrlRS = RS;
-"15
-[e = . *U _obj 1 _RS ]
-[; ;lcd.c: 16: obj->ctrlData = data;
+[; ;lcd.c: 16: obj->ctrlEnable = E;
 "16
-[e = . *U _obj 2 _data ]
-[; ;lcd.c: 17: obj->ctrlWait = wait;
+[e = . *U _obj 0 _E ]
+[; ;lcd.c: 17: obj->ctrlRS = RS;
 "17
-[e = . *U _obj 3 _wait ]
-[; ;lcd.c: 19: lcdConfig(obj);
+[e = . *U _obj 1 _RS ]
+[; ;lcd.c: 18: obj->ctrlData = data;
+"18
+[e = . *U _obj 2 _data ]
+[; ;lcd.c: 19: obj->ctrlWait = wait;
 "19
-[e ( _lcdConfig (1 -> _obj `C*CS1 ]
-[; ;lcd.c: 20: lcdSetPosition(obj, 0);
-"20
-[e ( _lcdSetPosition (2 , -> _obj `C*CS1 -> -> 0 `i `uc ]
-[; ;lcd.c: 21: }
+[e = . *U _obj 3 _wait ]
+[; ;lcd.c: 21: lcdConfig(obj);
 "21
+[e ( _lcdConfig (1 -> _obj `C*CS1 ]
+[; ;lcd.c: 22: lcdSetPosition(obj, 0);
+"22
+[e ( _lcdSetPosition (2 , -> _obj `C*CS1 -> -> 0 `i `uc ]
+[; ;lcd.c: 23: }
+"23
 [e :UE 139 ]
 }
-"24
+"26
 [v _lcdConfig `(v ~T0 @X0 1 sf1`C*CS1 ]
 {
-[; ;lcd.c: 24: static void lcdConfig(lcdData_t const * const obj){
+[; ;lcd.c: 26: static void lcdConfig(lcdData_t const * const obj){
 [e :U _lcdConfig ]
-[v F1443 `*CS1 ~T0 @X0 1 t ]
+[v F1448 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [f ]
-[; ;lcd.c: 25: lcdWriteRegister(obj, (1));
-"25
+[; ;lcd.c: 27: lcdWriteRegister(obj, (1));
+"27
 [e ( _lcdWriteRegister (2 , _obj -> -> 1 `i `uc ]
-[; ;lcd.c: 26: lcdWriteRegister(obj, (2));
-"26
+[; ;lcd.c: 28: lcdWriteRegister(obj, (2));
+"28
 [e ( _lcdWriteRegister (2 , _obj -> -> 2 `i `uc ]
-[; ;lcd.c: 30: lcdWriteRegister(obj, ((0x1U << (5U)) & 0xff) | ((0x1U << (3U)) & 0xff));
-"30
-[e ( _lcdWriteRegister (2 , _obj -> | & << -> 1 `ui -> 5 `ui -> -> 255 `i `ui & << -> 1 `ui -> 3 `ui -> -> 255 `i `ui `uc ]
-[; ;lcd.c: 32: lcdWriteRegister(obj, ((0x1U << (3U)) & 0xff) | ((0x1U << (2U)) & 0xff));
+[; ;lcd.c: 32: lcdWriteRegister(obj, ((0x1U << (5U)) & 0xff) | ((0x1U << (3U)) & 0xff));
 "32
-[e ( _lcdWriteRegister (2 , _obj -> | & << -> 1 `ui -> 3 `ui -> -> 255 `i `ui & << -> 1 `ui -> 2 `ui -> -> 255 `i `ui `uc ]
-[; ;lcd.c: 33: lcdWriteRegister(obj, ((0x1U << (2U)) & 0xff) | ((0x1U << (1U)) & 0xff));
-"33
-[e ( _lcdWriteRegister (2 , _obj -> | & << -> 1 `ui -> 2 `ui -> -> 255 `i `ui & << -> 1 `ui -> 1 `ui -> -> 255 `i `ui `uc ]
-[; ;lcd.c: 34: }
+[e ( _lcdWriteRegister (2 , _obj -> | & << -> 1 `ui -> 5 `ui -> -> 255 `i `ui & << -> 1 `ui -> 3 `ui -> -> 255 `i `ui `uc ]
+[; ;lcd.c: 34: lcdWriteRegister(obj, ((0x1U << (3U)) & 0xff) | ((0x1U << (2U)) & 0xff));
 "34
+[e ( _lcdWriteRegister (2 , _obj -> | & << -> 1 `ui -> 3 `ui -> -> 255 `i `ui & << -> 1 `ui -> 2 `ui -> -> 255 `i `ui `uc ]
+[; ;lcd.c: 35: lcdWriteRegister(obj, ((0x1U << (2U)) & 0xff) | ((0x1U << (1U)) & 0xff));
+"35
+[e ( _lcdWriteRegister (2 , _obj -> | & << -> 1 `ui -> 2 `ui -> -> 255 `i `ui & << -> 1 `ui -> 1 `ui -> -> 255 `i `ui `uc ]
+[; ;lcd.c: 36: }
+"36
 [e :UE 140 ]
 }
-"38
+"40
 [v _lcdWriteRegister `(v ~T0 @X0 1 ef2`C*CS1`uc ]
 {
-[; ;lcd.c: 38: void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr){
+[; ;lcd.c: 40: void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr){
 [e :U _lcdWriteRegister ]
-[v F1445 `*CS1 ~T0 @X0 1 t ]
+[v F1450 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [v _regAddr `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;lcd.c: 46: obj->ctrlRS(0);
-"46
-[e ( *U . *U _obj 1 (1 -> -> 0 `i `uc ]
-[; ;lcd.c: 47: obj->ctrlEnable(1);
-"47
-[e ( *U . *U _obj 0 (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 48: obj->ctrlData( 0x0F );
+[; ;lcd.c: 48: obj->ctrlRS(0);
 "48
-[e ( *U . *U _obj 2 (1 -> -> 15 `i `uc ]
-[; ;lcd.c: 49: obj->ctrlData( regAddr & 0xF0 );
+[e ( *U . *U _obj 1 (1 -> -> 0 `i `uc ]
+[; ;lcd.c: 49: obj->ctrlEnable(1);
 "49
-[e ( *U . *U _obj 2 (1 -> & -> _regAddr `i -> 240 `i `uc ]
-[; ;lcd.c: 53: obj->ctrlWait((2));
-"53
-[e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 54: obj->ctrlEnable(0);
-"54
-[e ( *U . *U _obj 0 (1 -> -> 0 `i `uc ]
-[; ;lcd.c: 55: obj->ctrlWait((2));
-"55
-[e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 56: obj->ctrlEnable(1);
-"56
 [e ( *U . *U _obj 0 (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 57: obj->ctrlData( 0x0F );
-"57
+[; ;lcd.c: 50: obj->ctrlData( 0x0F );
+"50
 [e ( *U . *U _obj 2 (1 -> -> 15 `i `uc ]
-[; ;lcd.c: 58: obj->ctrlData( (regAddr<<4) & 0xF0 );
-"58
-[e ( *U . *U _obj 2 (1 -> & << -> _regAddr `i -> 4 `i -> 240 `i `uc ]
-[; ;lcd.c: 61: obj->ctrlWait((2));
-"61
+[; ;lcd.c: 51: obj->ctrlData( regAddr & 0xF0 );
+"51
+[e ( *U . *U _obj 2 (1 -> & -> _regAddr `i -> 240 `i `uc ]
+[; ;lcd.c: 52: obj->ctrlWait((2));
+"52
 [e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 62: obj->ctrlEnable(0);
-"62
+[; ;lcd.c: 53: obj->ctrlEnable(0);
+"53
 [e ( *U . *U _obj 0 (1 -> -> 0 `i `uc ]
-[; ;lcd.c: 63: obj->ctrlWait((2));
-"63
+[; ;lcd.c: 54: obj->ctrlWait((2));
+"54
 [e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 66: }
-"66
+[; ;lcd.c: 55: obj->ctrlEnable(1);
+"55
+[e ( *U . *U _obj 0 (1 -> -> 1 `i `uc ]
+[; ;lcd.c: 56: obj->ctrlData( 0x0F );
+"56
+[e ( *U . *U _obj 2 (1 -> -> 15 `i `uc ]
+[; ;lcd.c: 57: obj->ctrlData( (regAddr<<4) & 0xF0 );
+"57
+[e ( *U . *U _obj 2 (1 -> & << -> _regAddr `i -> 4 `i -> 240 `i `uc ]
+[; ;lcd.c: 58: obj->ctrlWait((2));
+"58
+[e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
+[; ;lcd.c: 59: obj->ctrlEnable(0);
+"59
+[e ( *U . *U _obj 0 (1 -> -> 0 `i `uc ]
+[; ;lcd.c: 60: obj->ctrlWait((2));
+"60
+[e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
+[; ;lcd.c: 63: }
+"63
 [e :UE 141 ]
 }
-"68
+"65
 [v _lcdSetPosition `(v ~T0 @X0 1 ef2`C*CS1`uc ]
 {
-[; ;lcd.c: 68: void lcdSetPosition(lcdData_t const * const obj, unsigned char position){
+[; ;lcd.c: 65: void lcdSetPosition(lcdData_t const * const obj, uint8_t position){
 [e :U _lcdSetPosition ]
-[v F1461 `*CS1 ~T0 @X0 1 t ]
+[v F1466 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [v _position `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;lcd.c: 69: obj->ctrlRS(0);
-"69
+[; ;lcd.c: 66: obj->ctrlRS(0);
+"66
 [e ( *U . *U _obj 1 (1 -> -> 0 `i `uc ]
-[; ;lcd.c: 70: lcdWriteData(obj, (0x80U) + position);
-"70
+[; ;lcd.c: 67: lcdWriteData(obj, (0x80U) + position);
+"67
 [e ( _lcdWriteData (2 , _obj -> + -> 128 `ui -> _position `ui `uc ]
-[; ;lcd.c: 71: }
-"71
+[; ;lcd.c: 68: }
+"68
 [e :UE 142 ]
 }
-"72
+"69
 [v _lcdWriteData `(v ~T0 @X0 1 sf2`C*CS1`uc ]
 {
-[; ;lcd.c: 72: static void lcdWriteData( lcdData_t const * const obj, unsigned char data){
+[; ;lcd.c: 69: static void lcdWriteData( lcdData_t const * const obj, unsigned char data){
 [e :U _lcdWriteData ]
-[v F1465 `*CS1 ~T0 @X0 1 t ]
+[v F1470 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [v _data `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;lcd.c: 80: obj->ctrlEnable(1);
-"80
+[; ;lcd.c: 77: obj->ctrlEnable(1);
+"77
 [e ( *U . *U _obj 0 (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 81: obj->ctrlData( 0x0F );
-"81
+[; ;lcd.c: 78: obj->ctrlData( 0x0F );
+"78
 [e ( *U . *U _obj 2 (1 -> -> 15 `i `uc ]
-[; ;lcd.c: 82: obj->ctrlData( data & 0xF0 );
-"82
+[; ;lcd.c: 79: obj->ctrlData( data & 0xF0 );
+"79
 [e ( *U . *U _obj 2 (1 -> & -> _data `i -> 240 `i `uc ]
-[; ;lcd.c: 85: obj->ctrlWait((2));
-"85
+[; ;lcd.c: 80: obj->ctrlWait((2));
+"80
 [e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 86: obj->ctrlEnable(0);
-"86
+[; ;lcd.c: 81: obj->ctrlEnable(0);
+"81
 [e ( *U . *U _obj 0 (1 -> -> 0 `i `uc ]
-[; ;lcd.c: 87: obj->ctrlWait((2));
-"87
+[; ;lcd.c: 82: obj->ctrlWait((2));
+"82
 [e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 88: obj->ctrlEnable(1);
-"88
+[; ;lcd.c: 83: obj->ctrlEnable(1);
+"83
 [e ( *U . *U _obj 0 (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 89: obj->ctrlData( 0x0F );
-"89
+[; ;lcd.c: 84: obj->ctrlData( 0x0F );
+"84
 [e ( *U . *U _obj 2 (1 -> -> 15 `i `uc ]
-[; ;lcd.c: 90: obj->ctrlData( (data<<4) & 0xF0 );
-"90
+[; ;lcd.c: 85: obj->ctrlData( (data<<4) & 0xF0 );
+"85
 [e ( *U . *U _obj 2 (1 -> & << -> _data `i -> 4 `i -> 240 `i `uc ]
-[; ;lcd.c: 93: obj->ctrlWait((2));
-"93
+[; ;lcd.c: 86: obj->ctrlWait((2));
+"86
 [e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 94: obj->ctrlEnable(0);
-"94
+[; ;lcd.c: 87: obj->ctrlEnable(0);
+"87
 [e ( *U . *U _obj 0 (1 -> -> 0 `i `uc ]
-[; ;lcd.c: 95: obj->ctrlWait((2));
-"95
+[; ;lcd.c: 88: obj->ctrlWait((2));
+"88
 [e ( *U . *U _obj 3 (1 -> -> -> 2 `i `l `ul ]
-[; ;lcd.c: 97: }
-"97
+[; ;lcd.c: 90: }
+"90
 [e :UE 143 ]
 }
-"99
+"92
 [v _lcdPutsInLine1 `(v ~T0 @X0 1 ef3`C*CS1`*Cuc`uc ]
 {
-[; ;lcd.c: 99: void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos){
+[; ;lcd.c: 92: void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos){
 [e :U _lcdPutsInLine1 ]
-[v F1480 `*CS1 ~T0 @X0 1 t ]
+[v F1485 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [v _s `*Cuc ~T0 @X0 1 r2 ]
 [v _initPos `uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;lcd.c: 100: lcdSetPosition(obj, 0 + initPos);
-"100
-[e ( _lcdSetPosition (2 , _obj -> + -> 0 `i -> _initPos `i `uc ]
-"101
+[; ;lcd.c: 93: lcdSetPosition(obj, 0U + initPos);
+"93
+[e ( _lcdSetPosition (2 , _obj -> + -> 0 `ui -> _initPos `ui `uc ]
+"94
 [v _i `i ~T0 @X0 1 a ]
-[; ;lcd.c: 101: int i = 0;
+[; ;lcd.c: 94: int i = 0;
 [e = _i -> 0 `i ]
-[; ;lcd.c: 102: while(s[i]){
-"102
+[; ;lcd.c: 95: while(s[i]){
+"95
 [e $U 145  ]
 [e :U 146 ]
 {
-[; ;lcd.c: 103: obj->ctrlRS(1);
-"103
+[; ;lcd.c: 96: obj->ctrlRS(1);
+"96
 [e ( *U . *U _obj 1 (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 104: lcdWriteData(obj, s[i++]);
-"104
+[; ;lcd.c: 97: lcdWriteData(obj, s[i++]);
+"97
 [e ( _lcdWriteData (2 , _obj *U + _s * -> ++ _i -> 1 `i `x -> -> # *U _s `i `x ]
-"105
+"98
 }
 [e :U 145 ]
-"102
+"95
 [e $ != -> *U + _s * -> _i `x -> -> # *U _s `i `x `i -> -> -> 0 `i `Cuc `i 146  ]
 [e :U 147 ]
-[; ;lcd.c: 105: }
-[; ;lcd.c: 106: }
-"106
+[; ;lcd.c: 98: }
+[; ;lcd.c: 99: }
+"99
 [e :UE 144 ]
 }
-"108
+"101
 [v _lcdPutsInLine2 `(v ~T0 @X0 1 ef3`C*CS1`*Cuc`uc ]
 {
-[; ;lcd.c: 108: void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos){
+[; ;lcd.c: 101: void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos){
 [e :U _lcdPutsInLine2 ]
-[v F1486 `*CS1 ~T0 @X0 1 t ]
+[v F1491 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [v _s `*Cuc ~T0 @X0 1 r2 ]
 [v _initPos `uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;lcd.c: 109: lcdSetPosition(obj, (0x40U) + initPos);
-"109
+[; ;lcd.c: 102: lcdSetPosition(obj, (0x40U) + initPos);
+"102
 [e ( _lcdSetPosition (2 , _obj -> + -> 64 `ui -> _initPos `ui `uc ]
-"110
+"103
 [v _i `i ~T0 @X0 1 a ]
-[; ;lcd.c: 110: int i = 0;
+[; ;lcd.c: 103: int i = 0;
 [e = _i -> 0 `i ]
-[; ;lcd.c: 111: while(s[i]){
-"111
+[; ;lcd.c: 104: while(s[i]){
+"104
 [e $U 149  ]
 [e :U 150 ]
 {
-[; ;lcd.c: 112: obj->ctrlRS(1);
-"112
+[; ;lcd.c: 105: obj->ctrlRS(1);
+"105
 [e ( *U . *U _obj 1 (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 113: lcdWriteData(obj, s[i++]);
-"113
+[; ;lcd.c: 106: lcdWriteData(obj, s[i++]);
+"106
 [e ( _lcdWriteData (2 , _obj *U + _s * -> ++ _i -> 1 `i `x -> -> # *U _s `i `x ]
-"114
+"107
 }
 [e :U 149 ]
-"111
+"104
 [e $ != -> *U + _s * -> _i `x -> -> # *U _s `i `x `i -> -> -> 0 `i `Cuc `i 150  ]
 [e :U 151 ]
-[; ;lcd.c: 114: }
-[; ;lcd.c: 115: }
-"115
+[; ;lcd.c: 107: }
+[; ;lcd.c: 108: }
+"108
 [e :UE 148 ]
 }
-"118
+"111
 [v _lcdPuts `(v ~T0 @X0 1 ef2`C*CS1`*Cuc ]
 {
-[; ;lcd.c: 118: void lcdPuts(lcdData_t const * const obj, const char *s){
+[; ;lcd.c: 111: void lcdPuts(lcdData_t const * const obj, const char *s){
 [e :U _lcdPuts ]
-[v F1492 `*CS1 ~T0 @X0 1 t ]
+[v F1497 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [v _s `*Cuc ~T0 @X0 1 r2 ]
 [f ]
-"120
+"113
 [v _i `uc ~T0 @X0 1 a ]
-[; ;lcd.c: 120: uint8_t i = 0;
+[; ;lcd.c: 113: uint8_t i = 0;
 [e = _i -> -> 0 `i `uc ]
-[v F1496 `uc ~T0 @X0 -> 16 `i s ]
-[i F1496
+[v F1501 `uc ~T0 @X0 -> 16 `i s ]
+[i F1501
 :U ..
-"122
+"115
 -> -> 0 `i `uc
 ..
 ]
 [v _line1 `uc ~T0 @X0 -> 16 `i a ]
-[; ;lcd.c: 122: char line1[(16)] = {0};
-[e = _line1 F1496 ]
-[v F1498 `uc ~T0 @X0 -> 16 `i s ]
-[i F1498
+[; ;lcd.c: 115: char line1[(16)] = {0};
+[e = _line1 F1501 ]
+[v F1503 `uc ~T0 @X0 -> 16 `i s ]
+[i F1503
 :U ..
-"123
+"116
 -> -> 0 `i `uc
 ..
 ]
 [v _line2 `uc ~T0 @X0 -> 16 `i a ]
-[; ;lcd.c: 123: char line2[(16)] = {0};
-[e = _line2 F1498 ]
-[; ;lcd.c: 124: if(strlen(s) >= (16)){
-"124
+[; ;lcd.c: 116: char line2[(16)] = {0};
+[e = _line2 F1503 ]
+[; ;lcd.c: 117: if(strlen(s) >= (16)){
+"117
 [e $ ! >= ( _strlen (1 _s -> -> 16 `i `ui 153  ]
 {
-[; ;lcd.c: 125: memcpy(line1,s,(16));
-"125
+[; ;lcd.c: 118: memcpy(line1,s,(16));
+"118
 [e ( _memcpy (3 , , -> &U _line1 `*v -> _s `*Cv -> -> 16 `i `ui ]
-[; ;lcd.c: 126: memcpy(line2,s+(16),strlen(s) -(16) );
-"126
+[; ;lcd.c: 119: memcpy(line2,s+(16),strlen(s) -(16) );
+"119
 [e ( _memcpy (3 , , -> &U _line2 `*v -> + _s * -> -> 16 `i `x -> -> # *U _s `i `x `*Cv - ( _strlen (1 _s -> -> 16 `i `ui ]
-"128
+"121
 }
-[; ;lcd.c: 128: }else{
+[; ;lcd.c: 121: }else{
 [e $U 154  ]
 [e :U 153 ]
 {
-[; ;lcd.c: 129: memcpy(line1,s,strlen(s));
-"129
+[; ;lcd.c: 122: memcpy(line1,s,strlen(s));
+"122
 [e ( _memcpy (3 , , -> &U _line1 `*v -> _s `*Cv ( _strlen (1 _s ]
-"130
+"123
 }
 [e :U 154 ]
-[; ;lcd.c: 130: }
-[; ;lcd.c: 131: lcdPutsInLine1(obj, line1, 0);
-"131
+[; ;lcd.c: 123: }
+[; ;lcd.c: 124: lcdPutsInLine1(obj, line1, 0);
+"124
 [e ( _lcdPutsInLine1 (3 , , _obj -> &U _line1 `*Cuc -> -> 0 `i `uc ]
-[; ;lcd.c: 132: lcdPutsInLine2(obj, line2, 0);
-"132
+[; ;lcd.c: 125: lcdPutsInLine2(obj, line2, 0);
+"125
 [e ( _lcdPutsInLine2 (3 , , _obj -> &U _line2 `*Cuc -> -> 0 `i `uc ]
-[; ;lcd.c: 133: }
-"133
+[; ;lcd.c: 126: }
+"126
 [e :UE 152 ]
 }
-"136
+"129
 [v _lcdPutch `(v ~T0 @X0 1 ef2`C*CS1`uc ]
 {
-[; ;lcd.c: 136: void lcdPutch (lcdData_t const * const obj, unsigned char c){
+[; ;lcd.c: 129: void lcdPutch (lcdData_t const * const obj, unsigned char c){
 [e :U _lcdPutch ]
-[v F1500 `*CS1 ~T0 @X0 1 t ]
+[v F1505 `*CS1 ~T0 @X0 1 t ]
 [v _obj `C*CS1 ~T0 @X0 1 r1 ]
 [v _c `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;lcd.c: 137: obj->ctrlRS(1);
-"137
+[; ;lcd.c: 130: obj->ctrlRS(1);
+"130
 [e ( *U . *U _obj 1 (1 -> -> 1 `i `uc ]
-[; ;lcd.c: 138: lcdWriteData(obj, c);
-"138
+[; ;lcd.c: 131: lcdWriteData(obj, c);
+"131
 [e ( _lcdWriteData (2 , _obj _c ]
+[; ;lcd.c: 132: }
+"132
+[e :UE 155 ]
+}
+"133
+[v _lcdCreateCustomCharacter `(v ~T0 @X0 1 ef3`C*CS1`*uc`Cuc ]
+"134
+{
+[; ;lcd.c: 133: void lcdCreateCustomCharacter(lcdData_t const * const obj, unsigned char *Pattern, const char Location)
+[; ;lcd.c: 134: {
+[e :U _lcdCreateCustomCharacter ]
+[v F1509 `*CS1 ~T0 @X0 1 t ]
+"133
+[v _obj `C*CS1 ~T0 @X0 1 r1 ]
+[v _Pattern `*uc ~T0 @X0 1 r2 ]
+[v _Location `Cuc ~T0 @X0 1 r3 ]
+"134
+[f ]
+"135
+[v _i `i ~T0 @X0 1 a ]
+[; ;lcd.c: 135: int i=0;
+[e = _i -> 0 `i ]
+[; ;lcd.c: 136: lcdWriteRegister(obj, (0x40U) + (Location*(8U)) );
+"136
+[e ( _lcdWriteRegister (2 , _obj -> + -> 64 `ui * -> _Location `ui -> 8 `ui `uc ]
+[; ;lcd.c: 137: for (i=0; i<8; i++)
+"137
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 8 `i 157  ]
+[e $U 158  ]
+"138
+[e :U 157 ]
+[; ;lcd.c: 138: lcdPutch(obj, Pattern [ i ] );
+[e ( _lcdPutch (2 , _obj *U + _Pattern * -> _i `x -> -> # *U _Pattern `i `x ]
+"137
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 8 `i 157  ]
+[e :U 158 ]
+"138
+}
 [; ;lcd.c: 139: }
 "139
-[e :UE 155 ]
+[e :UE 156 ]
 }
