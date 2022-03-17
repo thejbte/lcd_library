@@ -8,6 +8,7 @@
 
 static void lcdWriteData( lcdData_t const * const obj, unsigned char data);
 static void lcdConfig(lcdData_t const * const obj);
+static void lcdPuts(lcdData_t const * const obj, const char *s);
 
 /*constructor*/
 void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
@@ -18,25 +19,25 @@ void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
 	obj->ctrlWait = wait;
 
     lcdConfig(obj);
-    lcdSetPosition(obj, 0);
+    lcdSetCursorPosition(obj, 0);
 }
 
 
 static void lcdConfig(lcdData_t const * const obj){  
-    lcdWriteRegister(obj, LCD_REG_CLEAR);
-	lcdWriteRegister(obj, LCD_REG_RETURN_HOME);
+    lcdSendRegister(obj, LCD_REG_CLEAR);
+	lcdSendRegister(obj, LCD_REG_RETURN_HOME);
     #if (LCD_ENABLE_8BITS == 1)
-    lcdWriteRegister(obj, REG_FUNCTION_SET_BIT | REG_FUNCTION_SET_DL_BIT | REG_FUNCTION_SET_N_BIT);
+    lcdSendRegister(obj, REG_FUNCTION_SET_BIT | REG_FUNCTION_SET_DL_BIT | REG_FUNCTION_SET_N_BIT);
     #else
-        lcdWriteRegister(obj, REG_FUNCTION_SET_BIT | REG_FUNCTION_SET_N_BIT);
+        lcdSendRegister(obj, REG_FUNCTION_SET_BIT | REG_FUNCTION_SET_N_BIT);
     #endif
-    lcdWriteRegister(obj, REG_DISPLAY_ON_OFF_BIT | REG_DISPLAY_ON_OFF_D_BIT);	
-    lcdWriteRegister(obj, REG_ENTRYMODE_BIT | REG_ENTRYMODE_ID_BIT);   
+    lcdSendRegister(obj, REG_DISPLAY_ON_OFF_BIT | REG_DISPLAY_ON_OFF_D_BIT);	
+    lcdSendRegister(obj, REG_ENTRYMODE_BIT | REG_ENTRYMODE_ID_BIT);   
 }
 /*
  REG_ENTRYMODE_BIT
  */
-void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr){
+void lcdSendRegister(lcdData_t const * const obj, uint8_t regAddr){
 #if (LCD_ENABLE_8BITS == 1)
     obj->ctrlRS(false);
 	obj->ctrlEnable(true);    
@@ -61,7 +62,7 @@ void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr){
 
 }
 
-void lcdSetPosition(lcdData_t const * const obj, uint8_t position){
+void lcdSetCursorPosition(lcdData_t const * const obj, uint8_t position){
 	obj->ctrlRS(false);
 	lcdWriteData(obj, LCD_ADDR_FISRT_LINE + position);
 }
@@ -88,8 +89,7 @@ static void lcdWriteData( lcdData_t const * const obj, unsigned char data){
 #endif 
 }
 
-void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos){
-    lcdSetPosition(obj, 0U + initPos);
+static void lcdPuts(lcdData_t const * const obj, const char *s){
     int i = 0;
     while(s[i]){
         obj->ctrlRS(true);
@@ -97,45 +97,50 @@ void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos)
     }
 }
 
-void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos){
-    lcdSetPosition(obj, LCD_ADDR_SECOND_LINE + initPos);
-    int i = 0;
-    while(s[i]){
-        obj->ctrlRS(true);
-        lcdWriteData(obj, s[i++]);
-    }
+void lcdPrintInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos){
+    lcdSetCursorPosition(obj, 0U + initPos);
+    lcdPuts(obj, s);
+}
+
+void lcdPrintInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos){
+    lcdSetCursorPosition(obj, LCD_ADDR_SECOND_LINE + initPos);
+    lcdPuts(obj, s);
 }
 
 /*set position before use*/
-void lcdPuts(lcdData_t const * const obj, const char *s){
+void lcdPrint(lcdData_t const * const obj, const char *s){
     	
     	uint8_t i = 0;
-        char line1[LCD_MAX_NUMBER_CHAR_BY_LINE] = {0};
-        char line2[LCD_MAX_NUMBER_CHAR_BY_LINE] = {0};
-        if(strlen(s) >= LCD_MAX_NUMBER_CHAR_BY_LINE){
-            memcpy(line1,s,LCD_MAX_NUMBER_CHAR_BY_LINE);
-            memcpy(line2,s+LCD_MAX_NUMBER_CHAR_BY_LINE,strlen(s) -LCD_MAX_NUMBER_CHAR_BY_LINE );
-            
+        uint8_t lenStr = strlen(s);
+        char line1[LCD_MAX_NUMBER_CHAR_BY_LINE+1] = {0};
+        char line2[LCD_MAX_NUMBER_CHAR_BY_LINE+1] = {0};
+        if( lenStr >= LCD_MAX_NUMBER_CHAR_BY_LINE){
+            memcpy(line1, s,LCD_MAX_NUMBER_CHAR_BY_LINE);
+            memcpy(line2, s+LCD_MAX_NUMBER_CHAR_BY_LINE, (lenStr -LCD_MAX_NUMBER_CHAR_BY_LINE) > LCD_MAX_NUMBER_CHAR_BY_LINE? 
+                    LCD_MAX_NUMBER_CHAR_BY_LINE : (lenStr -LCD_MAX_NUMBER_CHAR_BY_LINE) );
         }else{
-            memcpy(line1,s,strlen(s)); 
+            memcpy(line1,s,lenStr); 
         }
-        lcdPutsInLine1(obj, line1, 0);//
-        lcdPutsInLine2(obj, line2, 0);//
+        lcdPrintInLine1(obj, line1, 0);//
+        lcdPrintInLine2(obj, line2, 0);//
     }
 
 
-void lcdPutch (lcdData_t const * const obj, unsigned char c){
+void lcdPrintChar(lcdData_t const * const obj, unsigned char character){
     	obj->ctrlRS(true);
-    	lcdWriteData(obj, c);
+    	lcdWriteData(obj, character);
     }
 void lcdCreateCustomCharacter(lcdData_t const * const obj, unsigned char *Pattern, const char Location)
 { 
     int i=0; 
-    lcdWriteRegister(obj, LCD_ADDR_DDRAM_CUSTOM_CHAR + (Location*LCD_ADDR_OFFSET_DDRAM_CUSTOM_CHAR) );     //Send the Address of CGRAM
+    lcdSendRegister(obj, LCD_ADDR_DDRAM_CUSTOM_CHAR + (Location*LCD_ADDR_OFFSET_DDRAM_CUSTOM_CHAR) );     //Send the Address of CGRAM
     for (i=0; i<8; i++)
-    lcdPutch(obj, Pattern [ i ] );         //Pass the bytes of pattern on LCD 
+    lcdPrintChar(obj, Pattern [ i ] );         //Pass the bytes of pattern on LCD 
 }
 
+void lcdCls(lcdData_t const * const obj){
+    lcdSendRegister(obj, LCD_REG_CLEAR);
+}
 
 
 //USE
@@ -147,16 +152,16 @@ void lcdCreateCustomCharacter(lcdData_t const * const obj, unsigned char *Patter
      */
 
     /*
-      //lcdSetPosition(&objLcd, 0);
-      lcdPuts(&objLcd, "1%�*789012345abcdefghijklmno"); // run in pos 0
+      //lcdSetCursorPosition(&objLcd, 0);
+      lcdPrint(&objLcd, "1%�*789012345abcdefghijklmno"); // run in pos 0
      * 
-      lcdPutsInLine1(&objLcd, "alal", 0);
+      lcdPrintInLine1(&objLcd, "alal", 0);
      */
 
     /* unsigned char Pattern1 [ ] = { 0x0e, 0x0e, 0x04, 0x04, 0x1f, 0x04, 0x0a, 0x0a } ;
         lcdCreateCustomCharacter (&objLcd, Pattern1, 1); //save in index 1
-        lcdSetPosition(&objLcd, 6); // set cursor
-        lcdPutch(&objLcd, 1);  // show character saved in index 1
+        lcdSetCursorPosition(&objLcd, 6); // set cursor
+        lcdPrintChar(&objLcd, 1);  // show character saved in index 1
      */
 
 

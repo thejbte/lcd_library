@@ -93,14 +93,14 @@ typedef struct {
 /*ctor*/
 void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
              pFcnGpio data, pFcnWait wait);
-void lcdSetPosition(lcdData_t const * const obj, uint8_t position);
-void lcdPuts (lcdData_t const * const obj, const char *s);
-void lcdPutch (lcdData_t const * const obj, unsigned char c);
-void lcdWriteRegister(lcdData_t const * const obj, uint8_t regAddr);
-void lcdPutsPos(lcdData_t const * const obj, const char *s, uint8_t initPos);
-void lcdPutsInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
-void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
+void lcdSetCursorPosition(lcdData_t const * const obj, uint8_t position);
+void lcdPrint(lcdData_t const * const obj, const char *s);
+void lcdPrintChar(lcdData_t const * const obj, unsigned char character);
+void lcdSendRegister(lcdData_t const * const obj, uint8_t regAddr);
+void lcdPrintInLine1(lcdData_t const * const obj, const char *s, uint8_t initPos);
+void lcdPrintInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos);
 void lcdCreateCustomCharacter (lcdData_t const * const obj, unsigned char *Pattern, const char Location);
+void lcdCls(lcdData_t const * const obj);
 
 #ifdef __cplusplus
 }

@@ -3,6 +3,10 @@
 #include <stdint.h>
 
 #include "src/lcd.h"
+
+#define LOCATION_PATTERN_0  (0)
+#define LOCATION_PATTERN_1  (1)
+
 void ctrlEn(uint8_t status){
     //PORTDbits.RD7 = status;
 }
@@ -28,24 +32,24 @@ int main(){
     lcdInit(&objLcd,ctrlEn, ctrlRs , ctrlData, delay_ms );
  
     unsigned char Pattern1 [ ] = { 0x0e, 0x0e, 0x04, 0x04, 0x1f, 0x04, 0x0a, 0x0a } ;
-    unsigned char Pattern3[]= {0x00,0x00,0x0a,0x15,0x11,0x0a,0x04,0x00};
+    unsigned char Pattern0[]= {0x00,0x00,0x0a,0x15,0x11,0x0a,0x04,0x00};
     //unsigned char Pattern4[]= {0x00,0x00,0x0a,0x1f,0x1f,0x0e,0x04,0x00};
 
-    lcdCreateCustomCharacter (&objLcd, Pattern1, 1);
-    lcdCreateCustomCharacter (&objLcd, Pattern3, 3);
+    lcdCreateCustomCharacter (&objLcd, Pattern1, LOCATION_PATTERN_1);
+    lcdCreateCustomCharacter (&objLcd, Pattern0, LOCATION_PATTERN_0);
     //while(1)
     {
-        lcdSetPosition(&objLcd, 0);
-        lcdPuts(&objLcd, "1%°*789012345abcdefghijklmno");
-        lcdPutsInLine1(&objLcd, "a", 0);
+        lcdSetCursorPosition(&objLcd, 0);
+        lcdPrint(&objLcd, "123456789012345abcdefghijklmnopq123456");
+        lcdPrintInLine1(&objLcd, "a", 0);
         
-        lcdSetPosition(&objLcd, 0);
-        lcdPutch(&objLcd, 0x7e);
-        lcdPutsInLine1(&objLcd, "Julian",1);
+        lcdSetCursorPosition(&objLcd, 0);
+        lcdPrintChar(&objLcd, 0x7e);
+        lcdPrintInLine1(&objLcd, "123456789012345abcdefghijklmnopq123456",1);
 
-        lcdSetPosition(&objLcd, 6);
-        lcdPutch(&objLcd, 1);
-        lcdSetPosition(&objLcd, 8);
-        lcdPutch(&objLcd, 3);
+        lcdSetCursorPosition(&objLcd, 6);
+        lcdPrintChar(&objLcd, LOCATION_PATTERN_1);
+        lcdSetCursorPosition(&objLcd, 8);
+        lcdPrintChar(&objLcd, LOCATION_PATTERN_0);
    }
 }
