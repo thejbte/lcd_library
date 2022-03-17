@@ -1,18 +1,17 @@
 #include "lcd.h"
 #include "stdbool.h"
 #include "string.h"
-#include <xc.h>//borrar, solo test
 
-#define LCD_MAX_NUM_CHARACTER       (32)
-#define LCD_ADDR_DDRAM_CUSTOM_CHAR            (0x40U)  /*0x40 0x48 de 8 en 8*/
-#define LCD_ADDR_OFFSET_DDRAM_CUSTOM_CHAR            (8U)  /*0x40 0x48 de 8 en 8*/
+#define LCD_MAX_NUM_CHARACTER                       (32)
+#define LCD_ADDR_DDRAM_CUSTOM_CHAR                  (0x40U)  /*0x40 0x48 de 8 en 8*/
+#define LCD_ADDR_OFFSET_DDRAM_CUSTOM_CHAR           (8U)  /*0x40 0x48 de 8 en 8*/
 
 static void lcdWriteData( lcdData_t const * const obj, unsigned char data);
 static void lcdConfig(lcdData_t const * const obj);
 
-/*ctor*/
+/*constructor*/
 void lcdInit(lcdData_t * const obj, pFcnGpio E, pFcnGpio RS,
-             pFcnGpio data, pFcnWait wait){  /*Control_Data es de tipo OutFcn_t*/
+             pFcnGpio data, pFcnWait wait){
 	obj->ctrlEnable = E; /*Asigno  wrapper de funciÃ³n al driver */
 	obj->ctrlRS = RS;
 	obj->ctrlData = data;
@@ -111,7 +110,6 @@ void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos)
 void lcdPuts(lcdData_t const * const obj, const char *s){
     	
     	uint8_t i = 0;
-        
         char line1[LCD_MAX_NUMBER_CHAR_BY_LINE] = {0};
         char line2[LCD_MAX_NUMBER_CHAR_BY_LINE] = {0};
         if(strlen(s) >= LCD_MAX_NUMBER_CHAR_BY_LINE){
@@ -150,7 +148,7 @@ void lcdCreateCustomCharacter(lcdData_t const * const obj, unsigned char *Patter
 
     /*
       //lcdSetPosition(&objLcd, 0);
-      lcdPuts(&objLcd, "1%°*789012345abcdefghijklmno"); // run in pos 0
+      lcdPuts(&objLcd, "1%ï¿½*789012345abcdefghijklmno"); // run in pos 0
      * 
       lcdPutsInLine1(&objLcd, "alal", 0);
      */

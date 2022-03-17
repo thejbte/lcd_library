@@ -15,8 +15,7 @@ extern "C" {
     #define LCD_ENABLE_4BITS                (0)
 #endif
 
-
-    
+#define LCD_VERSION                         "1.0.0"
     
 #define LCD_DELAY_MS                        (2)    
     
