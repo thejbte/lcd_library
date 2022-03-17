@@ -2639,7 +2639,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 23 "lcd.h"
+# 84 "lcd.h"
 typedef void (*pFcnGpio)(uint8_t);
 typedef void (*pFcnWait)(uint32_t);
 
@@ -2666,23 +2666,11 @@ void lcdPutsInLine2(lcdData_t const * const obj, const char *s, uint8_t initPos)
 __config("__CONFIG", "pic", "FOSC_HS & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_ON & IESO_ON & FCMEN_ON & LVP_OFF");
 __config("__CONFIG", "pic", "BOR4V_BOR40V & WRT_OFF");
 
-# 30
-int porcentaje,n;
+# 31
 int cont,centenas,decenas,unidades,temp;
-float x;
-void lcd_init (void);
 
-void set_lcd (void);
-
-void lcd_puts (const char * s);
-
-void lcd_putch (char c );
-
-void lcd_goto (unsigned char pos );
-
-void lcd_write (unsigned char c );
 void bin_bcd( void);
-void mostrar_en_lcd(void);
+
 
 void ctrlEn(uint8_t status);
 void ctrlRs(uint8_t status);
@@ -2690,13 +2678,8 @@ void ctrlData(uint8_t Data);
 
 
 void delay_ms(uint32_t milliseconds);
-void fcn(void){
 
-}
-void main()
-{
-
-# 73
+void main(){
 TRISD=0;
 TRISB=0;
 TRISC=0;
@@ -2704,21 +2687,13 @@ PORTB=0;
 PORTD=0;
 PORTC=0;
 
-
 lcdData_t objLcd;
 lcdInit(&objLcd,ctrlEn, ctrlRs , ctrlData, delay_ms );
 
 while(1){
 
-n=0;
 
-porcentaje=(x *100)/255;
-
-lcdSetPosition(&objLcd, 0);
-lcdPuts(&objLcd, "123456789012345abcdefghijklmno");
 lcdPutsInLine1(&objLcd, "JJulian", 0);
-
-
 _delay((unsigned long)((500)*(4000000/4000.0)));
 }
 }
@@ -2746,114 +2721,9 @@ milliseconds--;
 
 
 
-void interrupt isr(void)
-{
-if(RCIF==1)
-{
-
-n=RCREG;
-
-
-_delay((unsigned long)((10)*(4000000/4000.0)));
-
-}
-}
-void mostrar_en_lcd(void)
-{ lcd_goto (0);
-lcd_puts("porcentaje ");
-
-lcd_goto(0x40);
-lcd_puts("igual a: 	%   	");
-
-
-
-
-for(int i=15;i>0;i--)
-{
-bin_bcd();
-
-lcd_goto(0x49);
-lcd_putch(centenas+48);
-
-lcd_goto(0x4a);
-lcd_putch(decenas+48);
-
-lcd_goto(0x4b);
-lcd_putch(unidades+48);
-
-}
-}
-
-void putch(unsigned char byte)
-{
-while(!TRMT)
-continue;
-TXREG=byte;
-}
-
-void lcd_init(void)
-{
-
-PORTC=1;
-set_lcd();
-
-PORTC=2;
-set_lcd();
-
-PORTC=6;
-
-set_lcd();
-
-PORTC=12;
-set_lcd();
-
-
-
-
-PORTC=56;
-set_lcd();
-
-# 194
-}
-void set_lcd(void)
-{
-RD6=0;
-RD7=1;
-_delay((unsigned long)((2)*(4000000/4000.0)));
-
-RD7=0;
-}
-
-void lcd_goto (unsigned char pos )
-{
-RD6=0;
-lcd_write (0x80+pos);
-}
-
-void lcd_write(unsigned char c)
-{
-RD7=1;
-PORTC= (c);
-_delay((unsigned long)((2)*(4000000/4000.0)));
-RD7=0;
-}
-void lcd_puts(const char *s)
-{
-RD6=1;
-while(*s)
-lcd_write(*s++);
-
-}
-
-void lcd_putch(char c)
-{
-RD6=1;
-lcd_write(c);
-_delay((unsigned long)((5)*(4000000/4000.0)));
-}
-
 void bin_bcd(void)
-{temp=porcentaje;
+{
+temp=50;
 centenas=0;
 decenas=0;
 unidades=0;
