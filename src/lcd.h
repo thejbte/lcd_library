@@ -1,3 +1,10 @@
+/**
+ * @file lcd.h
+ * @brief interface for lcd 2x16
+ * @author Julian Bustamante N
+ * @date 17-march-2022
+*/
+
 #ifndef _LCD_H_
 #define _LCD_H_
 
