@@ -6,12 +6,6 @@
  */
 
 
-
-//https://www.pjrc.com/tech/8051/board5/lcd_example.html
-
-
-
-
 // PIC16F887 Configuration Bit Settings
 // programna2 de recepcin darwin lcd
 #include <xc.h>
@@ -50,16 +44,16 @@ void main(){
 
     lcdData_t objLcd;
     lcdInit(&objLcd,ctrlEn, ctrlRs , ctrlData, delay_ms );
- char b[7]={0x10,0x10,0x16,0x19,0x11,0x11,0x1E}; 
- unsigned char Pattern1 [ ] = { 0x0e, 0x0e, 0x04, 0x04, 0x1f, 0x04, 0x0a, 0x0a } ;
-unsigned char Pattern3[]= {0x00,0x00,0x0a,0x15,0x11,0x0a,0x04,0x00};
-unsigned char Pattern4[]= {0x00,0x00,0x0a,0x1f,0x1f,0x0e,0x04,0x00};
+    char b[7]={0x10,0x10,0x16,0x19,0x11,0x11,0x1E}; 
+    unsigned char Pattern1 [ ] = { 0x0e, 0x0e, 0x04, 0x04, 0x1f, 0x04, 0x0a, 0x0a } ;
+    unsigned char Pattern3[]= {0x00,0x00,0x0a,0x15,0x11,0x0a,0x04,0x00};
+    unsigned char Pattern4[]= {0x00,0x00,0x0a,0x1f,0x1f,0x0e,0x04,0x00};
 
-        lcdCreateCustomCharacter (&objLcd, Pattern1, 1);
-        lcdCreateCustomCharacter (&objLcd, Pattern3, 3);
+    lcdCreateCustomCharacter (&objLcd, Pattern1, 1);
+    lcdCreateCustomCharacter (&objLcd, Pattern3, 3);
     while(1){
         //lcdSetPosition(&objLcd, 0);
-        //lcdPuts(&objLcd, "1%°*789012345abcdefghijklmno");
+        //lcdPuts(&objLcd, "1%ï¿½*789012345abcdefghijklmno");
         //lcdPutsInLine1(&objLcd, "a", 0);
         
         lcdSetPosition(&objLcd, 0);
@@ -71,12 +65,12 @@ unsigned char Pattern4[]= {0x00,0x00,0x0a,0x1f,0x1f,0x0e,0x04,0x00};
         //lcdSetPosition(&objLcd, 8);
         lcdPutch(&objLcd, 3);
        // lcdWriteRegister(&objLcd, REG_CGRAM_BIT | b[0] );
-  __delay_ms(500);
+        __delay_ms(500);
    }
 }
 
 
-
+/*================================ Wrappers ================================*/
 void ctrlEn(uint8_t status){
     PORTDbits.RD7 = status;
 }
@@ -97,7 +91,7 @@ void ctrlData(uint8_t Data){
 
 
 
-
+//borrar o refactor
 void bin_bcd(void)
 {
     temp=50;//porcentaje;
@@ -105,22 +99,22 @@ void bin_bcd(void)
     decenas=0;
     unidades=0;
 
-    while(temp>=100)
-    {
-    temp=temp-100;
-    // averiguar modulo
-    centenas++;}
-
-    while(temp>=10)
-    {temp=temp-10;
-    decenas++;
+    while(temp>=100){
+        temp=temp-100;
+        // modulo
+        centenas++;
     }
 
-    while(temp>=1)
-    {
-    temp=temp-1;
-    // averiguar modulo
-    unidades;}
+    while(temp>=10){
+        temp=temp-10;
+        decenas++;
+    }
+
+    while(temp>=1){
+        temp=temp-1;
+        // modulo
+        unidades;
+    }
 
 }
 
